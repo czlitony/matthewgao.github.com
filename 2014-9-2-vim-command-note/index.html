@@ -205,17 +205,40 @@
 
       
         <h2 id="生成tags">生成tags</h2><p>在所在目录运行</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    <span class="title">ctags</span> -R</span><br><span class="line">~~<span class="regexp">~	</span><br><span class="line">在vim中</span></span><br></pre></td></tr></table></figure>
-<pre><code>:<span class="keyword">set</span> tags = /your/<span class="built_in">path</span>/tags
-</code></pre><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##生成cscope索引</span></span><br></pre></td></tr></table></figure>
-<pre><code><span class="title">cscope</span> -Rbq
-</code></pre><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="header">##命令	</span></span><br><span class="line"><span class="bullet">* </span><span class="code">`:A`</span> 打开头文件</span><br><span class="line"><span class="bullet">* </span><span class="code">`:E`</span> 浏览打开文件</span><br><span class="line"><span class="bullet">* </span><span class="code">`:wqa`</span></span><br><span class="line"><span class="bullet">* </span><span class="code">`:b(buffer)`</span> 浏览/切换缓冲区, 例如:<span class="code">`b1`</span></span><br><span class="line"><span class="bullet">* </span><span class="code">`:cd`</span> 改变工作目录</span><br><span class="line"><span class="bullet">* </span><span class="code">`:lcd`</span> 改变当前窗口工作目录</span><br><span class="line"><span class="bullet">* </span><span class="code">`:pwd`</span> 显示当前工作目录</span><br><span class="line"><span class="bullet">* </span><span class="code">`:He`</span></span><br><span class="line"><span class="bullet">* </span><span class="code">`:He!`</span>上分屏</span><br><span class="line"><span class="bullet">* </span><span class="code">`:Ve`</span> 横分屏</span><br><span class="line"><span class="bullet">* </span><span class="code">`:Te`</span> tag explore</span><br><span class="line"><span class="bullet">* </span><span class="code">`:colorscheme test3`</span> 更改配色方案</span><br><span class="line"></span><br><span class="line"><span class="header">##快捷键</span></span><br><span class="line"><span class="bullet">* </span><span class="code">`&#123;c-f12&#125;`</span>, <span class="code">`&#123;c-n&#125;`</span> 自动补全</span><br><span class="line"><span class="bullet">* </span><span class="code">`,`</span> <span class="code">`;`</span> 结合<span class="code">`f&#123;char&#125;`</span>查找, 上一个, 下一个</span><br><span class="line"><span class="bullet">* </span><span class="code">`g;`</span> 上一个修改过的地方</span><br><span class="line"><span class="bullet">* </span><span class="code">`g,`</span> 下一个修改过的地方</span><br><span class="line"><span class="bullet">* </span><span class="code">`&#123;c-o&#125;`</span>,<span class="code">`&#123;c-i&#125;`</span> 回到上一个地方, 下一个地方</span><br><span class="line"><span class="bullet">* </span><span class="code">`&#123;c-a&#125;&#123;num&#125;`</span>,<span class="code">`&#123;c-x&#125;&#123;num&#125;`</span> 增加num, 减少num</span><br><span class="line"><span class="bullet">* </span><span class="code">`u`</span> undo</span><br><span class="line"><span class="bullet">* </span><span class="code">`&#123;c-r&#125;`</span> 重做</span><br><span class="line"></span><br><span class="line"><span class="header">##文件比较</span></span><br></pre></td></tr></table></figure>
-<pre><code>vim <span class="operator">-d</span> file1 file2
-</code></pre><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="blockquote">&gt; d = diff</span></span><br><span class="line"></span><br><span class="line"><span class="header">## 在你忘记用 root 方式打开文件时的文件保存</span></span><br></pre></td></tr></table></figure>
-<p>:w !sudo tee %<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">## 按时间回退文件</span></span><br></pre></td></tr></table></figure></p>
-<p>:earlier 1m \会把文件回退到 1 分钟以前的状态。</p>
-<p>:later \ 注意，你可以使用这个的命令进行相反的转换<br>~~~</p>
-
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ctags</span> -R</span><br></pre></td></tr></table></figure>
+<p>在vim中</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">set</span> tags = /your/<span class="built_in">path</span>/tags</span><br></pre></td></tr></table></figure>
+<h2 id="生成cscope索引">生成cscope索引</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">cscope</span> -Rbq</span><br></pre></td></tr></table></figure>
+<h2 id="命令">命令</h2><ul>
+<li><code>:A</code> 打开头文件</li>
+<li><code>:E</code> 浏览打开文件</li>
+<li><code>:wqa</code></li>
+<li><code>:b(buffer)</code> 浏览/切换缓冲区, 例如:<code>b1</code></li>
+<li><code>:cd</code> 改变工作目录</li>
+<li><code>:lcd</code> 改变当前窗口工作目录</li>
+<li><code>:pwd</code> 显示当前工作目录</li>
+<li><code>:He</code></li>
+<li><code>:He!</code>上分屏</li>
+<li><code>:Ve</code> 横分屏</li>
+<li><code>:Te</code> tag explore</li>
+<li><code>:colorscheme test3</code> 更改配色方案</li>
+</ul>
+<h2 id="快捷键">快捷键</h2><ul>
+<li><code>{c-f12}</code>, <code>{c-n}</code> 自动补全</li>
+<li><code>,</code> <code>;</code> 结合<code>f{char}</code>查找, 上一个, 下一个</li>
+<li><code>g;</code> 上一个修改过的地方</li>
+<li><code>g,</code> 下一个修改过的地方</li>
+<li><code>{c-o}</code>,<code>{c-i}</code> 回到上一个地方, 下一个地方</li>
+<li><code>{c-a}{num}</code>,<code>{c-x}{num}</code> 增加num, 减少num</li>
+<li><code>u</code> undo</li>
+<li><code>{c-r}</code> 重做</li>
+</ul>
+<h2 id="文件比较">文件比较</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim <span class="operator">-d</span> file1 file2</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>d = diff</p>
+</blockquote>
+<h2 id="在你忘记用_root_方式打开文件时的文件保存">在你忘记用 root 方式打开文件时的文件保存</h2><figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="function_or_atom">w</span> <span class="exclamation_mark">!</span><span class="function_or_atom">sudo</span> <span class="function_or_atom">tee</span> <span class="comment">%</span></span><br></pre></td></tr></table></figure>
+<h2 id="按时间回退文件">按时间回退文件</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="pseudo">:earlier</span> 1<span class="tag">m</span> \\会把文件回退到 1 分钟以前的状态。</span><br><span class="line"></span><br><span class="line"><span class="pseudo">:later</span> \\ 注意，你可以使用这个的命令进行相反的转换</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -403,7 +426,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#生成tags"><span class="nav-number">1.</span> <span class="nav-text">生成tags</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#生成tags"><span class="nav-number">1.</span> <span class="nav-text">生成tags</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成cscope索引"><span class="nav-number">2.</span> <span class="nav-text">生成cscope索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令"><span class="nav-number">3.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快捷键"><span class="nav-number">4.</span> <span class="nav-text">快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件比较"><span class="nav-number">5.</span> <span class="nav-text">文件比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在你忘记用_root_方式打开文件时的文件保存"><span class="nav-number">6.</span> <span class="nav-text">在你忘记用 root 方式打开文件时的文件保存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按时间回退文件"><span class="nav-number">7.</span> <span class="nav-text">按时间回退文件</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
