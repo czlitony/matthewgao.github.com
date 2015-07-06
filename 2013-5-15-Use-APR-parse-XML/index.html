@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next use-motion theme-next-mist">
 <head>
   
 
@@ -36,7 +36,7 @@
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
-    scheme: '',
+    scheme: 'Mist',
     analytics: {
       google: ''
     },
@@ -57,7 +57,7 @@
 
 
 
-  <title> 用APR解析XML文件 // Matthew@Shanghai </title>
+  <title> 用APR解析XML文件 // Matthew Note </title>
 </head>
 
 <body>
@@ -82,7 +82,7 @@
       <span class="logo">
         <i class="icon-logo"></i>
       </span>
-      <span class="site-title">Matthew@Shanghai</span>
+      <span class="site-title">Matthew Note</span>
   </a>
   <span class="logo-line-after"><i></i></span>
 </h1>
@@ -176,14 +176,14 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2015-07-05
+          發表於 2013-05-15
         </span>
 
         
           <span class="post-category">
             &nbsp; | &nbsp; 分類於
             
-              <a href="/categories/blog/">blog</a>
+              <a href="/categories/Apache-Nginx/">Apache/Nginx</a>
 
               
               
@@ -215,152 +215,10 @@
 <li>apr_xml_doc</li>
 </ul>
 <p>他们的定义如下，看清楚这些结构体有助于更好的使用它：</p>
-<pre><code><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="keyword">apr_t</span>ext <span class="keyword">apr_t</span>ext;
-<span class="keyword">struct</span> <span class="keyword">apr_t</span>ext {
- <span class="keyword">const</span> <span class="keyword">char</span> *text;
- <span class="keyword">struct</span> <span class="keyword">apr_t</span>ext *next;
-};
-
-<span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="keyword">apr_t</span>ext_header <span class="keyword">apr_t</span>ext_header;
-<span class="keyword">struct</span> <span class="keyword">apr_t</span>ext_header {
- <span class="keyword">apr_t</span>ext *first;
- <span class="keyword">apr_t</span>ext *last;
-};
-
-<span class="keyword">typedef</span> <span class="keyword">struct</span> apr_xml_attr apr_xml_attr;
-<span class="keyword">typedef</span> <span class="keyword">struct</span> apr_xml_elem apr_xml_elem;
-<span class="keyword">typedef</span> <span class="keyword">struct</span> apr_xml_doc apr_xml_doc;
-
-<span class="keyword">struct</span> apr_xml_attr {
- <span class="keyword">const</span> <span class="keyword">char</span> *name;
- <span class="keyword">int</span> ns;
-
- <span class="keyword">const</span> <span class="keyword">char</span> *value;
-
- <span class="keyword">struct</span> apr_xml_attr *next;
-};
-
-<span class="keyword">struct</span> apr_xml_elem {
- <span class="keyword">const</span> <span class="keyword">char</span> *name;
- <span class="keyword">int</span> ns;
- <span class="keyword">const</span> <span class="keyword">char</span> *lang;
-
- <span class="keyword">apr_t</span>ext_header first_cdata;
- <span class="keyword">apr_t</span>ext_header following_cdata;
-
- <span class="keyword">struct</span> apr_xml_elem *parent;        
- <span class="keyword">struct</span> apr_xml_elem *next;  
- <span class="keyword">struct</span> apr_xml_elem *first_child;
- <span class="keyword">struct</span> apr_xml_attr *attr;          
-
- <span class="comment">/* used only during parsing */</span>
- <span class="keyword">struct</span> apr_xml_elem *last_child;
- <span class="keyword">struct</span> apr_xml_ns_scope *ns_scope;
-
- <span class="comment">/* used by modules during request processing */</span>
- <span class="keyword">void</span> *priv;
-};
-
-<span class="preprocessor">#<span class="keyword">define</span> APR_XML_ELEM_IS_EMPTY(e) ((e)-&gt;first_child == NULL &amp;&amp; \
-                               (e)-&gt;first_cdata.first == NULL)</span>
-
-<span class="keyword">struct</span> apr_xml_doc {
- apr_xml_elem *root; 
- <span class="keyword">apr_array_header_t</span> *namespaces;
-};
-</code></pre><p>所有关于xml的数据都存储在apr_xml_doc中，这里记录了他的子节点，父节点，每个节点的名称，属性和cdata（也就是value），很好的处理好这个结构体，就可以轻松的得到所有你想要的内容。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="keyword">apr_t</span>ext <span class="keyword">apr_t</span>ext;</span><br><span class="line"><span class="keyword">struct</span> <span class="keyword">apr_t</span>ext &#123;</span><br><span class="line"> <span class="keyword">const</span> <span class="keyword">char</span> *text;</span><br><span class="line"> <span class="keyword">struct</span> <span class="keyword">apr_t</span>ext *next;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="keyword">apr_t</span>ext_header <span class="keyword">apr_t</span>ext_header;</span><br><span class="line"><span class="keyword">struct</span> <span class="keyword">apr_t</span>ext_header &#123;</span><br><span class="line"> <span class="keyword">apr_t</span>ext *first;</span><br><span class="line"> <span class="keyword">apr_t</span>ext *last;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> apr_xml_attr apr_xml_attr;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> apr_xml_elem apr_xml_elem;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> apr_xml_doc apr_xml_doc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> apr_xml_attr &#123;</span><br><span class="line"> <span class="keyword">const</span> <span class="keyword">char</span> *name;</span><br><span class="line"> <span class="keyword">int</span> ns;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">const</span> <span class="keyword">char</span> *value;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">struct</span> apr_xml_attr *next;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> apr_xml_elem &#123;</span><br><span class="line"> <span class="keyword">const</span> <span class="keyword">char</span> *name;</span><br><span class="line"> <span class="keyword">int</span> ns;</span><br><span class="line"> <span class="keyword">const</span> <span class="keyword">char</span> *lang;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">apr_t</span>ext_header first_cdata;</span><br><span class="line"> <span class="keyword">apr_t</span>ext_header following_cdata;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">struct</span> apr_xml_elem *parent;        </span><br><span class="line"> <span class="keyword">struct</span> apr_xml_elem *next;  </span><br><span class="line"> <span class="keyword">struct</span> apr_xml_elem *first_child;</span><br><span class="line"> <span class="keyword">struct</span> apr_xml_attr *attr;          </span><br><span class="line"></span><br><span class="line"> <span class="comment">/* used only during parsing */</span></span><br><span class="line"> <span class="keyword">struct</span> apr_xml_elem *last_child;</span><br><span class="line"> <span class="keyword">struct</span> apr_xml_ns_scope *ns_scope;</span><br><span class="line"></span><br><span class="line"> <span class="comment">/* used by modules during request processing */</span></span><br><span class="line"> <span class="keyword">void</span> *priv;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> APR_XML_ELEM_IS_EMPTY(e) ((e)-&gt;first_child == NULL &amp;&amp; \</span><br><span class="line">							   (e)-&gt;first_cdata.first == NULL)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> apr_xml_doc &#123;</span><br><span class="line"> apr_xml_elem *root; </span><br><span class="line"> <span class="keyword">apr_array_header_t</span> *namespaces;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>所有关于xml的数据都存储在apr_xml_doc中，这里记录了他的子节点，父节点，每个节点的名称，属性和cdata（也就是value），很好的处理好这个结构体，就可以轻松的得到所有你想要的内容。</p>
 <h2 id="怎么使用">怎么使用</h2><p>对于解析SOAP非常简单，只需调用ap_xml_parse_input()就可以将request的内容解析为apr_xml_doc格式，下面是一个实例程序：</p>
-<pre><code><span class="comment">#include &lt;ctype.h&gt;</span>
-<span class="comment">#include "httpd.h"</span>
-<span class="comment">#include "http_config.h"</span>
-<span class="comment">#include "http_protocol.h"</span>
-<span class="comment">#include "ap_config.h"</span>
-<span class="comment">#include &lt;apr_xml.h&gt;</span>
-
-<span class="comment">#define apr_isspace(c)   (isspace(((unsigned char)(c))))</span>
-<span class="comment">//if you using g++ to compile the module, extern should be critical.</span>
-extern  module AP_MODULE_DECLARE_DATA soap_module;
-extern <span class="string">"C"</span> int ap_xml_parse_input    (request_rec * r,apr_xml_doc ** pdoc);
-
-<span class="keyword">const</span> char * soap_xml_get_cdata(<span class="keyword">const</span> apr_xml_elem *elem, apr_pool_t *pool,
-                              int strip_white);
-<span class="comment">/* The sample content handler */</span>
-void dump_xml(request_rec *r, apr_xml_elem *root){
-
-        <span class="keyword">if</span>(root==<span class="keyword">NULL</span>)
-                <span class="keyword">return</span>;
-        <span class="keyword">if</span>(root-&gt;name!=<span class="keyword">NULL</span>)
-                ap_rprintf(r,<span class="string">" Name:%s  \n"</span>, root-&gt;name);
-        <span class="keyword">if</span>(root-&gt;lang!=<span class="keyword">NULL</span>)
-                ap_rprintf(r,<span class="string">" lang:%s  \n"</span>, root-&gt;lang );
-        <span class="keyword">if</span>(root-&gt;attr!=<span class="keyword">NULL</span>)
-                ap_rprintf(r,<span class="string">" Attr: %s:%s \n"</span>, root-&gt;attr-&gt;name,root-&gt;attr-&gt;value );
-        <span class="keyword">if</span>(root-&gt;first_cdata.first!=<span class="keyword">NULL</span>){
-                apr_text *itr=root-&gt;first_cdata.first;
-                <span class="keyword">for</span>(;itr!=<span class="keyword">NULL</span>;itr=itr-&gt;next)
-                        ap_rprintf(r,<span class="string">" cdata:%s  \n"</span>, itr-&gt;text);
-        }
-        <span class="keyword">if</span>(root-&gt;following_cdata.first!=<span class="keyword">NULL</span>){
-                apr_text *itr=root-&gt;following_cdata.first;
-                <span class="keyword">for</span>(;itr!=<span class="keyword">NULL</span>;itr=itr-&gt;next)
-                        ap_rprintf(r,<span class="string">" following_cdata:%s  \n"</span>, itr-&gt;text);
-        }
- <span class="comment">/*       
-        const char * buf=soap_xml_get_cdata(root, r-&gt;pool,1);
-        if(buf==NULL)
-                ap_rprintf(r,"Buf is NULL");
-        else
-                ap_rprintf(r," Value: %s \n", buf );
- */</span>
-        dump_xml(r,root-&gt;first_child);
-        dump_xml(r,root-&gt;next);
-
-       <span class="comment">// dump_xml(r,root-&gt;parent);       </span>
-}
-
-<span class="keyword">static</span> int mod_soap_handler(request_rec *r)
-{
-    int result;
-    <span class="keyword">if</span> (strcmp(r-&gt;handler, <span class="string">"mod_soap"</span>)) {
-        <span class="keyword">return</span> DECLINED;
-    }
-    r-&gt;content_type = <span class="string">"text/html"</span>;      
-
-    apr_xml_doc *doc = <span class="keyword">NULL</span>;
-    <span class="keyword">if</span> ((result = ap_xml_parse_input(r, &amp;doc)) != <span class="number">0</span>)
-        {   ap_rputs(<span class="string">"parse the xml fail\n"</span>, r);   }
-
-    <span class="keyword">if</span>(doc==<span class="keyword">NULL</span>)
-    {  ap_rprintf(r,<span class="string">" Doc is NULL"</span>);
-        <span class="keyword">return</span> OK;
-    } 
-    <span class="keyword">if</span>(doc-&gt;root==<span class="keyword">NULL</span>)
-    {
-        ap_rprintf(r,<span class="string">"  root is NULL"</span>);
-        <span class="keyword">return</span> OK;
-    }
-
-    dump_xml(r,doc-&gt;root);
-    <span class="keyword">return</span> OK;
-}
-
-<span class="keyword">static</span> void mod_soap_register_hooks(apr_pool_t *p)
-{
-    ap_hook_handler(mod_soap_handler, <span class="keyword">NULL</span>, <span class="keyword">NULL</span>, APR_HOOK_MIDDLE);
-}
-
-<span class="comment">/* Dispatch list for API hooks */</span>
-
-module AP_MODULE_DECLARE_DATA soap_module = {
-    STANDARD20_MODULE_STUFF, 
-    <span class="keyword">NULL</span>,                  <span class="comment">/* create per-dir    config structures */</span>
-    <span class="keyword">NULL</span>,                  <span class="comment">/* merge  per-dir    config structures */</span>
-    <span class="keyword">NULL</span>,                  <span class="comment">/* create per-server config structures */</span>
-    <span class="keyword">NULL</span>,                  <span class="comment">/* merge  per-server config structures */</span>
-    <span class="keyword">NULL</span>,                  <span class="comment">/* table of config file commands       */</span>
-    mod_soap_register_hooks  <span class="comment">/* register hooks                      */</span>
-};
-</code></pre><p>Install这个module，之后向apache发送一个SOAP request，例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">	<span class="comment">#include &lt;ctype.h&gt;</span></span><br><span class="line">	<span class="comment">#include "httpd.h"</span></span><br><span class="line">	<span class="comment">#include "http_config.h"</span></span><br><span class="line">	<span class="comment">#include "http_protocol.h"</span></span><br><span class="line">	<span class="comment">#include "ap_config.h"</span></span><br><span class="line">	<span class="comment">#include &lt;apr_xml.h&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">#define apr_isspace(c)   (isspace(((unsigned char)(c))))</span></span><br><span class="line">	<span class="comment">//if you using g++ to compile the module, extern should be critical.</span></span><br><span class="line">	extern  module AP_MODULE_DECLARE_DATA soap_module;</span><br><span class="line">	extern <span class="string">"C"</span> int ap_xml_parse_input	(request_rec * r,apr_xml_doc ** pdoc);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">const</span> char * soap_xml_get_cdata(<span class="keyword">const</span> apr_xml_elem *elem, apr_pool_t *pool,</span><br><span class="line">								  int strip_white);</span><br><span class="line">	<span class="comment">/* The sample content handler */</span></span><br><span class="line">	void dump_xml(request_rec *r, apr_xml_elem *root)&#123;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span>(root==<span class="keyword">NULL</span>)</span><br><span class="line">					<span class="keyword">return</span>;</span><br><span class="line">			<span class="keyword">if</span>(root-&gt;name!=<span class="keyword">NULL</span>)</span><br><span class="line">					ap_rprintf(r,<span class="string">" Name:%s  \n"</span>, root-&gt;name);</span><br><span class="line">			<span class="keyword">if</span>(root-&gt;lang!=<span class="keyword">NULL</span>)</span><br><span class="line">					ap_rprintf(r,<span class="string">" lang:%s  \n"</span>, root-&gt;lang );</span><br><span class="line">			<span class="keyword">if</span>(root-&gt;attr!=<span class="keyword">NULL</span>)</span><br><span class="line">					ap_rprintf(r,<span class="string">" Attr: %s:%s \n"</span>, root-&gt;attr-&gt;name,root-&gt;attr-&gt;value );</span><br><span class="line">			<span class="keyword">if</span>(root-&gt;first_cdata.first!=<span class="keyword">NULL</span>)&#123;</span><br><span class="line">					apr_text *itr=root-&gt;first_cdata.first;</span><br><span class="line">					<span class="keyword">for</span>(;itr!=<span class="keyword">NULL</span>;itr=itr-&gt;next)</span><br><span class="line">							ap_rprintf(r,<span class="string">" cdata:%s  \n"</span>, itr-&gt;text);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(root-&gt;following_cdata.first!=<span class="keyword">NULL</span>)&#123;</span><br><span class="line">					apr_text *itr=root-&gt;following_cdata.first;</span><br><span class="line">					<span class="keyword">for</span>(;itr!=<span class="keyword">NULL</span>;itr=itr-&gt;next)</span><br><span class="line">							ap_rprintf(r,<span class="string">" following_cdata:%s  \n"</span>, itr-&gt;text);</span><br><span class="line">			&#125;</span><br><span class="line">	 <span class="comment">/*       </span><br><span class="line">			const char * buf=soap_xml_get_cdata(root, r-&gt;pool,1);</span><br><span class="line">			if(buf==NULL)</span><br><span class="line">					ap_rprintf(r,"Buf is NULL");</span><br><span class="line">			else</span><br><span class="line">					ap_rprintf(r," Value: %s \n", buf );</span><br><span class="line">	 */</span></span><br><span class="line">			dump_xml(r,root-&gt;first_child);</span><br><span class="line">			dump_xml(r,root-&gt;next);</span><br><span class="line">			</span><br><span class="line">		   <span class="comment">// dump_xml(r,root-&gt;parent);       </span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span> int mod_soap_handler(request_rec *r)</span><br><span class="line">	&#123;</span><br><span class="line">		int result;</span><br><span class="line">		<span class="keyword">if</span> (strcmp(r-&gt;handler, <span class="string">"mod_soap"</span>)) &#123;</span><br><span class="line">			<span class="keyword">return</span> DECLINED;</span><br><span class="line">		&#125;</span><br><span class="line">		r-&gt;content_type = <span class="string">"text/html"</span>;      </span><br><span class="line"></span><br><span class="line">		apr_xml_doc *doc = <span class="keyword">NULL</span>;</span><br><span class="line">		<span class="keyword">if</span> ((result = ap_xml_parse_input(r, &amp;doc)) != <span class="number">0</span>)</span><br><span class="line">			&#123;   ap_rputs(<span class="string">"parse the xml fail\n"</span>, r);   &#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(doc==<span class="keyword">NULL</span>)</span><br><span class="line">		&#123;  ap_rprintf(r,<span class="string">" Doc is NULL"</span>);</span><br><span class="line">			<span class="keyword">return</span> OK;</span><br><span class="line">		&#125; </span><br><span class="line">		<span class="keyword">if</span>(doc-&gt;root==<span class="keyword">NULL</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			ap_rprintf(r,<span class="string">"  root is NULL"</span>);</span><br><span class="line">			<span class="keyword">return</span> OK;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		dump_xml(r,doc-&gt;root);</span><br><span class="line">		<span class="keyword">return</span> OK;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span> void mod_soap_register_hooks(apr_pool_t *p)</span><br><span class="line">	&#123;</span><br><span class="line">		ap_hook_handler(mod_soap_handler, <span class="keyword">NULL</span>, <span class="keyword">NULL</span>, APR_HOOK_MIDDLE);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Dispatch list for API hooks */</span></span><br><span class="line"></span><br><span class="line">	module AP_MODULE_DECLARE_DATA soap_module = &#123;</span><br><span class="line">		STANDARD20_MODULE_STUFF, </span><br><span class="line">		<span class="keyword">NULL</span>,                  <span class="comment">/* create per-dir    config structures */</span></span><br><span class="line">		<span class="keyword">NULL</span>,                  <span class="comment">/* merge  per-dir    config structures */</span></span><br><span class="line">		<span class="keyword">NULL</span>,                  <span class="comment">/* create per-server config structures */</span></span><br><span class="line">		<span class="keyword">NULL</span>,                  <span class="comment">/* merge  per-server config structures */</span></span><br><span class="line">		<span class="keyword">NULL</span>,                  <span class="comment">/* table of config file commands       */</span></span><br><span class="line">		mod_soap_register_hooks  <span class="comment">/* register hooks                      */</span></span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">~~~	</span><br><span class="line">Install这个module，之后向apache发送一个SOAP request，例如：</span><br></pre></td></tr></table></figure>
 <pre><code>&lt;<span class="string">soapenv:</span>Envelope <span class="string">xmlns:</span>xsi=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="string">xmlns:</span>xsd=<span class="string">"http://www.w3.org/2001/XMLSchema"</span> <span class="string">xmlns:</span>soapenv=<span class="string">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="string">xmlns:</span>urn=<span class="string">"urn:AventailLogonV2"</span>&gt;
    &lt;<span class="string">soapenv:</span>Header/&gt;
    &lt;<span class="string">soapenv:</span>Body&gt;
@@ -370,7 +228,7 @@ module AP_MODULE_DECLARE_DATA soap_module = {
       &lt;/<span class="string">urn:</span>getMicroInterrogationList&gt;
    &lt;/<span class="string">soapenv:</span>Body&gt;
 &lt;/<span class="string">soapenv:</span>Envelope&gt;
-</code></pre><p>Apache server会回复如下内容：</p>
+</code></pre><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Apache <span class="keyword">server</span>会回复如下内容：</span><br></pre></td></tr></table></figure>
 <pre><code><span class="keyword">Name</span>：Envelope
 cdata：
 <span class="keyword">Name</span>：Header
@@ -383,7 +241,8 @@ cdata：
 cdata：<span class="number">2</span>
 <span class="keyword">Name</span>：logonId
 cdata：QAABAFrlfQsUJvsQVh5kRozpavo=
-</code></pre><h2 id="结语">结语</h2><p>进一步的开发就很容易了，只要按照自己的需要去处理数据就可以了。</p>
+</code></pre><p>~~~</p>
+<h2 id="结语">结语</h2><p>进一步的开发就很容易了，只要按照自己的需要去处理数据就可以了。</p>
 
       
     </div>
@@ -403,13 +262,13 @@ cdata：QAABAFrlfQsUJvsQVh5kRozpavo=
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2013-5-20-aboutfree/">Free() 怎么知道有多少内存要释放</a>
+              <a href="/2013-5-15-info-hiding/">主流数字图像信息隐藏软件的使用方法</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2013-5-15-info-hiding/">主流数字图像信息隐藏软件的使用方法</a>
+              <a href="/2013-5-14-Apache-with-cpp/">用C++进行 Apache Module 开发</a>
             
           </div>
         </div>
@@ -496,21 +355,21 @@ cdata：QAABAFrlfQsUJvsQVh5kRozpavo=
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">分類</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-count">27</span>
               <span class="site-state-item-name">標籤</span>
               </a>
           </div>
@@ -527,7 +386,7 @@ cdata：QAABAFrlfQsUJvsQVh5kRozpavo=
             </span>
             
               <span class="links-of-author-item">
-              <a href="https://twitter.com/xxiaogao" target="_blank">Twitter</a>
+              <a href="https://www.v2ex.com/member/matthewgao" target="_blank">V2EX</a>
             </span>
             
               <span class="links-of-author-item">
@@ -540,6 +399,18 @@ cdata：QAABAFrlfQsUJvsQVh5kRozpavo=
             
               <span class="links-of-author-item">
               <a href="http://www.zhihu.com/people/gaoshen" target="_blank">Zhihu</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://twitter.com/xxiaogao" target="_blank">Twitter</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://www.facebook.com/gao.jl" target="_blank">FaceBook</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="matthewgao@gmail.com" target="_blank">Gmail</a>
             </span>
             
           
@@ -592,7 +463,7 @@ cdata：QAABAFrlfQsUJvsQVh5kRozpavo=
 <div class="theme-info">
   主題 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT
+    NexT.Mist
   </a>
 </div>
 
