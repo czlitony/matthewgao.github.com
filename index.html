@@ -170,6 +170,90 @@
           
           
             
+              <a class="post-title-link" href="/http-notes/">
+                http_notes
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2015-07-13
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; 分類於
+            
+              <a href="/categories/HTTP/">HTTP</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="Transfer-Encoding">Transfer-Encoding</h2><p>ͨ����˵��HTTP 1.0 Ĭ�϶����ǳ������ӣ���ʹ���ж�HTTP���������÷ǳ����ף�ֻҪ���ӹر��ˣ��Ϳ�����Ϊ�����ı�־���������������ܶ������Ŀ���������HTTP 1.1��<code>keep-alive</code>��Ϊ��Ĭ�������ͨ��������Ҫһ��<code>Content-Length</code>����ʾ���ĳ��ȣ��Ա�����ȷ���жϰ��ı߽磬���������������ǣ�����һ���ļ��ǳ�������ôֻ�������е��ļ������������ɲŻῪʼ��ʾ���û��������ӳٿ��ܷǳ��������Բ���������һ�ְ취<code>Transfer-Encoding</code>����֮�����ƵĻ���<code>Content-Encoding</code>��</p>
+<ul>
+<li>Transfer-Encoding: ���ڴ����Ķ��壬Ŀǰֻ��<code>chunked</code>һ�����ͣ���ʾ�ֿ�</li>
+<li>Content-Encoding���������ݵı��룬����ѹ��ʲô��</li>
+</ul>
+<p>����ʹ����<code>chunked</code>��ʽ����ôHTTP����Ҫ��ѭ���¹�����</p>
+<ol>
+<li>��ͷ������ Transfer-Encoding: chunked ֮�󣬾ʹ����������Ĳ����˷ֿ����롣</li>
+<li>�����е�ʵ����Ҫ��Ϊ��һϵ�зֿ������䡣</li>
+<li>ÿ���ֿ�����ʮ�����Ƶĳ���ֵ�����ݣ�����ֵ��ռһ�У����Ȳ���������β�� CRLF��\r\n����Ҳ�������ֿ����ݽ�β�� CRLF</li>
+<li>����һ���ֿ鳤��ֵ����Ϊ 0����Ӧ�ķֿ�����û�����ݣ���ʾʵ��������</li>
+</ol>
+<p>���磺</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="status">HTTP/1.1 <span class="number">200</span> OK</span></span><br><span class="line"><span class="attribute">Server</span>: <span class="string">nginx/1.1.19</span></span><br><span class="line"><span class="attribute">Date</span>: <span class="string">Mon, 13 Jul 2015 06:58:31 GMT</span></span><br><span class="line"><span class="attribute">Transfer-Encoding</span>: <span class="string">chunked</span></span><br><span class="line"><span class="attribute">Connection</span>: <span class="string">keep-alive</span></span><br><span class="line"></span><br><span class="line"><span class="cpp"><span class="number">2f</span></span><br><span class="line">&#123;<span class="string">"connectionId"</span>: <span class="string">"qwertyu23456"</span>,  <span class="string">"version"</span>: <span class="number">2</span>&#125;</span><br><span class="line"><span class="number">0</span></span></span><br></pre></td></tr></table></figure>
+<p>��֮��Ӧ����������<code>Content-Encoding</code></p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="status">HTTP/1.1 <span class="number">200</span> OK</span></span><br><span class="line"><span class="attribute">Server</span>: <span class="string">nginx/1.1.19</span></span><br><span class="line"><span class="attribute">Date</span>: <span class="string">Mon, 13 Jul 2015 07:07:42 GMT</span></span><br><span class="line"><span class="attribute">Content-Type</span>: <span class="string">vnd.collection+json</span></span><br><span class="line"><span class="attribute">Content-Length</span>: <span class="string">47</span></span><br><span class="line"><span class="attribute">Connection</span>: <span class="string">keep-alive</span></span><br><span class="line"></span><br><span class="line"><span class="json">&#123;"<span class="attribute">connectionId</span>": <span class="value"><span class="string">"qwertyu23456"</span></span>,  "<span class="attribute">version</span>": <span class="value"><span class="number">2</span></span>&#125;</span></span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2014-9-12-cpp-note/">
                 C\C++ Notes
               </a>
@@ -677,80 +761,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/howtowritesplunkplugin/">
-                Splunk add-on 开发
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2014-09-01
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; 分類於
-            
-              <a href="/categories/Misc/">Misc</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          Splunk plugin 是负责搜集数据的第三方插件，Splunk提供了一个SDK，但是似乎国内这方面的开发指导不是很多，所以写篇文章供大家分享
-          <div class="post-more-link text-center">
-            <a class="btn" href="/howtowritesplunkplugin/">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-          
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -789,21 +799,21 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">分類</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">標籤</span>
               </a>
           </div>
