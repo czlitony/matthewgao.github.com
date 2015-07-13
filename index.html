@@ -209,21 +209,21 @@
 
       
         
-          <h2 id="Transfer-Encoding">Transfer-Encoding</h2><p>ͨ����˵��HTTP 1.0 Ĭ�϶����ǳ������ӣ���ʹ���ж�HTTP���������÷ǳ����ף�ֻҪ���ӹر��ˣ��Ϳ�����Ϊ�����ı�־���������������ܶ������Ŀ���������HTTP 1.1��<code>keep-alive</code>��Ϊ��Ĭ�������ͨ��������Ҫһ��<code>Content-Length</code>����ʾ���ĳ��ȣ��Ա�����ȷ���жϰ��ı߽磬���������������ǣ�����һ���ļ��ǳ�������ôֻ�������е��ļ������������ɲŻῪʼ��ʾ���û��������ӳٿ��ܷǳ��������Բ���������һ�ְ취<code>Transfer-Encoding</code>����֮�����ƵĻ���<code>Content-Encoding</code>��</p>
+          <h2 id="Transfer-Encoding">Transfer-Encoding</h2><p>通常来说，HTTP 1.0 默认都不是持续连接，这使得判断HTTP包结束变得非常容易，只要连接关闭了，就可以作为结束的标志。但是这会带来很多额外的开销。所以HTTP 1.1把<code>keep-alive</code>作为了默认项，所以通常我们需要一个<code>Content-Length</code>来表示包的长度，以便于正确的判断包的边界，这样带来的问题是，如果一个文件非常大，那么只有能所有的文件都被下载完成才会开始显示给用户，这样延迟可能非常大，所以采用了另外一种办法<code>Transfer-Encoding</code>，与之相类似的还有<code>Content-Encoding</code>：</p>
 <ul>
-<li>Transfer-Encoding: ���ڴ����Ķ��壬Ŀǰֻ��<code>chunked</code>һ�����ͣ���ʾ�ֿ�</li>
-<li>Content-Encoding���������ݵı��룬����ѹ��ʲô��</li>
+<li>Transfer-Encoding: 对于传输的定义，目前只有<code>chunked</code>一种类型，表示分块</li>
+<li>Content-Encoding：对于内容的编码，比如压缩什么的</li>
 </ul>
-<p>����ʹ����<code>chunked</code>��ʽ����ôHTTP����Ҫ��ѭ���¹�����</p>
+<p>如果使用了<code>chunked</code>方式，那么HTTP报文要遵循如下规则：</p>
 <ol>
-<li>��ͷ������ Transfer-Encoding: chunked ֮�󣬾ʹ����������Ĳ����˷ֿ����롣</li>
-<li>�����е�ʵ����Ҫ��Ϊ��һϵ�зֿ������䡣</li>
-<li>ÿ���ֿ�����ʮ�����Ƶĳ���ֵ�����ݣ�����ֵ��ռһ�У����Ȳ���������β�� CRLF��\r\n����Ҳ�������ֿ����ݽ�β�� CRLF</li>
-<li>����һ���ֿ鳤��ֵ����Ϊ 0����Ӧ�ķֿ�����û�����ݣ���ʾʵ��������</li>
+<li>在头部加入 Transfer-Encoding: chunked 之后，就代表这个报文采用了分块编码。</li>
+<li>报文中的实体需要改为用一系列分块来传输。</li>
+<li>每个分块包含十六进制的长度值和数据，长度值独占一行，长度不包括它结尾的 CRLF（\r\n），也不包括分块数据结尾的 CRLF</li>
+<li>最后一个分块长度值必须为 0，对应的分块数据没有内容，表示实体结束。</li>
 </ol>
-<p>���磺</p>
+<p>例如：</p>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="status">HTTP/1.1 <span class="number">200</span> OK</span></span><br><span class="line"><span class="attribute">Server</span>: <span class="string">nginx/1.1.19</span></span><br><span class="line"><span class="attribute">Date</span>: <span class="string">Mon, 13 Jul 2015 06:58:31 GMT</span></span><br><span class="line"><span class="attribute">Transfer-Encoding</span>: <span class="string">chunked</span></span><br><span class="line"><span class="attribute">Connection</span>: <span class="string">keep-alive</span></span><br><span class="line"></span><br><span class="line"><span class="cpp"><span class="number">2f</span></span><br><span class="line">&#123;<span class="string">"connectionId"</span>: <span class="string">"qwertyu23456"</span>,  <span class="string">"version"</span>: <span class="number">2</span>&#125;</span><br><span class="line"><span class="number">0</span></span></span><br></pre></td></tr></table></figure>
-<p>��֮��Ӧ����������<code>Content-Encoding</code></p>
+<p>与之对应，如果采用<code>Content-Encoding</code></p>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="status">HTTP/1.1 <span class="number">200</span> OK</span></span><br><span class="line"><span class="attribute">Server</span>: <span class="string">nginx/1.1.19</span></span><br><span class="line"><span class="attribute">Date</span>: <span class="string">Mon, 13 Jul 2015 07:07:42 GMT</span></span><br><span class="line"><span class="attribute">Content-Type</span>: <span class="string">vnd.collection+json</span></span><br><span class="line"><span class="attribute">Content-Length</span>: <span class="string">47</span></span><br><span class="line"><span class="attribute">Connection</span>: <span class="string">keep-alive</span></span><br><span class="line"></span><br><span class="line"><span class="json">&#123;"<span class="attribute">connectionId</span>": <span class="value"><span class="string">"qwertyu23456"</span></span>,  "<span class="attribute">version</span>": <span class="value"><span class="number">2</span></span>&#125;</span></span><br></pre></td></tr></table></figure>
         
       
