@@ -220,6 +220,21 @@
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="status">HTTP/1.1 <span class="number">200</span> OK</span></span><br><span class="line"><span class="attribute">Server</span>: <span class="string">nginx/1.1.19</span></span><br><span class="line"><span class="attribute">Date</span>: <span class="string">Mon, 13 Jul 2015 06:58:31 GMT</span></span><br><span class="line"><span class="attribute">Transfer-Encoding</span>: <span class="string">chunked</span></span><br><span class="line"><span class="attribute">Connection</span>: <span class="string">keep-alive</span></span><br><span class="line"></span><br><span class="line"><span class="cpp"><span class="number">2f</span></span><br><span class="line">&#123;<span class="string">"connectionId"</span>: <span class="string">"qwertyu23456"</span>,  <span class="string">"version"</span>: <span class="number">2</span>&#125;</span><br><span class="line"><span class="number">0</span></span></span><br></pre></td></tr></table></figure>
 <p>与之对应，如果采用<code>Content-Encoding</code></p>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="status">HTTP/1.1 <span class="number">200</span> OK</span></span><br><span class="line"><span class="attribute">Server</span>: <span class="string">nginx/1.1.19</span></span><br><span class="line"><span class="attribute">Date</span>: <span class="string">Mon, 13 Jul 2015 07:07:42 GMT</span></span><br><span class="line"><span class="attribute">Content-Type</span>: <span class="string">vnd.collection+json</span></span><br><span class="line"><span class="attribute">Content-Length</span>: <span class="string">47</span></span><br><span class="line"><span class="attribute">Connection</span>: <span class="string">keep-alive</span></span><br><span class="line"></span><br><span class="line"><span class="json">&#123;"<span class="attribute">connectionId</span>": <span class="value"><span class="string">"qwertyu23456"</span></span>,  "<span class="attribute">version</span>": <span class="value"><span class="number">2</span></span>&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="web-py">web.py</h2><p>FastCGI各个参数在web.ctx中的解释，我遇到的问题是关于homepath，如果在nginx的<code>location</code>中配置了<code>/api/hello</code>，而在webpy中配置了<code>(&quot;/api/hello&quot;,&quot;hello&quot;)</code>， 那么webpy中homepath会是<code>/api/home</code> 而path是<code>\</code>，这显然会匹配失败，正确的做法是<code>(&quot;&quot;,&quot;hello&quot;)</code></p>
+<ul>
+<li>environ a.k.a. env – a dictionary containing the standard WSGI environment variables</li>
+<li>home – the base path for the application, including any parts “consumed” by outer applications <a href="http://example.org/admin" target="_blank" rel="external">http://example.org/admin</a></li>
+<li>homedomain – ? (appears to be protocol + host) <a href="http://example.org" target="_blank" rel="external">http://example.org</a></li>
+<li>homepath – The part of the path requested by the user which was trimmed off the current app. That is homepath + path = the path actually requested in HTTP by the user. E.g. /admin This seems to be derived during startup from the environment variable REAL_SCRIPT_NAME. It affects what web.url() will prepend to supplied urls. This in turn affects where web.seeother() will go, which might interact badly with your url rewriting scheme (e.g. mod_rewrite)</li>
+<li>host – the hostname (domain) and (if not default) the port requested by the user. E.g. example.org, example.org:8080</li>
+<li>ip – the IP address of the user. E.g. xxx.xxx.xxx.xxx</li>
+<li>method – the HTTP method used. E.g. GET</li>
+<li>path – the path requested by the user, relative to the current application. If you are using subapplications, any part of the url matched by the outer application will be trimmed off. E.g. you have a main app in code.py, and a subapplication called admin.py. In code.py, you point /admin to admin.app. In admin.py, you point /stories to a class called stories. Within stories, web.ctx.path will be /stories, not /admin/stories. E.g. /articles/845</li>
+<li>protocol – the protocol used. E.g. https</li>
+<li>query – an empty string if there are no query arguments otherwise a ? followed by the query string. E.g. ?fourlegs=good&amp;twolegs=bad</li>
+<li>fullpath a.k.a. path + query – the path requested including query arguments but not including homepath. E.g. /articles/845?fourlegs=good&amp;twolegs=bad</li>
+</ul>
+
       
     </div>
 
@@ -407,7 +422,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Transfer-Encoding"><span class="nav-number">1.</span> <span class="nav-text">Transfer-Encoding</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Transfer-Encoding"><span class="nav-number">1.</span> <span class="nav-text">Transfer-Encoding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web-py"><span class="nav-number">2.</span> <span class="nav-text">web.py</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
