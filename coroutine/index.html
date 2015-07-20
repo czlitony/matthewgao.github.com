@@ -24,7 +24,7 @@
 
 
 
-  <meta name="keywords" content="shell," />
+  <meta name="keywords" content="Networking,async I/O," />
 
 
 
@@ -57,7 +57,7 @@
 
 
 
-  <title> SHELL Command/Script Notes // Matthew Note </title>
+  <title> 异步IO与协程框架 // Matthew Note </title>
 </head>
 
 <body>
@@ -168,7 +168,7 @@
           
           
             
-              SHELL Command/Script Notes
+              异步IO与协程框架
             
           
         </h1>
@@ -176,14 +176,14 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2014-09-05
+          發表於 2015-07-20
         </span>
 
         
           <span class="post-category">
             &nbsp; | &nbsp; 分類於
             
-              <a href="/categories/Linux/">Linux</a>
+              <a href="/categories/Networking/">Networking</a>
 
               
               
@@ -204,14 +204,40 @@
       
 
       
-        <h2 id="显示PID">显示PID</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> $$</span><br></pre></td></tr></table></figure>
-<p>返回PID， $是个内部变量</p>
-<h2 id="上一个指令的返回值">上一个指令的返回值</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> $?</span><br></pre></td></tr></table></figure>
-<p>表示上一个指令的返回值</p>
-<h2 id="set_unset">set unset</h2><p>设置程序自定义变量（只对本shell）</p>
-<h2 id="export">export</h2><p>设置为全局环境变量</p>
-<h2 id="declare">declare</h2><p>将环境变量转成自定义变量</p>
-<h2 id="查找历史命令并执行">查找历史命令并执行</h2><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(</span>history | grep -<span class="constant">E </span><span class="string">'^ +1148'</span> | awk -<span class="constant">F'</span> <span class="string">' '</span>&#123;<span class="variable">$1</span>=<span class="string">""</span>;print&#125;<span class="string">')</span></span><br></pre></td></tr></table></figure>
+        <h2 id="基于就绪通知的协程框架">基于就绪通知的协程框架</h2><ol>
+<li>首先需要包装read/write，在发生read的时候检查返回。如果是EAGAIN，那么将当前协程标记为阻塞在对应fd上，然后执行调度函数。</li>
+<li>调度函数需要执行epoll(或者从上次的返回结果缓存中取数据，减少内核陷入次数)，从中读取一个就绪的fd。如果没有，上下文应当被阻塞到至少有一个fd就绪。</li>
+<li>查找这个fd对应的协程上下文对象，并调度过去。</li>
+<li>当某个协程被调度到时，他多半应当在调度器返回的路上——也就是read/write读不到数据的时候。因此应当再重试读取，失败的话返回1。</li>
+<li>如果读取到数据了，直接返回。</li>
+</ol>
+<p>这样，异步的数据读写动作，在我们的想像中就可以变为同步的。而我们知道同步模型会极大降低我们的编程负担。</p>
+<h2 id="异步IO">异步IO</h2><h3 id="Linux_AIO">Linux AIO</h3><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">Blocking</th>
+<th style="text-align:center">Non-Blocking</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Synchronous</td>
+<td style="text-align:center">Read/Write</td>
+<td style="text-align:center">Read/Write(O_NONBLOCK)</td>
+</tr>
+<tr>
+<td style="text-align:center">Asynchronous</td>
+<td style="text-align:center">IO Multiplexing</td>
+<td style="text-align:center">AIO</td>
+</tr>
+</tbody>
+</table>
+<p>基本方法：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">aio_read</span><span class="params">( <span class="keyword">struct</span> aiocb *aiocbp )</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">aio_error</span><span class="params">( <span class="keyword">struct</span> aiocb *aiocbp )</span></span>;</span><br><span class="line"><span class="keyword">ssize_t</span> aio_return( <span class="keyword">struct</span> aiocb *aiocbp );</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">aio_write</span><span class="params">( <span class="keyword">struct</span> aiocb *aiocbp )</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">aio_suspend</span><span class="params">( <span class="keyword">const</span> <span class="keyword">struct</span> aiocb *<span class="keyword">const</span> cblist[], <span class="keyword">int</span> n, <span class="keyword">const</span> <span class="keyword">struct</span> timespec *timeout )</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">aio_cancel</span><span class="params">( <span class="keyword">int</span> fd, <span class="keyword">struct</span> aiocb *aiocbp )</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lio_listio</span><span class="params">( <span class="keyword">int</span> mode, <span class="keyword">struct</span> aiocb *<span class="built_in">list</span>[], <span class="keyword">int</span> nent, <span class="keyword">struct</span> sigevent *sig )</span></span>;</span><br></pre></td></tr></table></figure>
+<p>保存上下文的块：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> aiocb &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> aio_fildes;               <span class="comment">// File Descriptor</span></span><br><span class="line">  <span class="keyword">int</span> aio_lio_opcode;           <span class="comment">// Valid only for lio_listio (r/w/nop)</span></span><br><span class="line">  <span class="keyword">volatile</span> <span class="keyword">void</span> *aio_buf;       <span class="comment">// Data Buffer</span></span><br><span class="line">  <span class="keyword">size_t</span> aio_nbytes;            <span class="comment">// Number of Bytes in Data Buffer</span></span><br><span class="line">  <span class="keyword">struct</span> sigevent aio_sigevent; <span class="comment">// Notification Structure</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* Internal fields */</span></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Libeio">Libeio</h3><h2 id="Libevent">Libevent</h2>
       
     </div>
 
@@ -219,7 +245,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/shell/"> #shell </a>
+            <a href="/tags/Networking/"> #Networking </a>
+          
+            <a href="/tags/async-I-O/"> #async I/O </a>
           
         </div>
       
@@ -228,13 +256,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014-12-18-softwareengineering/">Software Engineering</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014-9-2-linux-command-note/">Linux Command Notes</a>
+              <a href="/http-notes/">HTTP Notes</a>
             
           </div>
         </div>
@@ -401,7 +427,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#显示PID"><span class="nav-number">1.</span> <span class="nav-text">显示PID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上一个指令的返回值"><span class="nav-number">2.</span> <span class="nav-text">上一个指令的返回值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#set_unset"><span class="nav-number">3.</span> <span class="nav-text">set unset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#export"><span class="nav-number">4.</span> <span class="nav-text">export</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#declare"><span class="nav-number">5.</span> <span class="nav-text">declare</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找历史命令并执行"><span class="nav-number">6.</span> <span class="nav-text">查找历史命令并执行</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基于就绪通知的协程框架"><span class="nav-number">1.</span> <span class="nav-text">基于就绪通知的协程框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步IO"><span class="nav-number">2.</span> <span class="nav-text">异步IO</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux_AIO"><span class="nav-number">2.1.</span> <span class="nav-text">Linux AIO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Libeio"><span class="nav-number">2.2.</span> <span class="nav-text">Libeio</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Libevent"><span class="nav-number">3.</span> <span class="nav-text">Libevent</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
