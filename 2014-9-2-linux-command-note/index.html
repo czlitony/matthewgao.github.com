@@ -176,7 +176,7 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2014-09-05
+          發表於 2015-07-22
         </span>
 
         
@@ -369,14 +369,16 @@
 </ul>
 <p>CA的类别</p>
 <ul>
-<li>自签名 CA 。 在自签名 CA 中，证书中的公钥和用于验证证书的密钥是相同的。一些自签名 CA 是根 CA（参见第三项）。</li>
-<li>从属 CA 。 在从属 CA 中，证书中的公钥和用于核实证书的密钥是不同的。一个 CA 向另一个 CA 颁发证书的过程叫做 交叉认证 。</li>
-<li>根 CA 。 根 CA 是一种特殊的 CA，它受到客户无条件地信任，位于证书层次结构的最高层。所有证书链均终止于根 CA。根颁发机构必须对它自己的证书签名，因为在证书层次结构中再也没有更高的认证机构了。</li>
+<li>自签名 CA: 在自签名 CA 中，证书中的公钥和用于验证证书的密钥是相同的。一些自签名 CA 是根 CA（参见第三项）。</li>
+<li>从属 CA: 在从属 CA 中，证书中的公钥和用于核实证书的密钥是不同的。一个 CA 向另一个 CA 颁发证书的过程叫做 交叉认证 。</li>
+<li>根 CA: 根 CA 是一种特殊的 CA，它受到客户无条件地信任，位于证书层次结构的最高层。所有证书链均终止于根 CA。根颁发机构必须对它自己的证书签名，因为在证书层次结构中再也没有更高的认证机构了。</li>
 <li>所有自签名 CA 都是根 CA，因为到自签名 CA 时证书链就终止了。</li>
 </ul>
 <h2 id="vino">vino</h2><p>No security type 问题解决方法<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gsettings <span class="built_in">set</span> org<span class="built_in">.</span>gnome<span class="built_in">.</span>Vino <span class="keyword">require</span><span class="attribute">-encryption</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="UNIX_socket上限">UNIX socket上限</h2><p>在使用Nginx+gunicorn+web.py unix socket方式时候，发现nginx会报<code>“connect() to unix:/dev/shm/fcgi.sock failed (11: Resource temporarily unavailable) while connecting to upstream”</code> 原因是需要修改如下：</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat /<span class="keyword">proc</span>/sys/net/core/somaxconn //默认是<span class="number">128</span>，</span><br><span class="line">echo <span class="number">8192</span> &gt; /<span class="keyword">proc</span>/sys/net/core/somaxconn //放到/etc/rc.local中</span><br></pre></td></tr></table></figure>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat /<span class="keyword">proc</span>/sys/net/core/somaxconn //默认是<span class="number">128</span>，定义了系统中每一个端口最大的监听队列的长度，这是个全局的参数</span><br><span class="line">echo <span class="number">8192</span> &gt; /<span class="keyword">proc</span>/sys/net/core/somaxconn //放到/etc/rc.local中</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.philsallee.com/mbsteg/index.html" target="_blank" rel="external">Reference of /proc/sys/net/core</a></p>
+
       
     </div>
 
@@ -397,13 +399,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014-9-2-shell-note/">SHELL Command/Script Notes</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014-9-2-git-note/">Git Command Notes</a>
+              <a href="/coroutine/">异步IO与协程框架</a>
             
           </div>
         </div>
