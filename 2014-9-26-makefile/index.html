@@ -176,7 +176,7 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2014-11-05
+          發表於 2015-09-20
         </span>
 
         
@@ -204,12 +204,13 @@
       
 
       
-        <h2 id="在make中有四种方式对变量赋值：">在make中有四种方式对变量赋值：</h2><h3 id=":=运算符">:=运算符</h3><p>如<code>MAKE_DEPEND := $(CC) -M</code> 这种方式叫做“简单展开”，因为在读到makefile中的这一行时等号右边就立即被展开了， 等号右边引用的所有变量（如例子中的CC）也会被立即展开。其行为与一般编程和脚本语言相同。当等号右边引用的变量（如例子中的CC）还没有被定义时，它被展开成空（nothing）而不是空格之类。</p>
-<h3 id="=运算符">=运算符</h3><p>如<code>MAKE_DEPEND = $(CC) -M</code> 这种方式叫做“递归展开”，直到该变量被使用时等号右边的内容才会被展开，其实叫做“迟滞展开”更合适。神奇的是，这种展开方式可以不按顺序定义变量。比如：</p>
+        <h2 id="样板">样板</h2><figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">CC=g++ -g </span><br><span class="line">LPTHREAD= -lpthread</span><br><span class="line">TARGET=main</span><br><span class="line">OBJS=ThreadPool.o \</span><br><span class="line">	 main.o</span><br><span class="line"></span><br><span class="line">all : <span class="variable">$(</span>TARGET)</span><br><span class="line">	echo <span class="string">"ALL Done"</span></span><br><span class="line">#<span class="variable">$^</span> 会一次返回所有结果</span><br><span class="line">#<span class="variable">$&lt;</span> 一次返回一个结果</span><br><span class="line"><span class="variable">$(</span>TARGET) : <span class="variable">$(</span>OBJS)</span><br><span class="line">	<span class="variable">$(</span>CC) <span class="variable">$(</span>LPTHREAD) -o <span class="variable">$@</span>  <span class="variable">$^</span></span><br><span class="line"></span><br><span class="line"><span class="variable">%.</span>o : <span class="variable">%.</span>cpp</span><br><span class="line">	<span class="variable">$(</span>CC) -c <span class="variable">$&lt;</span> -o <span class="variable">$@</span></span><br><span class="line"></span><br><span class="line">clean:</span><br><span class="line">	rm -f <span class="variable">*.</span>o main</span><br><span class="line">	echo <span class="string">"Remove Done"</span></span><br></pre></td></tr></table></figure>
+<h2 id="在make中有四种方式对变量赋值：">在make中有四种方式对变量赋值：</h2><h3 id=":=运算符"><code>:=</code>运算符</h3><p>如<code>MAKE_DEPEND := $(CC) -M</code> 这种方式叫做“简单展开”，因为在读到makefile中的这一行时等号右边就立即被展开了， 等号右边引用的所有变量（如例子中的CC）也会被立即展开。其行为与一般编程和脚本语言相同。当等号右边引用的变量（如例子中的CC）还没有被定义时，它被展开成空（nothing）而不是空格之类。</p>
+<h3 id="=运算符"><code>=</code>运算符</h3><p>如<code>MAKE_DEPEND = $(CC) -M</code> 这种方式叫做“递归展开”，直到该变量被使用时等号右边的内容才会被展开，其实叫做“迟滞展开”更合适。神奇的是，这种展开方式可以不按顺序定义变量。比如：</p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">MAKE_DEPEND</span> = <span class="variable">$(CC)</span> -M</span><br><span class="line">...</span><br><span class="line"><span class="comment"># Some time later</span></span><br><span class="line"><span class="constant">CC</span> = gcc</span><br></pre></td></tr></table></figure>
 <p>只要在此之前没有引用过MAKE_DEPEND就没问题。另外，不止是“迟滞展开”，事实上每次使用该变量，等号右边的内容都会被重新展开。</p>
-<h3 id="?=运算符">?=运算符</h3><p>如<code>OUTPUT_DIR ?= $(PROJECT_DIR)/out</code> 这种方式叫“条件展开”，只有当OUTPUT_DIR 还没有被定义过时才进行赋值，否则什么都不做。这种方式在处理环境变量是特别有用。</p>
-<h3 id="+=运算符">+=运算符</h3><p>如<code>OUTPUT_DIR += $(PROJECT_DIR)/out</code> “追加”方式。 其主要目的是给“递归展开”的变量追加内容。因为简单变量可以用<code>simple := $(simple) new stuff</code>的方式来追加内容；而对于递归展开的变量，<code>recursive = $(recursive) new stuff</code>会导致循环引用。这种情况只能用<code>+=</code>运算符。 </p>
+<h3 id="?=运算符"><code>?=</code>运算符</h3><p>如<code>OUTPUT_DIR ?= $(PROJECT_DIR)/out</code> 这种方式叫“条件展开”，只有当OUTPUT_DIR 还没有被定义过时才进行赋值，否则什么都不做。这种方式在处理环境变量是特别有用。</p>
+<h3 id="+=运算符"><code>+=</code>运算符</h3><p>如<code>OUTPUT_DIR += $(PROJECT_DIR)/out</code> “追加”方式。 其主要目的是给“递归展开”的变量追加内容。因为简单变量可以用<code>simple := $(simple) new stuff</code>的方式来追加内容；而对于递归展开的变量，<code>recursive = $(recursive) new stuff</code>会导致循环引用。这种情况只能用<code>+=</code>运算符。 </p>
 <h3 id="Pattern模式">Pattern模式</h3><p>模式中的%大体上等效于shell中的*星号，他可以代表任意多个字符，不过模式中只能出现一次。</p>
 
       
@@ -228,13 +229,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014-9-12-cpp-note/">C\C++ Notes</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014-9-2-vim-command-note/">VIM Command Notes</a>
+              <a href="/python-notes/">Python Notes</a>
             
           </div>
         </div>
@@ -401,7 +400,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#在make中有四种方式对变量赋值："><span class="nav-number">1.</span> <span class="nav-text">在make中有四种方式对变量赋值：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#:=运算符"><span class="nav-number">1.1.</span> <span class="nav-text">:=运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#=运算符"><span class="nav-number">1.2.</span> <span class="nav-text">=运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#?=运算符"><span class="nav-number">1.3.</span> <span class="nav-text">?=运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#+=运算符"><span class="nav-number">1.4.</span> <span class="nav-text">+=运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pattern模式"><span class="nav-number">1.5.</span> <span class="nav-text">Pattern模式</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#样板"><span class="nav-number">1.</span> <span class="nav-text">样板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在make中有四种方式对变量赋值："><span class="nav-number">2.</span> <span class="nav-text">在make中有四种方式对变量赋值：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#:=运算符"><span class="nav-number">2.1.</span> <span class="nav-text">:=运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#=运算符"><span class="nav-number">2.2.</span> <span class="nav-text">=运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#?=运算符"><span class="nav-number">2.3.</span> <span class="nav-text">?=运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#+=运算符"><span class="nav-number">2.4.</span> <span class="nav-text">+=运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pattern模式"><span class="nav-number">2.5.</span> <span class="nav-text">Pattern模式</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
