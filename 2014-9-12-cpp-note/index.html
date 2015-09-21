@@ -471,6 +471,7 @@ c.front<span class="params">()</span>/back<span class="params">()</span>; <span 
 <li>重写（override）也称为覆盖，子类重新定义父类中有相同名称和参数的虚函数，主要在继承关系中出现。</li>
 <li>重载（overload）函数有同样的名称，但是参数列表不相同的情形，这样的同名不同参数的函数之间，互相称之为重载函数。</li>
 </ul>
+<p><em>NOTICE</em> 除了赋值运算符重载函数以外，所有的运算符重载函数都可以被派生类继承。也就是说复制运算操作符不能被继承</p>
 <h2 id="attribute_((constructor))"><strong>attribute</strong> ((constructor))</h2><p> gcc为函数提供了几种类型的属性，其中包含：构造函数(constructors)和析构函数(destructors)。<br>程序员应当使用类似下面的方式来指定这些属性：<br>    static void start(void) <strong>attribute</strong> ((constructor));<br>    static void stop(void) <strong>attribute</strong> ((destructor));<br>带有”构造函数”属性的函数将在main()函数之前或者动态库被load之前被执行，而声明为”析构函数”属性的函数则将在main()或者动态库unload的时候退出时执行。</p>
 <ul>
 <li>reference：<a href="https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#Common-Function-Attributes" target="_blank" rel="external">https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#Common-Function-Attributes</a></li>
