@@ -24,7 +24,7 @@
 
 
 
-  <meta name="keywords" content="Boost," />
+  <meta name="keywords" content="Boost,C/C++,multi-thread," />
 
 
 
@@ -209,7 +209,8 @@
 <li>不要过早的把this传给其他线程的对象</li>
 </ul>
 <p>两段式构造，是个有效的解决方案</p>
-<h2 id="对象析构">对象析构</h2><h2 id="RAII">RAII</h2><h2 id="不要使用递归mutex">不要使用递归mutex</h2>
+<h2 id="对象析构">对象析构</h2><h2 id="RAII">RAII</h2><h2 id="不要使用递归mutex">不要使用递归mutex</h2><h2 id="每个对象保证自身的数据安全">每个对象保证自身的数据安全</h2><p>对于数据的访问给予互斥量保护，这个时候要留心析构的问题，因为内部互斥量无法保证析构，如果两个线程同时在做析构（在使用shared_ptr的时候），那么会有双重释放的问题，一个符合RAII标准的mutexlock能够派上用场，因为他可以保护析构，在析构结束前lock不会析构。</p>
+<h2 id="TCP作为进程间通信的方法">TCP作为进程间通信的方法</h2>
       
     </div>
 
@@ -218,6 +219,10 @@
         <div class="post-tags">
           
             <a href="/tags/Boost/"> #Boost </a>
+          
+            <a href="/tags/C-C/"> #C/C++ </a>
+          
+            <a href="/tags/multi-thread/"> #multi-thread </a>
           
         </div>
       
@@ -331,7 +336,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">標籤</span>
               </a>
           </div>
@@ -397,7 +402,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#对象构造"><span class="nav-number">1.</span> <span class="nav-text">对象构造</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象析构"><span class="nav-number">2.</span> <span class="nav-text">对象析构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RAII"><span class="nav-number">3.</span> <span class="nav-text">RAII</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不要使用递归mutex"><span class="nav-number">4.</span> <span class="nav-text">不要使用递归mutex</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#对象构造"><span class="nav-number">1.</span> <span class="nav-text">对象构造</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象析构"><span class="nav-number">2.</span> <span class="nav-text">对象析构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RAII"><span class="nav-number">3.</span> <span class="nav-text">RAII</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不要使用递归mutex"><span class="nav-number">4.</span> <span class="nav-text">不要使用递归mutex</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#每个对象保证自身的数据安全"><span class="nav-number">5.</span> <span class="nav-text">每个对象保证自身的数据安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP作为进程间通信的方法"><span class="nav-number">6.</span> <span class="nav-text">TCP作为进程间通信的方法</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
