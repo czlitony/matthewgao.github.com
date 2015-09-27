@@ -204,7 +204,22 @@
       
 
       
-        <h2 id="Multiple_Thread">Multiple Thread</h2><h2 id="Thread_Safety">Thread Safety</h2><h3 id="对象构造">对象构造</h3><ul>
+        <h2 id="Multiple_Thread">Multiple Thread</h2><h3 id="pthread_mutex">pthread_mutex</h3><p>有两种方式创建一个mutex一种是静态方法，一种是动态方法，似乎静态方法不需要Destroy???</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;</span><br><span class="line">pthread_mutex_t <span class="operator"><span class="keyword">lock</span>;</span></span><br><span class="line">pthread_mutex_init (&amp;<span class="operator"><span class="keyword">lock</span>, <span class="literal">NULL</span>);</span></span><br></pre></td></tr></table></figure>
+<h3 id="pthread_cancel">pthread_cancel</h3><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_cancel</span><span class="params">(pthread_t thread)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_setcancelstate</span><span class="params">(<span class="keyword">int</span> state, <span class="keyword">int</span> *oldstate)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_setcanceltype</span><span class="params">(<span class="keyword">int</span> type, <span class="keyword">int</span> *oldtype)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pthread_testcancel</span><span class="params">(<span class="keyword">void</span>)</span></span>; [Option End]</span><br></pre></td></tr></table></figure>
+<p>cancel，用来取消一个线程，但是按照默认的配置他是不会立刻退出的，会在cancelpoint选择退出。取消点是在程序在运行的时候检测是否收到取消请求，是否允许允许操作执行的点。下面的POSIX线程函数就是取消点：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#58853;&#58853; pthread_join()&#10;&#58853;&#58853; pthread_cond_wait()&#10;&#58853;&#58853; pthread_cond_timedwait()&#10;&#58853;&#58853; pthread_testcancel()&#10;&#58853;&#58853; sem_wait()&#10;&#58853;&#58853; sigwait()&#10;...</span><br></pre></td></tr></table></figure>
+<h4 id="pthread_setcancelstate">pthread_setcancelstate</h4><p>设置状态，有两种</p>
+<ul>
+<li>PTHREAD_CANCEL_ENABLE （default）</li>
+<li>PTHREAD_CANCEL_DISABLE<br>Enable表示线程支持cancel</li>
+</ul>
+<h4 id="pthread_setcanceltype">pthread_setcanceltype</h4><ul>
+<li>PTHREAD_CANCEL_DEFERRED： 默认值，他不会马上结束，会在下一个cancelpoint结束</li>
+<li>PTHREAD_CANCEL_ASYNCHRONOUS： 马上结束</li>
+</ul>
+<h3 id="pthread_cleanup_push_&amp;_pthread_cleanup_pop">pthread_cleanup_push &amp; pthread_cleanup_pop</h3><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">void pthread_cleanup_push(void <span class="comment">(*routine)(void *)</span>, void *arg);</span><br><span class="line">void pthread_cleanup_pop(int execute);</span><br></pre></td></tr></table></figure>
+<h2 id="Thread_Safety">Thread Safety</h2><h3 id="对象构造">对象构造</h3><ul>
 <li>不要在构造函数中注册毁掉</li>
 <li>不要过早的把this传给其他线程的对象</li>
 </ul>
@@ -224,8 +239,7 @@
 </ul>
 <h3 id="不要使用递归mutex">不要使用递归mutex</h3><h3 id="每个对象保证自身的数据安全">每个对象保证自身的数据安全</h3><p>对于数据的访问给予互斥量保护，这个时候要留心析构的问题，因为内部互斥量无法保证析构，如果两个线程同时在做析构（在使用shared_ptr的时候），那么会有双重释放的问题，一个符合RAII标准的mutexlock能够派上用场，因为他可以保护析构，在析构结束前lock不会析构。</p>
 <h3 id="TCP作为进程间通信的方法">TCP作为进程间通信的方法</h3><p>TCP是一个相对普适的方法来处理进程间通信，他甚至可以扩展到主机间通信，所以是个非常好的选择</p>
-<h3 id="pthread_mutex">pthread_mutex</h3><p>有两种方式创建一个mutex一种是静态方法，一种是动态方法</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;</span><br><span class="line">pthread_mutex_t <span class="operator"><span class="keyword">lock</span>;</span></span><br><span class="line">pthread_mutex_init (&amp;<span class="operator"><span class="keyword">lock</span>, <span class="literal">NULL</span>);</span></span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -419,7 +433,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiple_Thread"><span class="nav-number">1.</span> <span class="nav-text">Multiple Thread</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thread_Safety"><span class="nav-number">2.</span> <span class="nav-text">Thread Safety</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象构造"><span class="nav-number">2.1.</span> <span class="nav-text">对象构造</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象析构"><span class="nav-number">2.2.</span> <span class="nav-text">对象析构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不要使用递归mutex"><span class="nav-number">2.3.</span> <span class="nav-text">不要使用递归mutex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#每个对象保证自身的数据安全"><span class="nav-number">2.4.</span> <span class="nav-text">每个对象保证自身的数据安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP作为进程间通信的方法"><span class="nav-number">2.5.</span> <span class="nav-text">TCP作为进程间通信的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pthread_mutex"><span class="nav-number">2.6.</span> <span class="nav-text">pthread_mutex</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiple_Thread"><span class="nav-number">1.</span> <span class="nav-text">Multiple Thread</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pthread_mutex"><span class="nav-number">1.1.</span> <span class="nav-text">pthread_mutex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pthread_cancel"><span class="nav-number">1.2.</span> <span class="nav-text">pthread_cancel</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#pthread_setcancelstate"><span class="nav-number">1.2.1.</span> <span class="nav-text">pthread_setcancelstate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pthread_setcanceltype"><span class="nav-number">1.2.2.</span> <span class="nav-text">pthread_setcanceltype</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pthread_cleanup_push_&_pthread_cleanup_pop"><span class="nav-number">1.3.</span> <span class="nav-text">pthread_cleanup_push & pthread_cleanup_pop</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thread_Safety"><span class="nav-number">2.</span> <span class="nav-text">Thread Safety</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象构造"><span class="nav-number">2.1.</span> <span class="nav-text">对象构造</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象析构"><span class="nav-number">2.2.</span> <span class="nav-text">对象析构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不要使用递归mutex"><span class="nav-number">2.3.</span> <span class="nav-text">不要使用递归mutex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#每个对象保证自身的数据安全"><span class="nav-number">2.4.</span> <span class="nav-text">每个对象保证自身的数据安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP作为进程间通信的方法"><span class="nav-number">2.5.</span> <span class="nav-text">TCP作为进程间通信的方法</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
