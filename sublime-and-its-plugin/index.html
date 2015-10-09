@@ -24,7 +24,7 @@
 
 
 
-  <meta name="keywords" content="command,vim," />
+  <meta name="keywords" content="editor,sublime," />
 
 
 
@@ -57,7 +57,7 @@
 
 
 
-  <title> VIM Command Notes // Matthew Note </title>
+  <title> Sublime Text & Plugin // Matthew Note </title>
 </head>
 
 <body>
@@ -168,7 +168,7 @@
           
           
             
-              VIM Command Notes
+              Sublime Text & Plugin
             
           
         </h1>
@@ -176,14 +176,14 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2014-10-05
+          發表於 2015-10-09
         </span>
 
         
           <span class="post-category">
             &nbsp; | &nbsp; 分類於
             
-              <a href="/categories/Linux/">Linux</a>
+              <a href="/categories/IDE/">IDE</a>
 
               
               
@@ -204,41 +204,33 @@
       
 
       
-        <h2 id="生成tags">生成tags</h2><p>在所在目录运行</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ctags</span> -R</span><br></pre></td></tr></table></figure>
-<p>在vim中</p>
-<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">set</span> tags = /your/<span class="built_in">path</span>/tags</span><br></pre></td></tr></table></figure>
-<h2 id="生成cscope索引">生成cscope索引</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">cscope</span> -Rbq</span><br></pre></td></tr></table></figure>
-<h2 id="命令">命令</h2><ul>
-<li><code>:A</code> 打开头文件</li>
-<li><code>:E</code> 浏览打开文件</li>
-<li><code>:wqa</code></li>
-<li><code>:b(buffer)</code> 浏览/切换缓冲区, 例如:<code>b1</code></li>
-<li><code>:cd</code> 改变工作目录</li>
-<li><code>:lcd</code> 改变当前窗口工作目录</li>
-<li><code>:pwd</code> 显示当前工作目录</li>
-<li><code>:He</code></li>
-<li><code>:He!</code>上分屏</li>
-<li><code>:Ve</code> 横分屏</li>
-<li><code>:Te</code> tag explore</li>
-<li><code>:colorscheme test3</code> 更改配色方案</li>
+        <h2 id="没记住的快捷键">没记住的快捷键</h2><ul>
+<li>Ctrl+G 跳转到相应的行</li>
+<li>Ctrl+J 合并行（已选择需要合并的多行时）</li>
+<li>Ctrl+L 选择整行（按住-继续选择下行）</li>
+<li>Shift+鼠标右键（或使用鼠标中键）可以用鼠标进行竖向多行选择</li>
+<li>Ctrl+Shift+L 鼠标选中多行（按下快捷键），即可同时编辑这些行</li>
+<li>Ctrl+T 词互换</li>
+<li>Ctrl+U 软撤销</li>
+<li>Ctrl+Y 恢复撤销</li>
+<li>Ctrl+K Backspace 从光标处删除至行首</li>
+<li>Ctrl+Shift+K 删除整行</li>
+<li>Ctrl+K+B 开启/关闭侧边栏</li>
+<li>Ctrl+KK 从光标处删除至行尾</li>
+<li>Ctrl+K+U 改为大写</li>
+<li>Ctrl+K+L 改为小写</li>
+<li><p>Ctrl+Tab 当前窗口中的标签页切换</p>
+</li>
+<li><p>Shift+F2 上一个书签</p>
+</li>
+<li>F2 下一个书签</li>
+<li><p>Ctrl+F2 设置/取消书签</p>
+</li>
+<li><p>Ctrl+Shift+↑可以移动此行代码，与上行互换</p>
+</li>
+<li>Ctrl+Shift+↓可以移动此行代码，与下行互换</li>
 </ul>
-<h2 id="快捷键">快捷键</h2><ul>
-<li><code>{c-f12}</code>, <code>{c-n}</code> 自动补全</li>
-<li><code>,</code> <code>;</code> 结合<code>f{char}</code>查找, 上一个, 下一个</li>
-<li><code>g;</code> 上一个修改过的地方</li>
-<li><code>g,</code> 下一个修改过的地方</li>
-<li><code>{c-o}</code>,<code>{c-i}</code> 回到上一个地方, 下一个地方</li>
-<li><code>{c-a}{num}</code>,<code>{c-x}{num}</code> 增加num, 减少num</li>
-<li><code>u</code> undo</li>
-<li><code>{c-r}</code> 重做</li>
-</ul>
-<h2 id="文件比较">文件比较</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim <span class="operator">-d</span> file1 file2</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>d = diff</p>
-</blockquote>
-<h2 id="在你忘记用_root_方式打开文件时的文件保存">在你忘记用 root 方式打开文件时的文件保存</h2><figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="function_or_atom">w</span> <span class="exclamation_mark">!</span><span class="function_or_atom">sudo</span> <span class="function_or_atom">tee</span> <span class="comment">%</span></span><br></pre></td></tr></table></figure>
-<h2 id="按时间回退文件">按时间回退文件</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="pseudo">:earlier</span> 1<span class="tag">m</span> \\会把文件回退到 1 分钟以前的状态。</span><br><span class="line"></span><br><span class="line"><span class="pseudo">:later</span> \\ 注意，你可以使用这个的命令进行相反的转换</span><br></pre></td></tr></table></figure>
+<h2 id="来写一个插件">来写一个插件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sublime, sublime_plugin</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FileHeaderCreatorCommand</span><span class="params">(sublime_plugin.TextCommand)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self, edit)</span>:</span></span><br><span class="line">        <span class="comment"># print(self.view.settings().get("author"))</span></span><br><span class="line">        <span class="keyword">if</span> self.view.size() == <span class="number">0</span>:</span><br><span class="line">            self.check_file_type(edit)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">check_file_type</span><span class="params">(self, edit)</span>:</span></span><br><span class="line">        file_path = self.view.file_name()</span><br><span class="line">        pos = file_path.rfind(<span class="string">'.'</span>)</span><br><span class="line">        <span class="keyword">if</span> pos == -<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        suffix = file_path[pos+<span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line">        token = <span class="string">'/'</span></span><br><span class="line">        <span class="keyword">if</span> sublime.platform() == <span class="string">'windows'</span>:</span><br><span class="line">            token = <span class="string">'\\'</span></span><br><span class="line">        file_name_pos = file_path.rfind(token)</span><br><span class="line">        <span class="keyword">if</span> file_name_pos == -<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        file_name = file_path[file_name_pos+<span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line">        header = <span class="string">''</span></span><br><span class="line">        <span class="keyword">if</span> suffix == <span class="string">'py'</span>:</span><br><span class="line">            header = self._python(file_name)</span><br><span class="line">        <span class="keyword">elif</span> suffix == <span class="string">'cpp'</span>:</span><br><span class="line">            header = self._cpp(file_name)</span><br><span class="line">        <span class="keyword">elif</span> suffix == <span class="string">'h'</span>:</span><br><span class="line">            header = self._h(file_name)</span><br><span class="line">        <span class="keyword">elif</span> suffix == <span class="string">'hs'</span>:</span><br><span class="line">            header = self._haskell(file_name)</span><br><span class="line"></span><br><span class="line">        self.view.insert(edit, <span class="number">0</span>, header)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_h</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        author = self.view.settings().get(<span class="string">"author"</span>)</span><br><span class="line">        <span class="keyword">if</span> author <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            author = <span class="string">"Anonymous"</span></span><br><span class="line"></span><br><span class="line">        company = self.view.settings().get(<span class="string">"company"</span>)</span><br><span class="line">        <span class="keyword">if</span> company <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            company = <span class="string">"Anonymous"</span></span><br><span class="line"></span><br><span class="line">        string = <span class="string">"/*\n"</span></span><br><span class="line">        string += <span class="string">" * "</span> + name + <span class="string">"\n"</span></span><br><span class="line">        string += <span class="string">" * Created By: "</span> + author + <span class="string">"\n"</span></span><br><span class="line">        string += <span class="string">" * "</span> + company + <span class="string">"\n"</span></span><br><span class="line">        string += <span class="string">" * Created Time: "</span> + datetime.date.today().isoformat() + <span class="string">"\n"</span></span><br><span class="line">        string += <span class="string">" */\n"</span></span><br><span class="line">        string += <span class="string">"#ifndef _"</span> + name.replace(<span class="string">'.'</span>, <span class="string">'_'</span>).upper() + <span class="string">"\n"</span></span><br><span class="line">        string += <span class="string">"#define _"</span> + name.replace(<span class="string">'.'</span>, <span class="string">'_'</span>).upper() + <span class="string">"\n\n\n"</span></span><br><span class="line">        string += <span class="string">"#endif"</span></span><br><span class="line">        <span class="keyword">return</span> string</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_python</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        author = self.view.settings().get(<span class="string">"author"</span>)</span><br><span class="line">        <span class="keyword">if</span> author <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            author = <span class="string">"Anonymous"</span></span><br><span class="line">        string = <span class="string">"#!/usr/bin/env python3\n"</span></span><br><span class="line">        string += <span class="string">"# coding=utf-8\n"</span></span><br><span class="line">        string += <span class="string">"# Created Time: "</span> + datetime.date.today().isoformat() + <span class="string">"\n\n"</span></span><br><span class="line">        string += <span class="string">"__author__ = "</span> + <span class="string">"\'"</span> + author + <span class="string">"\'"</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> string</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_cpp</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        author = self.view.settings().get(<span class="string">"author"</span>)</span><br><span class="line">        <span class="keyword">if</span> author <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            author = <span class="string">"Anonymous"</span></span><br><span class="line"></span><br><span class="line">        company = self.view.settings().get(<span class="string">"company"</span>)</span><br><span class="line">        <span class="keyword">if</span> company <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            company = <span class="string">"Anonymous"</span></span><br><span class="line">            </span><br><span class="line">        string = <span class="string">"/*\n"</span></span><br><span class="line">        string += <span class="string">" * "</span> + name + <span class="string">"\n"</span></span><br><span class="line">        string += <span class="string">" * Created By: "</span> + author + <span class="string">"\n"</span></span><br><span class="line">        string += <span class="string">" * "</span> + company + <span class="string">"\n"</span></span><br><span class="line">        string += <span class="string">" * Created Time: "</span> + datetime.date.today().isoformat() + <span class="string">"\n"</span></span><br><span class="line">        string += <span class="string">" */\n"</span></span><br><span class="line">        <span class="keyword">return</span> string</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_haskell</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FileHeaderCreator</span><span class="params">(sublime_plugin.EventListener)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_load</span><span class="params">(self, view)</span>:</span></span><br><span class="line">        print(<span class="string">"FileHeaderCreator on_load invoked"</span>)</span><br><span class="line">        view.run_command(<span class="string">"file_header_creator"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_post_save</span><span class="params">(self, view)</span>:</span></span><br><span class="line">        print(<span class="string">"FileHeaderCreator on_post_save invoked"</span>)</span><br><span class="line">        view.run_command(<span class="string">"file_header_creator"</span>)</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -246,9 +238,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/command/"> #command </a>
+            <a href="/tags/editor/"> #editor </a>
           
-            <a href="/tags/vim/"> #vim </a>
+            <a href="/tags/sublime/"> #sublime </a>
           
         </div>
       
@@ -257,13 +249,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014-9-12-cpp-note/">C\C++ Notes</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014-12-18-softwareengineering/">Software Engineering</a>
+              <a href="/python-notes/">Python Notes</a>
             
           </div>
         </div>
@@ -430,7 +420,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#生成tags"><span class="nav-number">1.</span> <span class="nav-text">生成tags</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成cscope索引"><span class="nav-number">2.</span> <span class="nav-text">生成cscope索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令"><span class="nav-number">3.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快捷键"><span class="nav-number">4.</span> <span class="nav-text">快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件比较"><span class="nav-number">5.</span> <span class="nav-text">文件比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在你忘记用_root_方式打开文件时的文件保存"><span class="nav-number">6.</span> <span class="nav-text">在你忘记用 root 方式打开文件时的文件保存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按时间回退文件"><span class="nav-number">7.</span> <span class="nav-text">按时间回退文件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#没记住的快捷键"><span class="nav-number">1.</span> <span class="nav-text">没记住的快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#来写一个插件"><span class="nav-number">2.</span> <span class="nav-text">来写一个插件</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
