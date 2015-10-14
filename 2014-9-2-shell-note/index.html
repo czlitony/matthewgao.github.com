@@ -176,7 +176,7 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2014-09-05
+          發表於 2015-10-14
         </span>
 
         
@@ -204,14 +204,25 @@
       
 
       
-        <h2 id="显示PID">显示PID</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> $$</span><br></pre></td></tr></table></figure>
-<p>返回PID， $是个内部变量</p>
-<h2 id="上一个指令的返回值">上一个指令的返回值</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> $?</span><br></pre></td></tr></table></figure>
-<p>表示上一个指令的返回值</p>
+        <h2 id="$">$</h2><ul>
+<li><code>$$</code> 返回PID， $是个内部变量</li>
+<li><code>$?</code> 表示上一个指令的返回值</li>
+<li><code>$0</code> 表示函数或者shell的第一个参数，后面类推</li>
+<li><code>$@</code> 返回所有参数</li>
+</ul>
 <h2 id="set_unset">set unset</h2><p>设置程序自定义变量（只对本shell）</p>
 <h2 id="export">export</h2><p>设置为全局环境变量</p>
 <h2 id="declare">declare</h2><p>将环境变量转成自定义变量</p>
 <h2 id="查找历史命令并执行">查找历史命令并执行</h2><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(</span>history | grep -<span class="constant">E </span><span class="string">'^ +1148'</span> | awk -<span class="constant">F'</span> <span class="string">' '</span>&#123;<span class="variable">$1</span>=<span class="string">""</span>;print&#125;<span class="string">')</span></span><br></pre></td></tr></table></figure>
+<h2 id="参数扩展">参数扩展</h2><ul>
+<li><code>${param:-default}</code> 如果param为空，就把他设置成default</li>
+<li><code>${\#param}</code> 给出param长度</li>
+<li><code>${var:-string}</code>: 若变量var为空，则用在命令行中用string来替换<code>${var:-string}</code>，否则变量var不为空时，则用变量var的值来替换<code>${var:-string}</code>；</li>
+<li><code>${var:=string}</code>: 替换规则和<code>${var:-string}</code>是一样的，所不同之处是<code>${var:=string}</code>若var为空时，用string替换<code>${var:=string}</code>的同时，把string赋给变量var：<code>${var:=string}</code>很常用的一种用法是，判断某个变量是否赋值，没有的话则给它赋上一个默认值。</li>
+<li><code>${var:+string}</code>的替换规则和上面的相反，即只有当var不是空的时候才替换成string，若var为空时则不替换或者说是替换成变量 var的值，即空值。(因为变量var此时为空，所以这两种说法是等价的) </li>
+<li><code>${var:?string}</code>替换规则为：若变量var不为空，则用变量var的值来替换<code>${var:?string}</code>；若变量var为空，则把string输出到标准错误中，并从脚本中退出。我们可利用此特性来检查是否设置了变量的值。</li>
+</ul>
+
       
     </div>
 
@@ -228,13 +239,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014-12-18-softwareengineering/">Software Engineering</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014-9-2-git-note/">Git Command Notes</a>
+              <a href="/2014-9-12-cpp-note/">C\C++ Notes</a>
             
           </div>
         </div>
@@ -401,7 +410,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#显示PID"><span class="nav-number">1.</span> <span class="nav-text">显示PID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上一个指令的返回值"><span class="nav-number">2.</span> <span class="nav-text">上一个指令的返回值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#set_unset"><span class="nav-number">3.</span> <span class="nav-text">set unset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#export"><span class="nav-number">4.</span> <span class="nav-text">export</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#declare"><span class="nav-number">5.</span> <span class="nav-text">declare</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找历史命令并执行"><span class="nav-number">6.</span> <span class="nav-text">查找历史命令并执行</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#$"><span class="nav-number">1.</span> <span class="nav-text">$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#set_unset"><span class="nav-number">2.</span> <span class="nav-text">set unset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#export"><span class="nav-number">3.</span> <span class="nav-text">export</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#declare"><span class="nav-number">4.</span> <span class="nav-text">declare</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找历史命令并执行"><span class="nav-number">5.</span> <span class="nav-text">查找历史命令并执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数扩展"><span class="nav-number">6.</span> <span class="nav-text">参数扩展</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
