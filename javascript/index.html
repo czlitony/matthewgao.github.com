@@ -206,10 +206,28 @@
       
         <h2 id="作用域和声明提前">作用域和声明提前</h2><p>Javascript并不被作用域<code>{}</code>所控制，所以函数内声明的变量在所有的函数内的scope里都是可见的，因此可以把函数所有的变量都放在最开始声明</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> scope = <span class="string">"global"</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(scope)<span class="comment">// undefine</span></span><br><span class="line">    <span class="keyword">var</span> scope = <span class="string">"local"</span></span><br><span class="line">    <span class="built_in">console</span>.log(scope) <span class="comment">// "local"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>没初始化的变量默认为undefined</li>
+</ul>
 <h2 id="NaN_Infinity">NaN Infinity</h2><p>不能够用<code>x == NaN</code> 判断是否是NaN或者Infinity，可以使用<code>isNaN()</code>或者<code>isInfinity()</code>来判断</p>
+<h2 id="属性的四个特性">属性的四个特性</h2><h3 id="数据属性">数据属性</h3><ul>
+<li>value</li>
+<li>writable</li>
+<li>enumerable</li>
+<li>configurable</li>
+</ul>
+<h3 id="存取器属性">存取器属性</h3><p>不具有value和writable特性，写特性是由有没有setter方法决定的</p>
+<ul>
+<li>get</li>
+<li>set</li>
+<li>enumerable</li>
+<li>configurable</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Object.getOwnPropertyDescriptor(&#123;<span class="string">x:</span><span class="number">1</span>&#125;, <span class="string">'x'</span>) </span><br><span class="line"><span class="comment">//return &#123;value:1, writable:true, enumerable:true, configurable:true&#125;</span></span><br><span class="line"></span><br><span class="line">Object.defineProperty(obj, <span class="string">'x'</span>, &#123;<span class="string">value:</span><span class="number">1</span>, <span class="string">writable:</span><span class="literal">true</span>, <span class="string">enumerable:</span><span class="literal">true</span>, <span class="string">configurable:</span><span class="literal">true</span>&#125;)<span class="comment">//设置属性</span></span><br><span class="line"><span class="comment">//不能修改继承属性</span></span><br></pre></td></tr></table></figure>
 <h2 id="TIP">TIP</h2><ul>
 <li>使用分号</li>
 <li>不区分整数和浮点</li>
+<li>如果没使用var声明一个变量，那么他会默认变成全局的。</li>
 </ul>
 
       
@@ -399,7 +417,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域和声明提前"><span class="nav-number">1.</span> <span class="nav-text">作用域和声明提前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NaN_Infinity"><span class="nav-number">2.</span> <span class="nav-text">NaN Infinity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TIP"><span class="nav-number">3.</span> <span class="nav-text">TIP</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域和声明提前"><span class="nav-number">1.</span> <span class="nav-text">作用域和声明提前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NaN_Infinity"><span class="nav-number">2.</span> <span class="nav-text">NaN Infinity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性的四个特性"><span class="nav-number">3.</span> <span class="nav-text">属性的四个特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据属性"><span class="nav-number">3.1.</span> <span class="nav-text">数据属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存取器属性"><span class="nav-number">3.2.</span> <span class="nav-text">存取器属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TIP"><span class="nav-number">4.</span> <span class="nav-text">TIP</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
