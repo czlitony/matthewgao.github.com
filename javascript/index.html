@@ -241,12 +241,27 @@
 <h3 id="prototype属性">prototype属性</h3><p>每个函数都有一个prototype属性，这个属性是一个对象的引用，每个函数都包含不同的原型对象</p>
 <h3 id="call方法和apply方法">call方法和apply方法</h3><p>他可以用来绑定一个函数func到任意对象obj</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func.<span class="function"><span class="title">call</span><span class="params">(obj, args...)</span></span></span><br><span class="line">func.<span class="function"><span class="title">apply</span><span class="params">(obj, [args...])</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="bind">bind</h3><p>它和apply和call的不同是，bind返回的是一个函数<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">var</span> func2 = func.<span class="function"><span class="title">bind</span><span class="params">(obj, args)</span></span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Function()_构造函数">Function() 构造函数</h3><p>Function()创建的函数并不使用词法作用于，所以他作为嵌套函数的时候不能捕获上层函数的对象</p>
+<h3 id="不完全函数">不完全函数</h3><p>把一个函数调用拆成，若干个子调用<code>f(1,2,3,4,5)=&gt;f(1,2)(3,4)(5)</code></p>
+<h2 id="类">类</h2><p>类包含一个构造函数，一个prototype，对于prototype相同的对象是属于一类的。</p>
+<p>Javascript里面的类实际上感觉就是用对象构造对象，他没有其他OO中类的概念</p>
+<ul>
+<li>构造函数中的属性是等同于static</li>
+<li>而prototype的等同于方法/属性</li>
+<li>构造函数并不是生成对象的主体，主体是prototype，构造函数只能作为类似静态方法的方式操作</li>
+</ul>
 <h2 id="TIP">TIP</h2><hr>
 <ul>
 <li>使用分号</li>
 <li>不区分整数和浮点</li>
 <li>如果没使用var声明一个变量，那么他会默认变成全局的。</li>
 <li><code>a = a || a.func()</code></li>
+<li>JSON.stringify and JSON.parse</li>
+<li>Javascript 相等运算符比较对象时，比较的是引用而不是值，可以用<code>equals()</code>来做完整比较</li>
+<li>代码质量检查 jslint.com</li>
+<li>let 声明块级作用域的变量</li>
+<li>const 声明常量 v &gt;1.8</li>
 </ul>
 
       
@@ -438,7 +453,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域和声明提前"><span class="nav-number">1.</span> <span class="nav-text">作用域和声明提前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NaN_Infinity"><span class="nav-number">2.</span> <span class="nav-text">NaN Infinity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性的四个特性"><span class="nav-number">3.</span> <span class="nav-text">属性的四个特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据属性"><span class="nav-number">3.1.</span> <span class="nav-text">数据属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存取器属性"><span class="nav-number">3.2.</span> <span class="nav-text">存取器属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this"><span class="nav-number">4.</span> <span class="nav-text">this</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#argument"><span class="nav-number">5.</span> <span class="nav-text">argument</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#callee和caller属性"><span class="nav-number">5.1.</span> <span class="nav-text">callee和caller属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">6.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#prototype属性"><span class="nav-number">6.1.</span> <span class="nav-text">prototype属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#call方法和apply方法"><span class="nav-number">6.2.</span> <span class="nav-text">call方法和apply方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TIP"><span class="nav-number">7.</span> <span class="nav-text">TIP</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域和声明提前"><span class="nav-number">1.</span> <span class="nav-text">作用域和声明提前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NaN_Infinity"><span class="nav-number">2.</span> <span class="nav-text">NaN Infinity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性的四个特性"><span class="nav-number">3.</span> <span class="nav-text">属性的四个特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据属性"><span class="nav-number">3.1.</span> <span class="nav-text">数据属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存取器属性"><span class="nav-number">3.2.</span> <span class="nav-text">存取器属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this"><span class="nav-number">4.</span> <span class="nav-text">this</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#argument"><span class="nav-number">5.</span> <span class="nav-text">argument</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#callee和caller属性"><span class="nav-number">5.1.</span> <span class="nav-text">callee和caller属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">6.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#prototype属性"><span class="nav-number">6.1.</span> <span class="nav-text">prototype属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#call方法和apply方法"><span class="nav-number">6.2.</span> <span class="nav-text">call方法和apply方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bind"><span class="nav-number">6.3.</span> <span class="nav-text">bind</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Function()_构造函数"><span class="nav-number">6.4.</span> <span class="nav-text">Function() 构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不完全函数"><span class="nav-number">6.5.</span> <span class="nav-text">不完全函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类"><span class="nav-number">7.</span> <span class="nav-text">类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TIP"><span class="nav-number">8.</span> <span class="nav-text">TIP</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
