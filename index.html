@@ -272,21 +272,13 @@
 
       
         
-          <h2 id="Unit_test">Unit test</h2><h3 id="mocha">mocha</h3><ul>
-<li>describe可以嵌套</li>
-<li>it不能嵌套</li>
-</ul>
-<h4 id="时序">时序</h4><ul>
-<li>describe里地it的非异步部分按它们定义的顺序执行，它们所触发的回调的注册顺序也遵从it的注册顺序</li>
-<li>不被describe包裹的部分执行顺序的优先级最高</li>
-<li>同一层次的describe执行顺序遵从它们的定义顺序</li>
-<li>外层describe的所有it执行优先级高于嵌套的describe</li>
-<li>describe内所有函数全部是non-block的，所以不能再其中指望以顺序的方式传递变量什么的</li>
-</ul>
-<h4 id="处理异步单元测试">处理异步单元测试</h4><p>尤其在需要发出请求，处理返回的时候，由于NodeJs是全异步的，所以describe不会捕捉到返回结果，所以需要在it的callback中给一个done，并在异步调用结束后调用<code>done()</code></p>
-<p>同时它的几个hook也接受使用done的异步调用。</p>
-
-        
+          NodeJS Note
+          <div class="post-more-link text-center">
+            <a class="btn" href="/NodeJS/">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+          
       
     </div>
 
@@ -789,7 +781,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-count">40</span>
               <span class="site-state-item-name">標籤</span>
               </a>
           </div>
