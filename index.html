@@ -273,18 +273,18 @@
       
         
           <h2 id="Unit_test">Unit test</h2><h3 id="mocha">mocha</h3><ul>
-<li>describe����Ƕ��</li>
-<li>it����Ƕ��</li>
+<li>describe可以嵌套</li>
+<li>it不能嵌套</li>
 </ul>
-<h4 id="ʱ��">ʱ��</h4><ul>
-<li>describe����it�ķ��첽���ְ����Ƕ�����˳��ִ�У������������Ļص���ע��˳��Ҳ����it��ע��˳��</li>
-<li>����describe�����Ĳ���ִ��˳�������ȼ�����</li>
-<li>ͬһ���ε�describeִ��˳���������ǵĶ���˳��</li>
-<li>����describe������itִ�����ȼ�����Ƕ�׵�describe</li>
-<li>describe�����к���ȫ����non-block�ģ����Բ���������ָ����˳���ķ�ʽ���ݱ���ʲô��</li>
+<h4 id="时序">时序</h4><ul>
+<li>describe里地it的非异步部分按它们定义的顺序执行，它们所触发的回调的注册顺序也遵从it的注册顺序</li>
+<li>不被describe包裹的部分执行顺序的优先级最高</li>
+<li>同一层次的describe执行顺序遵从它们的定义顺序</li>
+<li>外层describe的所有it执行优先级高于嵌套的describe</li>
+<li>describe内所有函数全部是non-block的，所以不能再其中指望以顺序的方式传递变量什么的</li>
 </ul>
-<h4 id="�����첽��Ԫ����">�����첽��Ԫ����</h4><p>��������Ҫ�������󣬴����ص�ʱ��������NodeJs��ȫ�첽�ģ�����describe���Ჶ׽�����ؽ�����������Ҫ��it��callback�и�һ��done�������첽���ý���������<code>done()</code></p>
-<p>ͬʱ���ļ���hookҲ����ʹ��done���첽���á�</p>
+<h4 id="处理异步单元测试">处理异步单元测试</h4><p>尤其在需要发出请求，处理返回的时候，由于NodeJs是全异步的，所以describe不会捕捉到返回结果，所以需要在it的callback中给一个done，并在异步调用结束后调用<code>done()</code></p>
+<p>同时它的几个hook也接受使用done的异步调用。</p>
 
         
       
