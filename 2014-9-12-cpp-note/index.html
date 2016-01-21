@@ -176,7 +176,7 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2015-12-29
+          發表於 2016-01-21
         </span>
 
         
@@ -315,6 +315,10 @@ memset(<span class="keyword">addr</span>+<span class="number">4</span>, <span cl
 </ul>
 <p>这里bad()的使用方法会可能导致临时shared_ptr指向对象不会被正确释放（在exception case下）<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ok</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">shared_ptr</span>&lt;<span class="keyword">int</span>&gt; p( <span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">2</span>) );</span><br><span class="line">    f( p, g() );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bad</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    f( <span class="built_in">shared_ptr</span>&lt;<span class="keyword">int</span>&gt;( <span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">2</span>) ), g() );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">shared</span><span class="number">_p</span>tr&lt;Job&gt; j = make<span class="number">_</span><span class="annotation">shared</span>&lt;Job&gt;(); <span class="comment">//make_shared比用new更加高效，</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//这个函数会在传入时候复制一次shared_ptr，导致引用计数+1，之后return的时候又复制一次，导致引用计数又+1，但是这都会在函数执行后</span></span><br><span class="line"><span class="comment">//被正确释放掉</span></span><br><span class="line"><span class="annotation">shared</span><span class="number">_p</span>tr&lt;Job&gt; func(<span class="annotation">shared</span><span class="number">_p</span>tr&lt;Job&gt; job)&#123;</span><br><span class="line">    <span class="keyword">return</span> job;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//全程不会增加引用计数，但是要小心，如果这个shared_ptr的会被其他线程赋值，那么这可能会有问题</span></span><br><span class="line"><span class="annotation">shared</span><span class="number">_p</span>tr&lt;Job&gt;&amp; func(<span class="annotation">shared</span><span class="number">_p</span>tr&lt;Job&gt;&amp; job)&#123;</span><br><span class="line">    <span class="keyword">return</span> job;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这个时候job会被赋值，job所指的老的对象会被释放掉，job会继续跟踪这个新建对象。</span></span><br><span class="line"><span class="annotation">shared</span><span class="number">_p</span>tr&lt;Job&gt;&amp; func(<span class="annotation">shared</span><span class="number">_p</span>tr&lt;Job&gt;&amp; job)&#123;</span><br><span class="line">    job = make<span class="number">_</span><span class="annotation">shared</span>&lt;Job&gt;();</span><br><span class="line">    <span class="keyword">return</span> job;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果以引用传递shared_ptr参数，那么他不能操纵他自己，不然会编译报错</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Association<span class="value">::<span class="function">addToManager</span>(shared_ptr&lt;Association&gt;&amp; assoc);</span></span><br><span class="line">assoc-&gt;<span class="function">addToManager</span>(assoc);<span class="comment">// 这里addToManager无法接受一个assoc的引用</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>shared_ptr不能用static_cast等直接做转换，要用它提供的“<ul>
 <li>static_pointer_cast<t></t></li>
@@ -554,13 +558,11 @@ c.front<span class="params">()</span>/back<span class="params">()</span>; <span 
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014-9-26-makefile/">Makefile Notes</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/javascript/">JavaScript Note</a>
+              <a href="/python-notes/">Python Notes</a>
             
           </div>
         </div>
