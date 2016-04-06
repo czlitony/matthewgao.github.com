@@ -176,7 +176,7 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2016-01-04
+          發表於 2016-01-27
         </span>
 
         
@@ -217,6 +217,19 @@
 <p>define指示符后面跟的是变量的名字，而重起一行定义变量的值，定义是以endef关键字结束。其工作方式和“=”操作符一样。变量的值可以包含函数、命令、文字，或是其它变量。因为命令需要以[Tab]键开头，所以如果你用define定义的命令变量中没有以[Tab]键开头，那么make就不会把其认为是命令。</p>
 <p>下面的这个示例展示了define的用法：</p>
 <figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">define two-lines</span><br><span class="line"><span class="built_in">echo</span> foo</span><br><span class="line"><span class="built_in">echo</span> $<span class="params">(bar)</span></span><br><span class="line">endef</span><br></pre></td></tr></table></figure>
+<h2 id="origin_function">origin function</h2><p>The origin function is unlike most other functions in that it does not operate on the values of variables; it tells you something about a variable. Specifically, it tells you where it came from.</p>
+<p>The syntax of the origin function is:</p>
+<p>$(origin variable)<br>Note that variable is the name of a variable to inquire about, not a reference to that variable. Therefore you would not normally use a ‘$’ or parentheses when writing it. (You can, however, use a variable reference in the name if you want the name not to be a constant.)</p>
+<p>The result of this function is a string telling you how the variable variable was defined:</p>
+<p>‘undefined’<br>if variable was never defined.</p>
+<p>‘default’<br>if variable has a default definition, as is usual with CC and so on. See Variables Used by Implicit Rules. Note that if you have redefined a default variable, the origin function will return the origin of the later definition.</p>
+<p>‘environment’<br>if variable was inherited from the environment provided to make.</p>
+<p>‘environment override’<br>if variable was inherited from the environment provided to make, and is overriding a setting for variable in the makefile as a result of the ‘-e’ option (see Summary of Options).</p>
+<p>‘file’<br>if variable was defined in a makefile.</p>
+<p>‘command line’<br>if variable was defined on the command line.</p>
+<p>‘override’<br>if variable was defined with an override directive in a makefile (see The override Directive).</p>
+<p>‘automatic’<br>if variable is an automatic variable defined for the execution of the recipe for each rule (see Automatic Variables).</p>
+
       
     </div>
 
@@ -233,13 +246,13 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/python-notes/">Python Notes</a>
+              <a href="/docker/">Docker</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/javascript/">JavaScript Note</a>
+              <a href="/2014-9-12-cpp-note/">C\C++ Notes</a>
             
           </div>
         </div>
@@ -326,7 +339,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">30</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -340,7 +353,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-count">41</span>
               <span class="site-state-item-name">標籤</span>
               </a>
           </div>
@@ -406,7 +419,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#样板"><span class="nav-number">1.</span> <span class="nav-text">样板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在make中有四种方式对变量赋值："><span class="nav-number">2.</span> <span class="nav-text">在make中有四种方式对变量赋值：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#:=运算符"><span class="nav-number">2.1.</span> <span class="nav-text">:=运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#=运算符"><span class="nav-number">2.2.</span> <span class="nav-text">=运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#?=运算符"><span class="nav-number">2.3.</span> <span class="nav-text">?=运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#+=运算符"><span class="nav-number">2.4.</span> <span class="nav-text">+=运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pattern模式"><span class="nav-number">2.5.</span> <span class="nav-text">Pattern模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#$$"><span class="nav-number">3.</span> <span class="nav-text">$$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#define"><span class="nav-number">4.</span> <span class="nav-text">define</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#样板"><span class="nav-number">1.</span> <span class="nav-text">样板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在make中有四种方式对变量赋值："><span class="nav-number">2.</span> <span class="nav-text">在make中有四种方式对变量赋值：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#:=运算符"><span class="nav-number">2.1.</span> <span class="nav-text">:=运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#=运算符"><span class="nav-number">2.2.</span> <span class="nav-text">=运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#?=运算符"><span class="nav-number">2.3.</span> <span class="nav-text">?=运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#+=运算符"><span class="nav-number">2.4.</span> <span class="nav-text">+=运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pattern模式"><span class="nav-number">2.5.</span> <span class="nav-text">Pattern模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#$$"><span class="nav-number">3.</span> <span class="nav-text">$$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#define"><span class="nav-number">4.</span> <span class="nav-text">define</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#origin_function"><span class="nav-number">5.</span> <span class="nav-text">origin function</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
