@@ -105,7 +105,7 @@
         <li class="menu-item menu-item-home">
           <a href="/">
             <i class="menu-item-icon icon-home"></i> <br />
-            首頁
+            Startseite
           </a>
         </li>
       
@@ -113,7 +113,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories">
             <i class="menu-item-icon icon-categories"></i> <br />
-            分類
+            Kategorien
           </a>
         </li>
       
@@ -121,7 +121,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about">
             <i class="menu-item-icon icon-about"></i> <br />
-            關於
+            Über
           </a>
         </li>
       
@@ -129,7 +129,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives">
             <i class="menu-item-icon icon-archives"></i> <br />
-            歸檔
+            Archiv
           </a>
         </li>
       
@@ -137,7 +137,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags">
             <i class="menu-item-icon icon-tags"></i> <br />
-            標籤
+            Tags
           </a>
         </li>
       
@@ -176,12 +176,12 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2014-09-02
+          Veröffentlicht am 2014-09-02
         </span>
 
         
           <span class="post-category">
-            &nbsp; | &nbsp; 分類於
+            &nbsp; | &nbsp; in
             
               <a href="/categories/Dev-Tool/">Dev Tool</a>
 
@@ -209,44 +209,44 @@
 <h3 id="索引区_Index（stage）">索引区 Index（stage）</h3><p>git add 提交到的区域，可以理解为缓存区</p>
 <h3 id="版本库_Repository">版本库 Repository</h3><p>git commit 提交到的区域，即为本地Repository。即.git文件夹</p>
 <h3 id="stash">stash</h3><p>与perforce中shelve的概念非常相似</p>
-<h2 id="基本应用">基本应用</h2><h3 id="创建一个Repository">创建一个Repository</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">git</span> init</span><br></pre></td></tr></table></figure>
-<h3 id="添加文件到stage区">添加文件到stage区</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> <span class="keyword">add </span>readme.md</span><br></pre></td></tr></table></figure>
-<h3 id="提交到版本库">提交到版本库</h3><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m “<span class="keyword">new</span> <span class="keyword">file</span>”</span><br></pre></td></tr></table></figure>
+<h2 id="基本应用">基本应用</h2><h3 id="创建一个Repository">创建一个Repository</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git</span> init</span><br></pre></td></tr></table></figure>
+<h3 id="添加文件到stage区">添加文件到stage区</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">git</span> <span class="keyword">add </span>readme.md</span><br></pre></td></tr></table></figure>
+<h3 id="提交到版本库">提交到版本库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">commit</span> -m “<span class="keyword">new</span> <span class="keyword">file</span>”</span><br></pre></td></tr></table></figure>
 <h3 id="查看现有branch的状态">查看现有branch的状态</h3><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">status</span></span><br></pre></td></tr></table></figure>
-<h3 id="查看工作区中文件和版本库中区别">查看工作区中文件和版本库中区别</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">git</span> <span class="tag">diff</span> <span class="tag">readme</span><span class="class">.md</span></span><br></pre></td></tr></table></figure>
-<h3 id="查看commit历史记录">查看commit历史记录</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="command">log</span></span><br><span class="line">git <span class="command">log</span> <span class="comment">--pretty=oneline</span></span><br><span class="line">git <span class="command">log</span> <span class="comment">--graph --pretty=oneline --abbrev-commit \\显示分支图</span></span><br></pre></td></tr></table></figure>
-<h3 id="退回上一个版本">退回上一个版本</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="operator"><span class="keyword">reset</span> <span class="comment">--hard HEAD^</span></span><br><span class="line">git <span class="keyword">reset</span> <span class="comment">--hard 3628164</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="查看工作区中文件和版本库中区别">查看工作区中文件和版本库中区别</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">git</span> <span class="selector-tag">diff</span> <span class="selector-tag">readme</span><span class="selector-class">.md</span></span><br></pre></td></tr></table></figure>
+<h3 id="查看commit历史记录">查看commit历史记录</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span></span><br><span class="line">git <span class="built_in">log</span> <span class="comment">--pretty=oneline</span></span><br><span class="line">git <span class="built_in">log</span> <span class="comment">--graph --pretty=oneline --abbrev-commit \\显示分支图</span></span><br></pre></td></tr></table></figure>
+<h3 id="退回上一个版本">退回上一个版本</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">reset</span> <span class="comment">--hard HEAD^</span></span><br><span class="line">git <span class="keyword">reset</span> <span class="comment">--hard 3628164</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100。</li>
 <li>当你用$ git reset —hard HEAD^回退到“add distributed”版本时，再想恢复到“append GPL”，就必须找到“append GPL”的commit id。Git提供了一个命令git reflog用来记录你的每一次命令：</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git reflog</span><br><span class="line">ea34578 HEAD@&#123;0&#125;: <span class="operator"><span class="keyword">reset</span>: moving <span class="keyword">to</span> HEAD^</span><br><span class="line"><span class="number">3628164</span> HEAD@&#123;<span class="number">1</span>&#125;: <span class="keyword">commit</span>: append GPL</span><br><span class="line">ea34578 HEAD@&#123;<span class="number">2</span>&#125;: <span class="keyword">commit</span>: <span class="keyword">add</span> distributed</span><br><span class="line">cb926e7 HEAD@&#123;<span class="number">3</span>&#125;: <span class="keyword">commit</span> (initial): wrote a readme file</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git reflog</span><br><span class="line">ea34578 HEAD@&#123;<span class="number">0</span>&#125;: rese<span class="variable">t:</span> moving <span class="keyword">to</span> HEAD^</span><br><span class="line"><span class="number">3628164</span> HEAD@&#123;<span class="number">1</span>&#125;: commi<span class="variable">t:</span> <span class="keyword">append</span> GPL</span><br><span class="line">ea34578 HEAD@&#123;<span class="number">2</span>&#125;: commi<span class="variable">t:</span> <span class="built_in">add</span> distributed</span><br><span class="line">cb926e7 HEAD@&#123;<span class="number">3</span>&#125;: commit (initial): wrote <span class="keyword">a</span> readme <span class="keyword">file</span></span><br></pre></td></tr></table></figure>
 <h3 id="丢弃工作区的修改">丢弃工作区的修改</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout <span class="comment">-- readme.md</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>注意：有无 “—” 是有区别的，没有表示切换branch</p>
 </blockquote>
 <h3 id="删除文件">删除文件</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">rm</span> readme.md</span><br><span class="line">git commit -<span class="keyword">m</span> <span class="string">"remove file"</span></span><br></pre></td></tr></table></figure>
 <h2 id="分支管理">分支管理</h2><p>git的分支与perforce的分支大不同，git的分支是基于类似于指针的方式来实现的，它是在创建不同的指针指向不同的commit版本</p>
-<h3 id="创建分支">创建分支</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -<span class="tag">b</span> dev</span><br></pre></td></tr></table></figure>
+<h3 id="创建分支">创建分支</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -<span class="selector-tag">b</span> dev</span><br></pre></td></tr></table></figure>
 <p>上面的命令建立了dev分支并切换到dev，等同于如下：</p>
 <figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch <span class="built_in">dev</span></span><br><span class="line">git checkout <span class="built_in">dev</span></span><br></pre></td></tr></table></figure>
-<h3 id="切换分支">切换分支</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">git</span> checkout dev</span><br></pre></td></tr></table></figure>
-<h3 id="查看分支">查看分支</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">git</span> branch</span><br></pre></td></tr></table></figure>
-<h3 id="删除分支">删除分支</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> <span class="keyword">branch </span>-d dev</span><br></pre></td></tr></table></figure>
-<h3 id="合并分支">合并分支</h3><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkou master</span><br><span class="line">git <span class="built_in">merge</span> dev</span><br></pre></td></tr></table></figure>
+<h3 id="切换分支">切换分支</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git</span> checkout dev</span><br></pre></td></tr></table></figure>
+<h3 id="查看分支">查看分支</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git</span> branch</span><br></pre></td></tr></table></figure>
+<h3 id="删除分支">删除分支</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">git</span> <span class="keyword">branch </span>-d dev</span><br></pre></td></tr></table></figure>
+<h3 id="合并分支">合并分支</h3><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkou <span class="keyword">master</span></span><br><span class="line"><span class="title">git</span> merge dev</span><br></pre></td></tr></table></figure>
 <p>如果有冲突，git会标示在有冲突的文件中，按照如下格式</p>
-<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Git tracks changes of files.</span><br><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span><br><span class="line"><span class="header">Creating a new branch is quick &amp; simple.</span><br><span class="line">=======</span></span><br><span class="line">Creating a new branch is quick AND simple.</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature1</span><br></pre></td></tr></table></figure>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Git tracks changes of files.</span><br><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span><br><span class="line"><span class="section">Creating a new branch is quick &amp; simple.</span><br><span class="line">=======</span></span><br><span class="line">Creating a new branch is quick AND simple.</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature1</span><br></pre></td></tr></table></figure>
 <p>另外一种合并分支的方法是</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">merge</span> --<span class="keyword">no</span>-ff -<span class="keyword">m</span> <span class="string">"merge with no-ff"</span> dev</span><br></pre></td></tr></table></figure>
 <p>这种方法的不同是 合并会是一个新的commit， 而之前的只是简单的把master指向dev</p>
-<h2 id="远程管理">远程管理</h2><h3 id="查看远程库信息">查看远程库信息</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">git</span> remote -v</span><br></pre></td></tr></table></figure>
-<h3 id="推送分支">推送分支</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> <span class="keyword">push </span>origin master</span><br><span class="line"><span class="label">git</span> <span class="keyword">push </span>origin dev</span><br></pre></td></tr></table></figure>
+<h2 id="远程管理">远程管理</h2><h3 id="查看远程库信息">查看远程库信息</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git</span> remote -v</span><br></pre></td></tr></table></figure>
+<h3 id="推送分支">推送分支</h3><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">push</span> <span class="built_in">origin</span> master</span><br><span class="line">git <span class="built_in">push</span> <span class="built_in">origin</span> dev</span><br></pre></td></tr></table></figure>
 <h3 id="获得分支">获得分支</h3><figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch --<span class="built_in">set</span>-upstream <span class="built_in">dev</span> origin/<span class="built_in">dev</span> \\第一次的时候需要关联本地和远程的分支</span><br><span class="line">git pull</span><br></pre></td></tr></table></figure>
-<h3 id="在本地创建和远程分支对应的分支">在本地创建和远程分支对应的分支</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b branch-<span class="property">name</span> origin/branch-<span class="property">name</span></span><br></pre></td></tr></table></figure>
+<h3 id="在本地创建和远程分支对应的分支">在本地创建和远程分支对应的分支</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b branch-<span class="built_in">name</span> origin/branch-<span class="built_in">name</span></span><br></pre></td></tr></table></figure>
 <h2 id="标签">标签</h2><h3 id="添加标签">添加标签</h3><p>在某个分支上执行</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> tag <span class="literal">v1</span>.<span class="number">0</span></span><br><span class="line"><span class="label">git</span> tag <span class="literal">v1</span>.<span class="number">0</span> <span class="number">6224799</span> \\commit id</span><br></pre></td></tr></table></figure>
-<h3 id="查看标签">查看标签</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> show <span class="literal">v1</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
-<h3 id="删除标签">删除标签</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag <span class="operator">-d</span> v0.<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">tag</span> <span class="title">v1</span>.<span class="number">0</span></span><br><span class="line">git <span class="keyword">tag</span> <span class="title">v1</span>.<span class="number">0</span> <span class="number">6224799</span> \\commit id</span><br></pre></td></tr></table></figure>
+<h3 id="查看标签">查看标签</h3><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">show </span><span class="built_in">v1</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<h3 id="删除标签">删除标签</h3><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">tag</span> <span class="title">-d</span> v0.<span class="number">1</span></span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -339,10 +339,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目錄
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
+            Übersicht
           </li>
         </ul>
       
@@ -357,21 +357,21 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">30</span>
-              <span class="site-state-item-name">文章</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
               <span class="site-state-item-count">16</span>
-              <span class="site-state-item-name">分類</span>
+              <span class="site-state-item-name">Kategorien</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
               <span class="site-state-item-count">41</span>
-              <span class="site-state-item-name">標籤</span>
+              <span class="site-state-item-name">Tags</span>
               </a>
           </div>
 
@@ -462,11 +462,11 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  主題 -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>

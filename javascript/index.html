@@ -105,7 +105,7 @@
         <li class="menu-item menu-item-home">
           <a href="/">
             <i class="menu-item-icon icon-home"></i> <br />
-            首頁
+            Startseite
           </a>
         </li>
       
@@ -113,7 +113,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories">
             <i class="menu-item-icon icon-categories"></i> <br />
-            分類
+            Kategorien
           </a>
         </li>
       
@@ -121,7 +121,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about">
             <i class="menu-item-icon icon-about"></i> <br />
-            關於
+            Über
           </a>
         </li>
       
@@ -129,7 +129,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives">
             <i class="menu-item-icon icon-archives"></i> <br />
-            歸檔
+            Archiv
           </a>
         </li>
       
@@ -137,7 +137,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags">
             <i class="menu-item-icon icon-tags"></i> <br />
-            標籤
+            Tags
           </a>
         </li>
       
@@ -176,12 +176,12 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2015-12-21
+          Veröffentlicht am 2015-12-21
         </span>
 
         
           <span class="post-category">
-            &nbsp; | &nbsp; 分類於
+            &nbsp; | &nbsp; in
             
               <a href="/categories/Javascript/">Javascript</a>
 
@@ -237,7 +237,7 @@
 <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyConstructor</span><span class="params">(data, transport)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.data = data;</span><br><span class="line">    <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">    transport.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        alert(self.data);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="使用bind">使用bind</h3><h4 id="Explicitly_set_this_of_the_callback">Explicitly set this of the callback</h4><p>It might look like you have no control over the value of this, because its value is set automatically, but that is actually not the case.</p>
 <p>Every function has the method .bind [docs], which returns a new function with this bound to a value. The function has exactly the same behavior as the one you called .bind on, only that this was set by you. No matter how or when that function is called, this will always refer to the passed value.</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyConstructor</span><span class="params">(data, transport)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.data = data;</span><br><span class="line">    <span class="keyword">var</span> boundFunction = (<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123; <span class="comment">// parenthesis are not necessary</span></span><br><span class="line">        alert(<span class="keyword">this</span>.data);             <span class="comment">// but might improve readability</span></span><br><span class="line">    &#125;).bind(<span class="keyword">this</span>); <span class="comment">// &lt;- here we are calling `.bind()` </span></span><br><span class="line">    transport.on(<span class="string">'data'</span>, boundFunction);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function MyConstructor(<span class="keyword">data</span>, transport) &#123;</span><br><span class="line">    <span class="keyword">this</span>.<span class="keyword">data</span> = <span class="keyword">data</span>;</span><br><span class="line">    <span class="keyword">var</span> boundFunction = (function() &#123; <span class="comment">// parenthesis are not necessary</span></span><br><span class="line">        alert(<span class="keyword">this</span>.<span class="keyword">data</span>);             <span class="comment">// but might improve readability</span></span><br><span class="line">    &#125;).bind(<span class="keyword">this</span>); <span class="comment">// &lt;- here we are calling `.bind()` </span></span><br><span class="line">    transport.on(<span class="string">'data'</span>, boundFunction);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>In this case, we are binding the callback’s this to the value of MyConstructor’s this.</p>
 <h4 id="Set_this_of_the_callback_-_part_2">Set this of the callback - part 2</h4><p>Some functions/methods which accept callbacks also accept a value to which the callback’s this should refer to. This is basically the same as binding it yourself, but the function/method does it for you. Array#map [docs] is such a method. Its signature is:</p>
 <p><code>array.map(callback[, thisArg])</code><br>The first argument is the callback and the second argument is the value this should refer to. Here is a contrived example:</p>
@@ -251,8 +251,8 @@
 <h2 id="函数">函数</h2><hr>
 <h3 id="prototype属性">prototype属性</h3><p>每个函数都有一个prototype属性，这个属性是一个对象的引用，每个函数都包含不同的原型对象</p>
 <h3 id="call方法和apply方法">call方法和apply方法</h3><p>他可以用来绑定一个函数func到任意对象obj</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func.<span class="function"><span class="title">call</span><span class="params">(obj, args...)</span></span></span><br><span class="line">func.<span class="function"><span class="title">apply</span><span class="params">(obj, [args...])</span></span></span><br></pre></td></tr></table></figure>
-<h3 id="bind">bind</h3><p>它和apply和call的不同是，bind返回的是一个函数<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">var</span> func2 = func.<span class="function"><span class="title">bind</span><span class="params">(obj, args)</span></span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span>.<span class="title">call</span><span class="params">(obj, args...)</span></span></span><br><span class="line"><span class="function"><span class="keyword">func</span>.<span class="title">apply</span><span class="params">(obj, [args...])</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="bind">bind</h3><p>它和apply和call的不同是，bind返回的是一个函数<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> func2 = <span class="function"><span class="keyword">func</span>.<span class="title">bind</span><span class="params">(obj, args)</span></span></span><br></pre></td></tr></table></figure></p>
 <h3 id="Function()_构造函数">Function() 构造函数</h3><p>Function()创建的函数并不使用词法作用于，所以他作为嵌套函数的时候不能捕获上层函数的对象</p>
 <h3 id="不完全函数">不完全函数</h3><p>把一个函数调用拆成，若干个子调用<code>f(1,2,3,4,5)=&gt;f(1,2)(3,4)(5)</code></p>
 <h2 id="类">类</h2><p>类包含一个构造函数，一个prototype，对于prototype相同的对象是属于一类的。</p>
@@ -297,7 +297,7 @@
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/sublime-and-its-plugin/">Sublime Text & Plugin</a>
+              <a href="/NodeJS/">NodeJS</a>
             
           </div>
         </div>
@@ -367,10 +367,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目錄
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
+            Übersicht
           </li>
         </ul>
       
@@ -385,21 +385,21 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">30</span>
-              <span class="site-state-item-name">文章</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
               <span class="site-state-item-count">16</span>
-              <span class="site-state-item-name">分類</span>
+              <span class="site-state-item-name">Kategorien</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
               <span class="site-state-item-count">41</span>
-              <span class="site-state-item-name">標籤</span>
+              <span class="site-state-item-name">Tags</span>
               </a>
           </div>
 
@@ -490,11 +490,11 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  主題 -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>

@@ -24,7 +24,7 @@
 
 
 
-  <meta name="keywords" content="add-on,python,splunk," />
+  <meta name="keywords" content="python,splunk,add-on," />
 
 
 
@@ -105,7 +105,7 @@
         <li class="menu-item menu-item-home">
           <a href="/">
             <i class="menu-item-icon icon-home"></i> <br />
-            首頁
+            Startseite
           </a>
         </li>
       
@@ -113,7 +113,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories">
             <i class="menu-item-icon icon-categories"></i> <br />
-            分類
+            Kategorien
           </a>
         </li>
       
@@ -121,7 +121,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about">
             <i class="menu-item-icon icon-about"></i> <br />
-            關於
+            Über
           </a>
         </li>
       
@@ -129,7 +129,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives">
             <i class="menu-item-icon icon-archives"></i> <br />
-            歸檔
+            Archiv
           </a>
         </li>
       
@@ -137,7 +137,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags">
             <i class="menu-item-icon icon-tags"></i> <br />
-            標籤
+            Tags
           </a>
         </li>
       
@@ -176,12 +176,12 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2014-09-01
+          Veröffentlicht am 2014-09-01
         </span>
 
         
           <span class="post-category">
-            &nbsp; | &nbsp; 分類於
+            &nbsp; | &nbsp; in
             
               <a href="/categories/Misc/">Misc</a>
 
@@ -227,10 +227,10 @@
 </ul>
 <p>现在的DEBUG level的log似乎会有问题，不知道原因，所以慎用。log最终被写入splunkd.log文件中，实际上splunk sdk的log是对标准输出和标准错误输出进行了重新定向。</p>
 <h2 id="生成安装包">生成安装包</h2><p>在生成之前先建立自己的目录结构</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$SPLUNK_HOME</span>/etc/apps/&lt;app_name&gt;/</span><br><span class="line">  bin/</span><br><span class="line">    app_name<span class="class">.py</span></span><br><span class="line">    splunklib/</span><br><span class="line">      __init__<span class="class">.py</span></span><br><span class="line">      ...</span><br><span class="line">  default/</span><br><span class="line">    app<span class="class">.conf</span></span><br><span class="line">  README/</span><br><span class="line">    inputs<span class="class">.conf</span><span class="class">.spec</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$SPLUNK_HOME</span>/etc/apps/&lt;app_name&gt;/</span><br><span class="line">  bin/</span><br><span class="line">    app_name<span class="selector-class">.py</span></span><br><span class="line">    splunklib/</span><br><span class="line">      __init__<span class="selector-class">.py</span></span><br><span class="line">      ...</span><br><span class="line">  default/</span><br><span class="line">    app<span class="selector-class">.conf</span></span><br><span class="line">  README/</span><br><span class="line">    inputs<span class="selector-class">.conf</span><span class="selector-class">.spec</span></span><br></pre></td></tr></table></figure>
 <p>需要把splunklib目录拷贝到<code>$SPLUNK_HOME/etc/apps/&lt;app_name&gt;/bin</code>, 然后根据需要建立app.conf和inputs.conf.spec. </p>
 <p>Splunk的安装包是spl格式，但实际上就是个tar.gz格式，所以可以直接打包<app_name>目录：</app_name></p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd <span class="variable">$SPLUNK_HOME</span>/etc/apps</span><br><span class="line">tar cv MyApp/ &gt; MyApp<span class="class">.tar</span></span><br><span class="line">gzip MyApp<span class="class">.tar</span></span><br><span class="line">mv MyApp<span class="class">.tar</span><span class="class">.gz</span> MyApp.spl</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd <span class="variable">$SPLUNK_HOME</span>/etc/apps</span><br><span class="line">tar cv MyApp/ &gt; MyApp<span class="selector-class">.tar</span></span><br><span class="line">gzip MyApp<span class="selector-class">.tar</span></span><br><span class="line">mv MyApp<span class="selector-class">.tar</span><span class="selector-class">.gz</span> MyApp.spl</span><br></pre></td></tr></table></figure>
 <p>之后我们就可以在splunk上直接安装啦。</p>
 <h2 id="参考文档">参考文档</h2><ol>
 <li><a href="http://docs.splunk.com/Documentation/Splunk/6.2.2/AdvancedDev/PackageApp" title="Title" target="_blank" rel="external">Package your app or add-on</a></li>
@@ -245,11 +245,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/add-on/"> #add-on </a>
-          
             <a href="/tags/python/"> #python </a>
           
             <a href="/tags/splunk/"> #splunk </a>
+          
+            <a href="/tags/add-on/"> #add-on </a>
           
         </div>
       
@@ -334,10 +334,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目錄
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
+            Übersicht
           </li>
         </ul>
       
@@ -352,21 +352,21 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">30</span>
-              <span class="site-state-item-name">文章</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
               <span class="site-state-item-count">16</span>
-              <span class="site-state-item-name">分類</span>
+              <span class="site-state-item-name">Kategorien</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
               <span class="site-state-item-count">41</span>
-              <span class="site-state-item-name">標籤</span>
+              <span class="site-state-item-name">Tags</span>
               </a>
           </div>
 
@@ -457,11 +457,11 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  主題 -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>

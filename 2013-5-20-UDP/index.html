@@ -105,7 +105,7 @@
         <li class="menu-item menu-item-home">
           <a href="/">
             <i class="menu-item-icon icon-home"></i> <br />
-            首頁
+            Startseite
           </a>
         </li>
       
@@ -113,7 +113,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories">
             <i class="menu-item-icon icon-categories"></i> <br />
-            分類
+            Kategorien
           </a>
         </li>
       
@@ -121,7 +121,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about">
             <i class="menu-item-icon icon-about"></i> <br />
-            關於
+            Über
           </a>
         </li>
       
@@ -129,7 +129,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives">
             <i class="menu-item-icon icon-archives"></i> <br />
-            歸檔
+            Archiv
           </a>
         </li>
       
@@ -137,7 +137,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags">
             <i class="menu-item-icon icon-tags"></i> <br />
-            標籤
+            Tags
           </a>
         </li>
       
@@ -176,12 +176,12 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2013-05-20
+          Veröffentlicht am 2013-05-20
         </span>
 
         
           <span class="post-category">
-            &nbsp; | &nbsp; 分類於
+            &nbsp; | &nbsp; in
             
               <a href="/categories/Network/">Network</a>
 
@@ -208,9 +208,9 @@
 <p>除此之外UDP数据报的发送也可以使用write()、send()函数。如果使用write()或send()，则必须事先以UDP套接字为参数调用connect()函数。</p>
 <p>与TCP不同的是，在UDP套接字上收发的数据是作为单独的单元接收或发送的，而不是作为字节流。每次调用write()、send()、或sendto()函数都会在线路上产生一个UDP数据报。接收到的UDP数据报的读取也是一个单独的操作，如果读取报文时提供的缓冲区长度不够，则会返回一个出错代码。</p>
 <p>例如：</p>
-<figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">sockaddr_in serv_addr;</span><br><span class="line"><span class="comment">// create udp socket</span></span><br><span class="line">m_sock = socket<span class="params">(AF_INET, SOCK_DGRAM, <span class="number">0</span>)</span>;</span><br><span class="line"><span class="keyword">if</span> <span class="params">(m_sock &lt; <span class="number">0</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    return <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">memset<span class="params">(&amp;serv_addr, <span class="number">0</span>, sizeof<span class="params">(struct sockaddr_in)</span>)</span>;</span><br><span class="line">serv_addr.sin_family = AF_INET;</span><br><span class="line">serv_addr.sin_addr.s_addr = inet_addr<span class="params">(m_serv_addr)</span>;</span><br><span class="line">serv_addr.sin_port = htons<span class="params">(m_serv_port)</span>;</span><br><span class="line"><span class="keyword">if</span> <span class="params">(connect<span class="params">(m_sock, <span class="params">(struct sockaddr *)</span>&amp;serv_addr, sizeof<span class="params">(serv_addr)</span>)</span>&lt;<span class="number">0</span>)</span> </span><br><span class="line">&#123;</span><br><span class="line">    fprintf<span class="params">(stderr,<span class="string">"connect fail.\n"</span>)</span>;</span><br><span class="line">    return <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">char buf[]=<span class="string">"abcdefg"</span>;</span><br><span class="line">send<span class="params">(m_sock,<span class="params">(void*)</span>buf,sizeof<span class="params">(buf)</span>,<span class="number">0</span>)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">sockaddr_in serv_addr;</span><br><span class="line"><span class="comment">// create udp socket</span></span><br><span class="line">m_sock = socket(AF_INET, SOCK_DGRAM, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">if</span> (m_sock &lt; <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">memset(&amp;serv_addr, <span class="number">0</span>, <span class="keyword">sizeof</span>(<span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span></span>));</span><br><span class="line">serv_addr.sin_family = AF_INET;</span><br><span class="line">serv_addr.sin_addr.s_addr = inet_addr(m_serv_addr);</span><br><span class="line">serv_addr.sin_port = htons(m_serv_port);</span><br><span class="line"><span class="keyword">if</span> (connect(m_sock, (<span class="class"><span class="keyword">struct</span> <span class="title">sockaddr</span></span> *)&amp;serv_addr, <span class="keyword">sizeof</span>(serv_addr))&lt;<span class="number">0</span>) </span><br><span class="line">&#123;</span><br><span class="line">    fprintf(stderr,<span class="string">"connect fail.\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">char</span> buf[]=<span class="string">"abcdefg"</span>;</span><br><span class="line">send(m_sock,(void*)buf,<span class="keyword">sizeof</span>(buf),<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
 <p>或者我们可以用sendto</p>
-<figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sockaddr_in serv_addr;</span><br><span class="line"><span class="comment">// create udp socket</span></span><br><span class="line">m_sock = socket<span class="params">(AF_INET, SOCK_DGRAM, <span class="number">0</span>)</span>;</span><br><span class="line"><span class="keyword">if</span> <span class="params">(m_sock &lt; <span class="number">0</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    return <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">memset<span class="params">(&amp;serv_addr, <span class="number">0</span>, sizeof<span class="params">(struct sockaddr_in)</span>)</span>;</span><br><span class="line">serv_addr.sin_family = AF_INET;</span><br><span class="line">serv_addr.sin_addr.s_addr = inet_addr<span class="params">(m_serv_addr)</span>;</span><br><span class="line">serv_addr.sin_port = htons<span class="params">(m_serv_port)</span>;</span><br><span class="line"></span><br><span class="line">char buf[]=<span class="string">"abcdefg"</span>;</span><br><span class="line">sendto<span class="params">(m_sock,<span class="params">(void*)</span>buf,sizeof<span class="params">(buf)</span>,<span class="number">0</span>,<span class="params">(struct sockaddr *)</span>&amp;serv_addr,sizeof<span class="params">(serv_addr)</span>)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sockaddr_in serv_addr;</span><br><span class="line"><span class="comment">// create udp socket</span></span><br><span class="line">m_sock = socket(AF_INET, SOCK_DGRAM, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">if</span> (m_sock &lt; <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">memset(&amp;serv_addr, <span class="number">0</span>, <span class="keyword">sizeof</span>(<span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span></span>));</span><br><span class="line">serv_addr.sin_family = AF_INET;</span><br><span class="line">serv_addr.sin_addr.s_addr = inet_addr(m_serv_addr);</span><br><span class="line">serv_addr.sin_port = htons(m_serv_port);</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> buf[]=<span class="string">"abcdefg"</span>;</span><br><span class="line">sendto(m_sock,(void*)buf,<span class="keyword">sizeof</span>(buf),<span class="number">0</span>,(<span class="class"><span class="keyword">struct</span> <span class="title">sockaddr</span></span> *)&amp;serv_addr,<span class="keyword">sizeof</span>(serv_addr));</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -310,10 +310,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目錄
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
+            Übersicht
           </li>
         </ul>
       
@@ -328,21 +328,21 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">30</span>
-              <span class="site-state-item-name">文章</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
               <span class="site-state-item-count">16</span>
-              <span class="site-state-item-name">分類</span>
+              <span class="site-state-item-name">Kategorien</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
               <span class="site-state-item-count">41</span>
-              <span class="site-state-item-name">標籤</span>
+              <span class="site-state-item-name">Tags</span>
               </a>
           </div>
 
@@ -407,7 +407,7 @@
           <div class="post-toc">
             
             
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <p class="post-toc-empty">Dieser Artikel hat kein Inhaltsverzeichnis</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -433,11 +433,11 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  主題 -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>

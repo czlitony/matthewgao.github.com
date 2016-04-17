@@ -105,7 +105,7 @@
         <li class="menu-item menu-item-home">
           <a href="/">
             <i class="menu-item-icon icon-home"></i> <br />
-            首頁
+            Startseite
           </a>
         </li>
       
@@ -113,7 +113,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories">
             <i class="menu-item-icon icon-categories"></i> <br />
-            分類
+            Kategorien
           </a>
         </li>
       
@@ -121,7 +121,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about">
             <i class="menu-item-icon icon-about"></i> <br />
-            關於
+            Über
           </a>
         </li>
       
@@ -129,7 +129,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives">
             <i class="menu-item-icon icon-archives"></i> <br />
-            歸檔
+            Archiv
           </a>
         </li>
       
@@ -137,7 +137,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags">
             <i class="menu-item-icon icon-tags"></i> <br />
-            標籤
+            Tags
           </a>
         </li>
       
@@ -176,12 +176,12 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2013-05-10
+          Veröffentlicht am 2013-05-10
         </span>
 
         
           <span class="post-category">
-            &nbsp; | &nbsp; 分類於
+            &nbsp; | &nbsp; in
             
               <a href="/categories/Apache-Nginx/">Apache/Nginx</a>
 
@@ -215,15 +215,15 @@
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apxs2 -<span class="keyword">n</span> mod_foo -<span class="keyword">g</span></span><br></pre></td></tr></table></figure>
 <p>Now you can see a mod_foo.c and a Makefile in your working dirtectroy. Next!</p>
 <h2 id="How_to_use_it?">How to use it?</h2><p>To play with this sample module first compile it into a DSO file and install it into Apache’s modules directory by running:</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apxs -c -<span class="tag">i</span> mod_foo.c</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apxs -c -<span class="selector-tag">i</span> mod_foo.c</span><br></pre></td></tr></table></figure>
 <p>Then activate it in Apache’s apache2.conf file for instance for the URL /foo in as follows:</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#apache2</span><span class="class">.conf</span></span><br><span class="line">LoadModule foo_module modules/mod_foo<span class="class">.so</span></span><br><span class="line">&lt;Location /foo&gt;</span><br><span class="line">    SetHandler foo</span><br><span class="line">&lt;/Location&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#apache2</span><span class="selector-class">.conf</span></span><br><span class="line">LoadModule foo_module modules/mod_foo<span class="selector-class">.so</span></span><br><span class="line">&lt;Location /foo&gt;</span><br><span class="line">    SetHandler foo</span><br><span class="line">&lt;/Location&gt;</span><br></pre></td></tr></table></figure>
 <p>Then after restarting Apache via</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">apachectl</span> restart</span><br></pre></td></tr></table></figure>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apachectl <span class="built_in">restart</span></span><br></pre></td></tr></table></figure>
 <p>you immediately can request the URL /foo and watch for the output of this module. This can be achieved for instance via:</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lynx -mime_header <span class="string">http:</span><span class="comment">//localhost/foo</span></span><br></pre></td></tr></table></figure>
 <p>The output should be similar to the following one:</p>
-<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="status">HTTP/1.1 <span class="number">200</span> OK</span></span><br><span class="line"><span class="attribute">Date</span>: <span class="string">Tue, 31 Mar 1998 14:42:22 GMT</span></span><br><span class="line"><span class="attribute">Server</span>: <span class="string">Apache/1.3.4 (Unix)</span></span><br><span class="line"><span class="attribute">Connection</span>: <span class="string">close</span></span><br><span class="line"><span class="attribute">Content-Type</span>: <span class="string">text/html</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Date</span>: Tue, 31 Mar 1998 14:42:22 GMT</span><br><span class="line"><span class="attribute">Server</span>: Apache/1.3.4 (Unix)</span><br><span class="line"><span class="attribute">Connection</span>: close</span><br><span class="line"><span class="attribute">Content-Type</span>: text/html</span><br></pre></td></tr></table></figure>
 <p>More infomation: Looking at 《The Apache Module Book》you can find a pdf version on the internet.</p>
 
       
@@ -320,10 +320,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目錄
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
+            Übersicht
           </li>
         </ul>
       
@@ -338,21 +338,21 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">30</span>
-              <span class="site-state-item-name">文章</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
               <span class="site-state-item-count">16</span>
-              <span class="site-state-item-name">分類</span>
+              <span class="site-state-item-name">Kategorien</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
               <span class="site-state-item-count">41</span>
-              <span class="site-state-item-name">標籤</span>
+              <span class="site-state-item-name">Tags</span>
               </a>
           </div>
 
@@ -443,11 +443,11 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  主題 -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>

@@ -105,7 +105,7 @@
         <li class="menu-item menu-item-home">
           <a href="/">
             <i class="menu-item-icon icon-home"></i> <br />
-            首頁
+            Startseite
           </a>
         </li>
       
@@ -113,7 +113,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories">
             <i class="menu-item-icon icon-categories"></i> <br />
-            分類
+            Kategorien
           </a>
         </li>
       
@@ -121,7 +121,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about">
             <i class="menu-item-icon icon-about"></i> <br />
-            關於
+            Über
           </a>
         </li>
       
@@ -129,7 +129,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives">
             <i class="menu-item-icon icon-archives"></i> <br />
-            歸檔
+            Archiv
           </a>
         </li>
       
@@ -137,7 +137,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags">
             <i class="menu-item-icon icon-tags"></i> <br />
-            標籤
+            Tags
           </a>
         </li>
       
@@ -176,7 +176,7 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2016-04-06
+          Veröffentlicht am 2016-04-06
         </span>
 
         
@@ -195,8 +195,8 @@
       
         <h2 id="Docker_vs_Vagrant">Docker vs Vagrant</h2><p>为了解决固件编译环境的种种问题，我们尝试了使用vagrant来创建一个编译环境的镜像，但是vagrant基于VM的实现导致了对于宿主机的要求很高，同时编译多个release耗费相当多的系统资源，并且严重拖慢编译速度。</p>
 <p>所以我考虑用Docker来替代vagrant，Docker提供了足够的隔离，所以可以像一个虚拟机一样运行，但是非常轻且高效，能满足所有编译环境的需求。</p>
-<h2 id="Build_RBE_Image">Build RBE Image</h2><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Build <span class="literal">a</span> docker image</span><br><span class="line">    <span class="escape">`m</span>kdir docker-builder &amp;&amp; cd docker-builder<span class="escape">`</span><br><span class="line"></span>    <span class="escape">`r</span>sync -av this_Dockerfile .<span class="escape">`</span><br><span class="line"></span>    <span class="escape">`d</span>ocker build -t release_name .`</span><br></pre></td></tr></table></figure>
-<h2 id="Run_It">Run It</h2><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Run this docker image</span></span><br><span class="line">    `docker <span class="command">run</span> -itd -v tip_on_host:tip_on_container /bin/bash`</span><br><span class="line"></span><br><span class="line"><span class="comment"># Access to the console</span></span><br><span class="line">    `docker attach &lt;CID <span class="keyword">or</span> <span class="property">name</span>&gt;` <span class="keyword">or</span> `docker exec -<span class="keyword">it</span> &lt;CID <span class="keyword">or</span> <span class="property">name</span>&gt;`</span><br></pre></td></tr></table></figure>
+<h2 id="Build_RBE_Image">Build RBE Image</h2><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Build <span class="literal">a</span> docker image</span><br><span class="line">    `mkdir docker-builder &amp;&amp; cd docker-builder`</span><br><span class="line">    `rsync -av this_Dockerfile .`</span><br><span class="line">    `docker build -t release_name .`</span><br></pre></td></tr></table></figure>
+<h2 id="Run_It">Run It</h2><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Run this docker image</span></span><br><span class="line">    `docker <span class="built_in">run</span> -itd -v tip_on_host:tip_on_container /bin/bash`</span><br><span class="line"></span><br><span class="line"><span class="comment"># Access to the console</span></span><br><span class="line">    `docker attach &lt;CID <span class="keyword">or</span> <span class="built_in">name</span>&gt;` <span class="keyword">or</span> `docker exec -<span class="keyword">it</span> &lt;CID <span class="keyword">or</span> <span class="built_in">name</span>&gt;`</span><br></pre></td></tr></table></figure>
 <h2 id="Util">Util</h2><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># How to get the CID or name</span></span><br><span class="line">    `<span class="javascript">docker ps</span>`</span><br><span class="line"></span><br><span class="line"><span class="comment"># List all the image which avaiable in your host</span></span><br><span class="line">    `<span class="javascript">docker images</span>`</span><br></pre></td></tr></table></figure>
 <h2 id="Dockerfile">Dockerfile</h2><h3 id="FROM">FROM</h3><p>指定base image</p>
 <h3 id="MAINTAINER">MAINTAINER</h3><p>Author信息</p>
@@ -205,7 +205,7 @@
 <h3 id="CMD">CMD</h3><p>每个container时候启动的，只能有一个</p>
 <h3 id="ENV">ENV</h3><p>设置环境变量</p>
 <h2 id="Attach_or_Exec">Attach or Exec</h2><p>我们有两种方式来attach到container的TTY</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker attach &lt;CID <span class="keyword">or</span> <span class="property">name</span>&gt;</span><br><span class="line">docker exec -<span class="keyword">it</span> &lt;CID&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker attach &lt;CID <span class="keyword">or</span> <span class="built_in">name</span>&gt;</span><br><span class="line">docker exec -<span class="keyword">it</span> &lt;CID&gt;</span><br></pre></td></tr></table></figure>
 <p>Attach会有个问题是如果从container中exit，那么container会被结束，而exec不会，但是exec每次执行会返回一个exit code，因为他是stdout到了stdin来得到tty结果的</p>
 
       
@@ -300,10 +300,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目錄
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
+            Übersicht
           </li>
         </ul>
       
@@ -318,21 +318,21 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">30</span>
-              <span class="site-state-item-name">文章</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
               <span class="site-state-item-count">16</span>
-              <span class="site-state-item-name">分類</span>
+              <span class="site-state-item-name">Kategorien</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
               <span class="site-state-item-count">41</span>
-              <span class="site-state-item-name">標籤</span>
+              <span class="site-state-item-name">Tags</span>
               </a>
           </div>
 
@@ -423,11 +423,11 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  主題 -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>

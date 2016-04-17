@@ -105,7 +105,7 @@
         <li class="menu-item menu-item-home">
           <a href="/">
             <i class="menu-item-icon icon-home"></i> <br />
-            首頁
+            Startseite
           </a>
         </li>
       
@@ -113,7 +113,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories">
             <i class="menu-item-icon icon-categories"></i> <br />
-            分類
+            Kategorien
           </a>
         </li>
       
@@ -121,7 +121,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about">
             <i class="menu-item-icon icon-about"></i> <br />
-            關於
+            Über
           </a>
         </li>
       
@@ -129,7 +129,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives">
             <i class="menu-item-icon icon-archives"></i> <br />
-            歸檔
+            Archiv
           </a>
         </li>
       
@@ -137,7 +137,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags">
             <i class="menu-item-icon icon-tags"></i> <br />
-            標籤
+            Tags
           </a>
         </li>
       
@@ -176,12 +176,12 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2013-05-14
+          Veröffentlicht am 2013-05-14
         </span>
 
         
           <span class="post-category">
-            &nbsp; | &nbsp; 分類於
+            &nbsp; | &nbsp; in
             
               <a href="/categories/Apache-Nginx/">Apache/Nginx</a>
 
@@ -207,13 +207,13 @@
         <h2 id="为什么要用C++">为什么要用C++</h2><p>很多时候我们可以不必使用C++，很多时候linux开发只要用C就可以了，但是在对于一些大型应用程序，他本身就是由C++编写，而Apache Module又只能默认使用C，所以不能够用apxs来编译module，只能够通过g++，但是这里就需要一点要的技巧来搞定它。</p>
 <h2 id="Why">Why</h2><p>因为Apache是通过dlopen()/dlsym()来加载module的，但是这两个函数不能够很好的处理C++的命名方式，所以如果用g++来编译so文件，就会出现不能够找到module的情况。</p>
 <h2 id="Solution">Solution</h2><p>所以我们要强制它以C语言的方式来编译，在module的声明前加上extern 或者extern “C”</p>
-<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span>  <span class="keyword">module</span> AP_MODULE_DECLARE_DATA soap_module;</span><br></pre></td></tr></table></figure>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extern  <span class="class"><span class="keyword">module</span> <span class="title">AP_MODULE_DECLARE_DATA</span> <span class="title">soap_module</span>;</span></span><br></pre></td></tr></table></figure>
 <p>或者</p>
-<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> “C” <span class="keyword">module</span> AP_MODULE_DECLARE_DATA soap_module;</span><br></pre></td></tr></table></figure>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extern “C” <span class="class"><span class="keyword">module</span> <span class="title">AP_MODULE_DECLARE_DATA</span> <span class="title">soap_module</span>;</span></span><br></pre></td></tr></table></figure>
 <p>更进一步的，可以使用如下定义：</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ifdef __cplusplus</span></span><br><span class="line">extern <span class="string">"C"</span> &#123;</span><br><span class="line"><span class="comment">#endif</span><span class="comment"></span><br><span class="line">//TO-DO</span></span><br><span class="line"><span class="comment">#ifdef __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#endif</span></span><br><span class="line">~~~	</span><br><span class="line">再通过g++来编译</span><br><span class="line"></span><br><span class="line">~~~	</span><br><span class="line">g++ -fPIC -shared -o mod_soap.so mod_soap.c test.o -I/usr/<span class="built_in">include</span>/apr-<span class="number">1.0</span> -I/usr/<span class="built_in">include</span>/openssl -I/usr/<span class="built_in">include</span>/xmltok -pthread -I/usr/<span class="built_in">include</span>/apache2 -I/usr/<span class="built_in">include</span>/apr-<span class="number">1.0</span>  -I/usr/<span class="built_in">include</span>/apr-<span class="number">1.0</span> -I/usr/<span class="built_in">include</span>/httpd -std=c++<span class="number">0</span>x</span><br></pre></td></tr></table></figure>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line">extern <span class="string">"C"</span> &#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="comment">//TO-DO</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">~~~	</span><br><span class="line">再通过g++来编译</span><br><span class="line"></span><br><span class="line">~~~	</span><br><span class="line">g++ -fPIC -shared -o mod_soap.so mod_soap.c test.o -I<span class="meta-keyword">/usr/</span>include/apr<span class="number">-1.0</span> -I<span class="meta-keyword">/usr/</span>include/openssl -I<span class="meta-keyword">/usr/</span>include/xmltok -pthread -I<span class="meta-keyword">/usr/</span>include/apache2 -I<span class="meta-keyword">/usr/</span>include/apr<span class="number">-1.0</span>  -I<span class="meta-keyword">/usr/</span>include/apr<span class="number">-1.0</span> -I<span class="meta-keyword">/usr/</span>include/httpd -std=c++<span class="number">0</span>x</span><br></pre></td></tr></table></figure>
 <p>就可以得到正确的module了，下面就可以使用apxs来安装module</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apxs2 -<span class="tag">i</span> mod_soap.so</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apxs2 -<span class="selector-tag">i</span> mod_soap.so</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -308,10 +308,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目錄
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
+            Übersicht
           </li>
         </ul>
       
@@ -326,21 +326,21 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">30</span>
-              <span class="site-state-item-name">文章</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
               <span class="site-state-item-count">16</span>
-              <span class="site-state-item-name">分類</span>
+              <span class="site-state-item-name">Kategorien</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
               <span class="site-state-item-count">41</span>
-              <span class="site-state-item-name">標籤</span>
+              <span class="site-state-item-name">Tags</span>
               </a>
           </div>
 
@@ -431,11 +431,11 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  主題 -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>

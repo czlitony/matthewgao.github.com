@@ -24,7 +24,7 @@
 
 
 
-  <meta name="keywords" content="command,vim," />
+  <meta name="keywords" content="vim,command," />
 
 
 
@@ -105,7 +105,7 @@
         <li class="menu-item menu-item-home">
           <a href="/">
             <i class="menu-item-icon icon-home"></i> <br />
-            首頁
+            Startseite
           </a>
         </li>
       
@@ -113,7 +113,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories">
             <i class="menu-item-icon icon-categories"></i> <br />
-            分類
+            Kategorien
           </a>
         </li>
       
@@ -121,7 +121,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about">
             <i class="menu-item-icon icon-about"></i> <br />
-            關於
+            Über
           </a>
         </li>
       
@@ -129,7 +129,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives">
             <i class="menu-item-icon icon-archives"></i> <br />
-            歸檔
+            Archiv
           </a>
         </li>
       
@@ -137,7 +137,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags">
             <i class="menu-item-icon icon-tags"></i> <br />
-            標籤
+            Tags
           </a>
         </li>
       
@@ -176,12 +176,12 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2014-10-05
+          Veröffentlicht am 2014-10-05
         </span>
 
         
           <span class="post-category">
-            &nbsp; | &nbsp; 分類於
+            &nbsp; | &nbsp; in
             
               <a href="/categories/Linux/">Linux</a>
 
@@ -205,10 +205,10 @@
 
       
         <h2 id="生成tags">生成tags</h2><p>在所在目录运行</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ctags</span> -R</span><br></pre></td></tr></table></figure>
+<figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctags -<span class="keyword">R</span></span><br></pre></td></tr></table></figure>
 <p>在vim中</p>
-<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">set</span> tags = /your/<span class="built_in">path</span>/tags</span><br></pre></td></tr></table></figure>
-<h2 id="生成cscope索引">生成cscope索引</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">cscope</span> -Rbq</span><br></pre></td></tr></table></figure>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">set</span> tags <span class="comment">=</span> /your/<span class="comment">path</span>/tags</span><br></pre></td></tr></table></figure>
+<h2 id="生成cscope索引">生成cscope索引</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">cscope</span> -Rbq</span><br></pre></td></tr></table></figure>
 <h2 id="命令">命令</h2><ul>
 <li><code>:A</code> 打开头文件</li>
 <li><code>:E</code> 浏览打开文件</li>
@@ -233,12 +233,12 @@
 <li><code>u</code> undo</li>
 <li><code>{c-r}</code> 重做</li>
 </ul>
-<h2 id="文件比较">文件比较</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim <span class="operator">-d</span> file1 file2</span><br></pre></td></tr></table></figure>
+<h2 id="文件比较">文件比较</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim <span class="_">-d</span> file1 file2</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>d = diff</p>
 </blockquote>
-<h2 id="在你忘记用_root_方式打开文件时的文件保存">在你忘记用 root 方式打开文件时的文件保存</h2><figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="function_or_atom">w</span> <span class="exclamation_mark">!</span><span class="function_or_atom">sudo</span> <span class="function_or_atom">tee</span> <span class="comment">%</span></span><br></pre></td></tr></table></figure>
-<h2 id="按时间回退文件">按时间回退文件</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="pseudo">:earlier</span> 1<span class="tag">m</span> \\会把文件回退到 1 分钟以前的状态。</span><br><span class="line"></span><br><span class="line"><span class="pseudo">:later</span> \\ 注意，你可以使用这个的命令进行相反的转换</span><br></pre></td></tr></table></figure>
+<h2 id="在你忘记用_root_方式打开文件时的文件保存">在你忘记用 root 方式打开文件时的文件保存</h2><figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:w !sudo tee <span class="comment">%</span></span><br></pre></td></tr></table></figure>
+<h2 id="按时间回退文件">按时间回退文件</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:earlier</span> 1<span class="selector-tag">m</span> \\会把文件回退到 1 分钟以前的状态。</span><br><span class="line"></span><br><span class="line"><span class="selector-pseudo">:later</span> \\ 注意，你可以使用这个的命令进行相反的转换</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -246,9 +246,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/command/"> #command </a>
-          
             <a href="/tags/vim/"> #vim </a>
+          
+            <a href="/tags/command/"> #command </a>
           
         </div>
       
@@ -333,10 +333,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目錄
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
+            Übersicht
           </li>
         </ul>
       
@@ -351,21 +351,21 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">30</span>
-              <span class="site-state-item-name">文章</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
               <span class="site-state-item-count">16</span>
-              <span class="site-state-item-name">分類</span>
+              <span class="site-state-item-name">Kategorien</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
               <span class="site-state-item-count">41</span>
-              <span class="site-state-item-name">標籤</span>
+              <span class="site-state-item-name">Tags</span>
               </a>
           </div>
 
@@ -456,11 +456,11 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  主題 -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>
