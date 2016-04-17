@@ -24,7 +24,7 @@
 
 
 
-  <meta name="keywords" content="shell,linux,command," />
+  <meta name="keywords" content="linux,command,shell," />
 
 
 
@@ -105,7 +105,7 @@
         <li class="menu-item menu-item-home">
           <a href="/">
             <i class="menu-item-icon icon-home"></i> <br />
-            Startseite
+            Accueil
           </a>
         </li>
       
@@ -113,7 +113,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories">
             <i class="menu-item-icon icon-categories"></i> <br />
-            Kategorien
+            Categories
           </a>
         </li>
       
@@ -121,7 +121,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about">
             <i class="menu-item-icon icon-about"></i> <br />
-            Über
+            A propos
           </a>
         </li>
       
@@ -129,7 +129,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives">
             <i class="menu-item-icon icon-archives"></i> <br />
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -176,12 +176,12 @@
 
       <div class="post-meta">
         <span class="post-time">
-          Veröffentlicht am 2016-04-15
+          Posté le 2016-04-15
         </span>
 
         
           <span class="post-category">
-            &nbsp; | &nbsp; in
+            &nbsp; | &nbsp; In
             
               <a href="/categories/Linux/">Linux</a>
 
@@ -234,8 +234,7 @@
 <li>X client，关注与如何绘图，和绘制什么样的图形，一个完全抽象出来的脱离硬件的层面</li>
 <li>Display manager, 用来管理多个Xclient绘制的窗口，最常见的有gdm，lightdm，twm，i3block等</li>
 </ul>
-<p>###调整分辨率</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xrandr <span class="_">-l</span></span><br><span class="line">xrandr <span class="_">-s</span> 1280x960</span><br></pre></td></tr></table></figure>
+<h3 id="调整分辨率"><a href="#调整分辨率" class="headerlink" title="调整分辨率"></a>调整分辨率</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xrandr <span class="_">-l</span></span><br><span class="line">xrandr <span class="_">-s</span> 1280x960</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>分辨率需要驱动支持，如果不支持会报错。 对于VBOX和VM，需要先安装VBOX tools和vmware-tools<br>有些时候需要更改显示驱动，在Xorg.conf中，虚拟机和服务器大多默认vesa</p>
 </blockquote>
@@ -252,9 +251,8 @@
 <li>groupadd 新建一个group</li>
 <li>usermod 可以改变user的属性，比如属于哪个Group，注意group改完要重新gdm进去才能生效</li>
 </ul>
-<p>###SElinux<br>是一个更高级的权限管理，可以避免一个有很高权限的程序随意访问文件系统，比如httpd，一个普通用户可以操作httpd来访问root权限的目录</p>
-<p>##DNS lookup</p>
-<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">sslvpn:~# host -a baidu.com</span><br><span class="line"></span><br><span class="line">Trying "baidu.com"</span><br><span class="line"><span class="comment">;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 53987</span></span><br><span class="line"><span class="comment">;; flags: qr rd ra; QUERY: 1, ANSWER: 14, AUTHORITY: 0, ADDITIONAL: 7</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;; QUESTION SECTION:</span></span><br><span class="line"><span class="comment">;baidu.com.                     IN      ANY</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;; ANSWER SECTION:</span></span><br><span class="line">baidu.com.              <span class="number">462</span>     <span class="keyword">IN</span>      <span class="keyword">A</span>       <span class="number">123.125.114.144</span></span><br><span class="line">baidu.com.              <span class="number">462</span>     <span class="keyword">IN</span>      <span class="keyword">A</span>       <span class="number">220.181.111.85</span></span><br><span class="line">baidu.com.              <span class="number">462</span>     <span class="keyword">IN</span>      <span class="keyword">A</span>       <span class="number">220.181.111.86</span></span><br><span class="line">baidu.com.              <span class="number">86262</span>   <span class="keyword">IN</span>      <span class="keyword">NS</span>      ns4.baidu.com.</span><br><span class="line">baidu.com.              <span class="number">86262</span>   <span class="keyword">IN</span>      <span class="keyword">NS</span>      dns.baidu.com.</span><br><span class="line">baidu.com.              <span class="number">86262</span>   <span class="keyword">IN</span>      <span class="keyword">NS</span>      ns3.baidu.com.</span><br><span class="line">baidu.com.              <span class="number">86262</span>   <span class="keyword">IN</span>      <span class="keyword">NS</span>      ns2.baidu.com.</span><br><span class="line">baidu.com.              <span class="number">86262</span>   <span class="keyword">IN</span>      <span class="keyword">NS</span>      ns7.baidu.com.</span><br><span class="line">baidu.com.              <span class="number">7062</span>    <span class="keyword">IN</span>      <span class="keyword">SOA</span>     dns.baidu.com. sa.baidu.com. <span class="number">2012120775</span> <span class="number">300 300</span> <span class="number">2592000</span> <span class="number">7200</span></span><br><span class="line">baidu.com.              <span class="number">7062</span>    <span class="keyword">IN</span>      <span class="keyword">MX</span>      <span class="number">20</span> mx1.baidu.com.</span><br><span class="line">baidu.com.              <span class="number">7062</span>    <span class="keyword">IN</span>      <span class="keyword">MX</span>      <span class="number">20</span> jpmx.baidu.com.</span><br><span class="line">baidu.com.              <span class="number">7062</span>    <span class="keyword">IN</span>      <span class="keyword">MX</span>      <span class="number">20</span> mx50.baidu.com.</span><br><span class="line">baidu.com.              <span class="number">7062</span>    <span class="keyword">IN</span>      <span class="keyword">MX</span>      <span class="number">10</span> mx.n.shifen.com.</span><br><span class="line">baidu.com.              <span class="number">7062</span>    <span class="keyword">IN</span>      <span class="keyword">TXT</span>     "v=spf1 include:spf1.baidu.com include:spf2.baidu.com include:spf3.baidu.com a mx ptr ~all"</span><br><span class="line"></span><br><span class="line"><span class="comment">;; ADDITIONAL SECTION:</span></span><br><span class="line">ns4.baidu.com.          <span class="number">86262</span>   <span class="keyword">IN</span>      <span class="keyword">A</span>       <span class="number">220.181.38.10</span></span><br><span class="line">dns.baidu.com.          <span class="number">86262</span>   <span class="keyword">IN</span>      <span class="keyword">A</span>       <span class="number">202.108.22.220</span></span><br><span class="line">ns3.baidu.com.          <span class="number">86262</span>   <span class="keyword">IN</span>      <span class="keyword">A</span>       <span class="number">220.181.37.10</span></span><br><span class="line">ns2.baidu.com.          <span class="number">86262</span>   <span class="keyword">IN</span>      <span class="keyword">A</span>       <span class="number">61.135.165.235</span></span><br><span class="line">ns7.baidu.com.          <span class="number">86085</span>   <span class="keyword">IN</span>      <span class="keyword">A</span>       <span class="number">119.75.219.82</span></span><br><span class="line">mx1.baidu.com.          <span class="number">162</span>     <span class="keyword">IN</span>      <span class="keyword">A</span>       <span class="number">61.135.163.61</span></span><br><span class="line">jpmx.baidu.com.         <span class="number">7062</span>    <span class="keyword">IN</span>      <span class="keyword">A</span>       <span class="number">61.208.132.13</span></span><br><span class="line"></span><br><span class="line">Received <span class="number">508</span> bytes from <span class="number">10.8.85.239</span>#<span class="number">53</span> in <span class="number">218</span> ms</span><br></pre></td></tr></table></figure>
+<h3 id="SElinux"><a href="#SElinux" class="headerlink" title="SElinux"></a>SElinux</h3><p>是一个更高级的权限管理，可以避免一个有很高权限的程序随意访问文件系统，比如httpd，一个普通用户可以操作httpd来访问root权限的目录</p>
+<h2 id="DNS-lookup"><a href="#DNS-lookup" class="headerlink" title="DNS lookup"></a>DNS lookup</h2><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">sslvpn:~# host -a baidu.com</span><br><span class="line"></span><br><span class="line">Trying "baidu.com"</span><br><span class="line"><span class="comment">;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 53987</span></span><br><span class="line"><span class="comment">;; flags: qr rd ra; QUERY: 1, ANSWER: 14, AUTHORITY: 0, ADDITIONAL: 7</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;; QUESTION SECTION:</span></span><br><span class="line"><span class="comment">;baidu.com.                     IN      ANY</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;; ANSWER SECTION:</span></span><br><span class="line">baidu.com.              <span class="number">462</span>     <span class="keyword">IN</span>      <span class="keyword">A</span>       <span class="number">123.125.114.144</span></span><br><span class="line">baidu.com.              <span class="number">462</span>     <span class="keyword">IN</span>      <span class="keyword">A</span>       <span class="number">220.181.111.85</span></span><br><span class="line">baidu.com.              <span class="number">462</span>     <span class="keyword">IN</span>      <span class="keyword">A</span>       <span class="number">220.181.111.86</span></span><br><span class="line">baidu.com.              <span class="number">86262</span>   <span class="keyword">IN</span>      <span class="keyword">NS</span>      ns4.baidu.com.</span><br><span class="line">baidu.com.              <span class="number">86262</span>   <span class="keyword">IN</span>      <span class="keyword">NS</span>      dns.baidu.com.</span><br><span class="line">baidu.com.              <span class="number">86262</span>   <span class="keyword">IN</span>      <span class="keyword">NS</span>      ns3.baidu.com.</span><br><span class="line">baidu.com.              <span class="number">86262</span>   <span class="keyword">IN</span>      <span class="keyword">NS</span>      ns2.baidu.com.</span><br><span class="line">baidu.com.              <span class="number">86262</span>   <span class="keyword">IN</span>      <span class="keyword">NS</span>      ns7.baidu.com.</span><br><span class="line">baidu.com.              <span class="number">7062</span>    <span class="keyword">IN</span>      <span class="keyword">SOA</span>     dns.baidu.com. sa.baidu.com. <span class="number">2012120775</span> <span class="number">300 300</span> <span class="number">2592000</span> <span class="number">7200</span></span><br><span class="line">baidu.com.              <span class="number">7062</span>    <span class="keyword">IN</span>      <span class="keyword">MX</span>      <span class="number">20</span> mx1.baidu.com.</span><br><span class="line">baidu.com.              <span class="number">7062</span>    <span class="keyword">IN</span>      <span class="keyword">MX</span>      <span class="number">20</span> jpmx.baidu.com.</span><br><span class="line">baidu.com.              <span class="number">7062</span>    <span class="keyword">IN</span>      <span class="keyword">MX</span>      <span class="number">20</span> mx50.baidu.com.</span><br><span class="line">baidu.com.              <span class="number">7062</span>    <span class="keyword">IN</span>      <span class="keyword">MX</span>      <span class="number">10</span> mx.n.shifen.com.</span><br><span class="line">baidu.com.              <span class="number">7062</span>    <span class="keyword">IN</span>      <span class="keyword">TXT</span>     "v=spf1 include:spf1.baidu.com include:spf2.baidu.com include:spf3.baidu.com a mx ptr ~all"</span><br><span class="line"></span><br><span class="line"><span class="comment">;; ADDITIONAL SECTION:</span></span><br><span class="line">ns4.baidu.com.          <span class="number">86262</span>   <span class="keyword">IN</span>      <span class="keyword">A</span>       <span class="number">220.181.38.10</span></span><br><span class="line">dns.baidu.com.          <span class="number">86262</span>   <span class="keyword">IN</span>      <span class="keyword">A</span>       <span class="number">202.108.22.220</span></span><br><span class="line">ns3.baidu.com.          <span class="number">86262</span>   <span class="keyword">IN</span>      <span class="keyword">A</span>       <span class="number">220.181.37.10</span></span><br><span class="line">ns2.baidu.com.          <span class="number">86262</span>   <span class="keyword">IN</span>      <span class="keyword">A</span>       <span class="number">61.135.165.235</span></span><br><span class="line">ns7.baidu.com.          <span class="number">86085</span>   <span class="keyword">IN</span>      <span class="keyword">A</span>       <span class="number">119.75.219.82</span></span><br><span class="line">mx1.baidu.com.          <span class="number">162</span>     <span class="keyword">IN</span>      <span class="keyword">A</span>       <span class="number">61.135.163.61</span></span><br><span class="line">jpmx.baidu.com.         <span class="number">7062</span>    <span class="keyword">IN</span>      <span class="keyword">A</span>       <span class="number">61.208.132.13</span></span><br><span class="line"></span><br><span class="line">Received <span class="number">508</span> bytes from <span class="number">10.8.85.239</span>#<span class="number">53</span> in <span class="number">218</span> ms</span><br></pre></td></tr></table></figure>
 <h2 id="man"><a href="#man" class="headerlink" title="man"></a>man</h2><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">man</span> --regex ‘convert’</span><br><span class="line">--<span class="keyword">Man</span>-- next: gsettings-schema-convert(1) [ <span class="keyword">view</span> (<span class="keyword">return</span>) | skip (Ctrl-<span class="keyword">D</span>) | quit (Ctrl-C) ]</span><br><span class="line">--<span class="keyword">Man</span>-- next: tapconvert(1) [ <span class="keyword">view</span> (<span class="keyword">return</span>) | skip (Ctrl-<span class="keyword">D</span>) | quit (Ctrl-C) ]</span><br><span class="line">--<span class="keyword">Man</span>-- next: 2to3(1) [ <span class="keyword">view</span> (<span class="keyword">return</span>) | skip (Ctrl-<span class="keyword">D</span>) | quit (Ctrl-C) ]</span><br><span class="line">--<span class="keyword">Man</span>-- next: 2to3-3.2(1) [ <span class="keyword">view</span> (<span class="keyword">return</span>) | skip (Ctrl-<span class="keyword">D</span>) | quit (Ctrl-C) ]</span><br><span class="line">--<span class="keyword">Man</span>-- next: addr2line(1) [ <span class="keyword">view</span> (<span class="keyword">return</span>) | skip (Ctrl-<span class="keyword">D</span>) | quit (Ctrl-C) ]</span><br><span class="line">--<span class="keyword">Man</span>-- next: atobm(1) [ <span class="keyword">view</span> (<span class="keyword">return</span>) | skip (Ctrl-<span class="keyword">D</span>) | quit (Ctrl-C) ]</span><br><span class="line">--<span class="keyword">Man</span>-- next: b2m(1) [ <span class="keyword">view</span> (<span class="keyword">return</span>) | skip (Ctrl-<span class="keyword">D</span>) | quit (Ctrl-C) ]</span><br><span class="line">--<span class="keyword">Man</span>-- next: bdftopcf(1) [ <span class="keyword">view</span> (<span class="keyword">return</span>) | skip (Ctrl-<span class="keyword">D</span>) | quit (Ctrl-C) ]</span><br></pre></td></tr></table></figure>
 <p>查看所有convert相关的手册</p>
 <h2 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">source</span> <span class="regexp">/root/</span>.bashrc</span><br></pre></td></tr></table></figure>
@@ -356,26 +354,20 @@
 <p>3.generate new xorg.conf file: sudo X -configure – this will create xorg.conf.new file in your current dir</p>
 <p>4.rename and move: sudo mv xorg.conf.new /etc/X11/xorg.conf</p>
 <p>5.return to GUI: sudo start lightdm</p>
-<p>##vnc4server</p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># vnc4server :1 //启动一个vnc display</span></span><br><span class="line"><span class="meta"># vnc4server -kill :1</span></span><br></pre></td></tr></table></figure>
-<p>##查看硬件状态</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lscpu</span><br><span class="line">lshw -C <span class="built_in">display</span> <span class="comment">//查看显卡</span></span><br></pre></td></tr></table></figure>
-<p>##网络配置</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ifconfig</span> <span class="selector-tag">eth0</span> 10<span class="selector-class">.103</span><span class="selector-class">.250</span><span class="selector-class">.11</span> <span class="selector-tag">netmask</span> 255<span class="selector-class">.255</span><span class="selector-class">.255</span><span class="selector-class">.0</span></span><br><span class="line"><span class="selector-tag">route</span> <span class="selector-tag">add</span> <span class="selector-tag">default</span> <span class="selector-tag">gw</span> 10<span class="selector-class">.103</span><span class="selector-class">.250</span><span class="selector-class">.1</span></span><br></pre></td></tr></table></figure>
+<h2 id="vnc4server"><a href="#vnc4server" class="headerlink" title="vnc4server"></a>vnc4server</h2><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># vnc4server :1 //启动一个vnc display</span></span><br><span class="line"><span class="meta"># vnc4server -kill :1</span></span><br></pre></td></tr></table></figure>
+<h2 id="查看硬件状态"><a href="#查看硬件状态" class="headerlink" title="查看硬件状态"></a>查看硬件状态</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lscpu</span><br><span class="line">lshw -C <span class="built_in">display</span> <span class="comment">//查看显卡</span></span><br></pre></td></tr></table></figure>
+<h2 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ifconfig</span> <span class="selector-tag">eth0</span> 10<span class="selector-class">.103</span><span class="selector-class">.250</span><span class="selector-class">.11</span> <span class="selector-tag">netmask</span> 255<span class="selector-class">.255</span><span class="selector-class">.255</span><span class="selector-class">.0</span></span><br><span class="line"><span class="selector-tag">route</span> <span class="selector-tag">add</span> <span class="selector-tag">default</span> <span class="selector-tag">gw</span> 10<span class="selector-class">.103</span><span class="selector-class">.250</span><span class="selector-class">.1</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>DNS 配置在 <code>/etc/resolv.conf</code></li>
 <li><code>/etc/hosts</code></li>
 <li><code>/etc/hostname</code></li>
 </ul>
-<p>##echo</p>
-<p>echo -e 可以输出转义字符例如 <code>echo -e &quot;abc\ndef&quot;&gt; file</code>, 注意有些shell支持的不好，比如sh（会把-e 一同输出出去），bash支持良好，最好的办法还是用printf命令替代echo -e， 注意printf命令不支持浮点类型</p>
-<p>##pipe</p>
-<p>popen, pclose - pipe stream to or from a process</p>
+<h2 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h2><p>echo -e 可以输出转义字符例如 <code>echo -e &quot;abc\ndef&quot;&gt; file</code>, 注意有些shell支持的不好，比如sh（会把-e 一同输出出去），bash支持良好，最好的办法还是用printf命令替代echo -e， 注意printf命令不支持浮点类型</p>
+<h2 id="pipe"><a href="#pipe" class="headerlink" title="pipe"></a>pipe</h2><p>popen, pclose - pipe stream to or from a process</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">FILE *<span class="title">popen</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *command, <span class="keyword">const</span> <span class="keyword">char</span> *type)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pclose</span><span class="params">(FILE *stream)</span></span>;</span><br></pre></td></tr></table></figure>
 <p>pipe 实际上是fork了一个子进程来运行，所以调用popen运行的命令和主程序share同一套文件描述符</p>
 <p>popen 打开的fp不能rewind(), 只有文件可以rewind 而pipe是一个流Stream</p>
-<p>##xmllint</p>
-<p>xmllint是一个很方便的处理及验证xml的工具，linux下只要安装libxml2就可以使用这个命令，下面整理一些常用功能</p>
+<h2 id="xmllint"><a href="#xmllint" class="headerlink" title="xmllint"></a>xmllint</h2><p>xmllint是一个很方便的处理及验证xml的工具，linux下只要安装libxml2就可以使用这个命令，下面整理一些常用功能</p>
 <ul>
 <li>–format 此参数用于格式化xml，使其具有良好的可读性。</li>
 <li>–noblanks 与–format相反，有时为了节省传输量，我们希望去掉xml中的空白，这时我们可以使用–noblanks命令</li>
@@ -385,9 +377,8 @@
 <p>1) 大版本号，当接口变得和之前不兼容，则新增一个大版本号。<br>2) 一般增加了接口，不过旧的接口不变，则新增此版本号。<br>3) 接口不做任何变化，只是实现做了修改，则新增此版本号。</p>
 <p>可以用ldconfig来设置程序对应的lib版本</p>
 <figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nm policyserver <span class="comment">//查看导出符号</span></span><br></pre></td></tr></table></figure>
-<p>##PATH<br>每个shell都有自己的PATH，从这个shell运行的程序共享这个shell的PATH, 如果需要永久性保存一个PATH，则需要在/etc/profile或者~/.bashrc_profile中加入<code>export PATH=/xxx/yyy:$PATH</code></p>
-<p>##openssl生成证书</p>
-<ol>
+<h2 id="PATH"><a href="#PATH" class="headerlink" title="PATH"></a>PATH</h2><p>每个shell都有自己的PATH，从这个shell运行的程序共享这个shell的PATH, 如果需要永久性保存一个PATH，则需要在/etc/profile或者~/.bashrc_profile中加入<code>export PATH=/xxx/yyy:$PATH</code></p>
+<h2 id="openssl生成证书"><a href="#openssl生成证书" class="headerlink" title="openssl生成证书"></a>openssl生成证书</h2><ol>
 <li>用户浏览器将其SSL版本号、加密设置参数、与session有关的数据以及其它一些必要信息发送到服务器。</li>
 <li>服务器将其SSL版本号、加密设置参数、与session有关的数据以及其它一些必要信息发送给浏览器，同时发给浏览器的还有服务器的证书。如果配置服务器的SSL需要验证用户身份，还要发出请求要求浏览器提供用户证书。</li>
 <li>客户端检查服务器证书，如果检查失败，提示不能建立SSL连接。如果成功，那么继续。</li>
@@ -416,33 +407,31 @@
 <li>所有自签名 CA 都是根 CA，因为到自签名 CA 时证书链就终止了。</li>
 </ul>
 <h2 id="vino"><a href="#vino" class="headerlink" title="vino"></a>vino</h2><p>No security type 问题解决方法<br><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gsettings <span class="keyword">set</span> org.gnome.Vino <span class="comment">require-encryption false</span></span><br></pre></td></tr></table></figure></p>
-<p>##UNIX socket上限<br>在使用Nginx+gunicorn+web.py unix socket方式时候，发现nginx会报<code>“connect() to unix:/dev/shm/fcgi.sock failed (11: Resource temporarily unavailable) while connecting to upstream”</code> 原因是需要修改如下：</p>
+<h2 id="UNIX-socket上限"><a href="#UNIX-socket上限" class="headerlink" title="UNIX socket上限"></a>UNIX socket上限</h2><p>在使用Nginx+gunicorn+web.py unix socket方式时候，发现nginx会报<code>“connect() to unix:/dev/shm/fcgi.sock failed (11: Resource temporarily unavailable) while connecting to upstream”</code> 原因是需要修改如下：</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat <span class="regexp">/proc/</span>sys<span class="regexp">/net/</span>core<span class="regexp">/somaxconn /</span>/默认是<span class="number">128</span>，定义了系统中每一个端口最大的监听队列的长度，这是个全局的参数</span><br><span class="line">echo <span class="number">8192</span> &gt; <span class="regexp">/proc/</span>sys<span class="regexp">/net/</span>core<span class="regexp">/somaxconn /</span><span class="regexp">/放到/</span>etc/rc.local中</span><br></pre></td></tr></table></figure>
 <p><a href="http://www.philsallee.com/mbsteg/index.html" target="_blank" rel="external">Reference of /proc/sys/net/core</a></p>
 <h2 id="mv-tip"><a href="#mv-tip" class="headerlink" title="mv tip"></a>mv tip</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> folder1</span><br><span class="line"><span class="built_in">mkdir</span> folder2</span><br><span class="line">touch folder1/file1</span><br><span class="line">touch folder2/file2</span><br><span class="line">mv -f folder1 folder2</span><br></pre></td></tr></table></figure>
 <p>这个时候folder1会成为folder2的一个子文件夹，而如果两个都是空文件夹的时候，才会是重命名到folder2</p>
-<p>##僵尸进程<br>It’s a process that is dead, but its parent was busy doing some other work, hence it could not collect the child’s exit status. </p>
-<p>##environment<br>系统启动时候加载/etc/environment, 登陆时加载/etc/profile，针对每个用户的加载~/.profile, 对于non-login-shell, 读取~/.bashrc</p>
-<p>##exec<br>使用现有shell运行程序, 而不是作为子进程</p>
-<p>##sys, proc, tmpfs<br>The sysfs filesystem was mentioned briefly above. One may wonder how sysfs knows about the devices present on a system and what device numbers should be used for them. Drivers that have been compiled into the kernel directly register their objects with a sysfs (devtmpfs internally) as they are detected by the kernel. For drivers compiled as modules, this registration will happen when the module is loaded. Once the sysfs filesystem is mounted (on /sys), data which the drivers register with sysfs are available to userspace processes and to udevd for processing (including modifications to device nodes).</p>
+<h2 id="僵尸进程"><a href="#僵尸进程" class="headerlink" title="僵尸进程"></a>僵尸进程</h2><p>It’s a process that is dead, but its parent was busy doing some other work, hence it could not collect the child’s exit status. </p>
+<h2 id="environment"><a href="#environment" class="headerlink" title="environment"></a>environment</h2><p>系统启动时候加载/etc/environment, 登陆时加载/etc/profile，针对每个用户的加载~/.profile, 对于non-login-shell, 读取~/.bashrc</p>
+<h2 id="exec"><a href="#exec" class="headerlink" title="exec"></a>exec</h2><p>使用现有shell运行程序, 而不是作为子进程</p>
+<h2 id="sys-proc-tmpfs"><a href="#sys-proc-tmpfs" class="headerlink" title="sys, proc, tmpfs"></a>sys, proc, tmpfs</h2><p>The sysfs filesystem was mentioned briefly above. One may wonder how sysfs knows about the devices present on a system and what device numbers should be used for them. Drivers that have been compiled into the kernel directly register their objects with a sysfs (devtmpfs internally) as they are detected by the kernel. For drivers compiled as modules, this registration will happen when the module is loaded. Once the sysfs filesystem is mounted (on /sys), data which the drivers register with sysfs are available to userspace processes and to udevd for processing (including modifications to device nodes).</p>
 <ul>
 <li>With the development of the unstable 2.5 kernel tree, later released as the 2.6 series of stable kernels, a new virtual filesystem called sysfs came to be. The job of sysfs is to export a view of the system’s hardware configuration to userspace processes. With this userspace-visible representation, the possibility of developing a userspace replacement for devfs became much more realistic.</li>
 </ul>
-<p>##Driver<br>Linux的driver是根据一个设备ID来匹配kernel module的</p>
-<p>##udev<br>通常来说linux不能保证多个同样的设备每次在被创建文件的时候对应同一个文件名，所以我们可以在<code>/etc/udev/rules.d/</code>中创建相关配置</p>
+<h2 id="Driver"><a href="#Driver" class="headerlink" title="Driver"></a>Driver</h2><p>Linux的driver是根据一个设备ID来匹配kernel module的</p>
+<h2 id="udev"><a href="#udev" class="headerlink" title="udev"></a>udev</h2><p>通常来说linux不能保证多个同样的设备每次在被创建文件的时候对应同一个文件名，所以我们可以在<code>/etc/udev/rules.d/</code>中创建相关配置</p>
 <ul>
 <li>Using the Udev method, only those devices which are detected by the kernel get device nodes created for them. Because these device nodes will be created each time the system boots, they will be stored on a devtmpfs file system (a virtual file system that resides entirely in system memory). Device nodes do not require much space, so the memory that is used is negligible</li>
 </ul>
-<p>##交叉编译</p>
-<ul>
+<h2 id="交叉编译"><a href="#交叉编译" class="headerlink" title="交叉编译"></a>交叉编译</h2><ul>
 <li>–with-sysroot=$LFS  For cross compilation, this tells the build system to look in $LFS for the target system libraries as needed.</li>
 <li>–target=$LFS_TGT Because the machine description in the LFS_TGT variable is slightly different than the value returned by the config.guess script, this switch will tell the configure script to adjust Binutil’s build system for building a cross linker</li>
 <li>binutil, gcc, glibc 是比较关键的交叉编译部件，需要制定LFS_TGT, 可以用现有平台的编译器编译出对方平台的编译器</li>
 </ul>
 <p><a href="http://www.cppblog.com/iuranus/archive/2011/07/22/151615.html" target="_blank" rel="external">Reference of target, build, host</a></p>
-<p>##chroot<br>chroot之前要mount tmpfs proc 和 dev到新的root</p>
-<p>##常用命令</p>
-<ul>
+<h2 id="chroot"><a href="#chroot" class="headerlink" title="chroot"></a>chroot</h2><p>chroot之前要mount tmpfs proc 和 dev到新的root</p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
 <li>strip 可以去掉程序中的调试用的符号等</li>
 <li>fuser 用来查谁用了哪个文件</li>
 <li>vmstat 查看磁盘内存吞吐</li>
@@ -460,8 +449,7 @@
 <li><code>tee</code> stdin -&gt; stdout, 也可以同时写入文件，叫双重重定向</li>
 <li><code>tr</code> 可以替换或者删除字段</li>
 </ul>
-<p>##Process PID PPID SID PGID</p>
-<p>查看这些可以用<code>ps -ao pid,ppid,sid,pgid,comm</code>, PGID是父进程的PID号，但是父进程的结束并不影响PGID, 组中的所有进程还是沿用同一个PGID，程序中可以对一个进程组来群发信号，SID会有些不同，同一个shell下运行的程序都同属于一个Session，这个Session Leader挂了会导致所有session中的程序退出，所以根据这个我们可以再程序中使用setsid来新建一个新的session，这样程序就不会因为session leader的退出而退出，这也是daemon的基本原理</p>
+<h2 id="Process-PID-PPID-SID-PGID"><a href="#Process-PID-PPID-SID-PGID" class="headerlink" title="Process PID PPID SID PGID"></a>Process PID PPID SID PGID</h2><p>查看这些可以用<code>ps -ao pid,ppid,sid,pgid,comm</code>, PGID是父进程的PID号，但是父进程的结束并不影响PGID, 组中的所有进程还是沿用同一个PGID，程序中可以对一个进程组来群发信号，SID会有些不同，同一个shell下运行的程序都同属于一个Session，这个Session Leader挂了会导致所有session中的程序退出，所以根据这个我们可以再程序中使用setsid来新建一个新的session，这样程序就不会因为session leader的退出而退出，这也是daemon的基本原理</p>
 
       
     </div>
@@ -470,11 +458,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/shell/"> #shell </a>
-          
             <a href="/tags/linux/"> #linux </a>
           
             <a href="/tags/command/"> #command </a>
+          
+            <a href="/tags/shell/"> #shell </a>
           
         </div>
       
@@ -557,10 +545,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Inhaltsverzeichnis
+            Table Des Matières
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Ensemble
           </li>
         </ul>
       
@@ -575,21 +563,21 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">30</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">articles</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
               <span class="site-state-item-count">16</span>
-              <span class="site-state-item-name">Kategorien</span>
+              <span class="site-state-item-name">categories</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
               <span class="site-state-item-count">41</span>
-              <span class="site-state-item-name">Tags</span>
+              <span class="site-state-item-name">tags</span>
               </a>
           </div>
 
@@ -654,7 +642,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mount"><span class="nav-number">1.</span> <span class="nav-text">mount</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mount-a-dir"><span class="nav-number">1.1.</span> <span class="nav-text">mount a dir</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mount一个网络共享文件夹"><span class="nav-number">1.2.</span> <span class="nav-text">mount一个网络共享文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#umount-a-busy-device"><span class="nav-number">1.3.</span> <span class="nav-text">umount a busy device</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#skip-an-existed-dir"><span class="nav-number">2.</span> <span class="nav-text">skip an existed dir</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-a-link"><span class="nav-number">3.</span> <span class="nav-text">Create a link</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#X-windows"><span class="nav-number">4.</span> <span class="nav-text">X windows</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Console-Terminal"><span class="nav-number">5.</span> <span class="nav-text">Console/Terminal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#权限操作"><span class="nav-number">6.</span> <span class="nav-text">权限操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#man"><span class="nav-number">7.</span> <span class="nav-text">man</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Source"><span class="nav-number">8.</span> <span class="nav-text">Source</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看程序依赖关系"><span class="nav-number">9.</span> <span class="nav-text">查看程序依赖关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看库文件导出symbol"><span class="nav-number">10.</span> <span class="nav-text">查看库文件导出symbol</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RBE编译问题"><span class="nav-number">11.</span> <span class="nav-text">RBE编译问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序栈最大大小"><span class="nav-number">12.</span> <span class="nav-text">程序栈最大大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看每个目录硬盘占的空间"><span class="nav-number">13.</span> <span class="nav-text">查看每个目录硬盘占的空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作业控制"><span class="nav-number">14.</span> <span class="nav-text">作业控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ldconfig"><span class="nav-number">15.</span> <span class="nav-text">ldconfig</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chkconfig"><span class="nav-number">16.</span> <span class="nav-text">chkconfig</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式"><span class="nav-number">17.</span> <span class="nav-text">正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Grep"><span class="nav-number">17.1.</span> <span class="nav-text">Grep</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#awk"><span class="nav-number">17.2.</span> <span class="nav-text">awk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sed"><span class="nav-number">17.3.</span> <span class="nav-text">sed</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strace"><span class="nav-number">18.</span> <span class="nav-text">strace</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#各种重定向"><span class="nav-number">19.</span> <span class="nav-text">各种重定向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#update-alternatives"><span class="nav-number">20.</span> <span class="nav-text">update-alternatives</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Network-Tools"><span class="nav-number">21.</span> <span class="nav-text">Network Tools</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决windows下编辑文件结尾有-M问题"><span class="nav-number">22.</span> <span class="nav-text">解决windows下编辑文件结尾有^M问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Grub-rescue"><span class="nav-number">23.</span> <span class="nav-text">Grub rescue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重新创建xorg-conf"><span class="nav-number">24.</span> <span class="nav-text">重新创建xorg.conf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#共享库的兼容问题"><span class="nav-number">25.</span> <span class="nav-text">共享库的兼容问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vino"><span class="nav-number">26.</span> <span class="nav-text">vino</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mv-tip"><span class="nav-number">27.</span> <span class="nav-text">mv tip</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mount"><span class="nav-number">1.</span> <span class="nav-text">mount</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mount-a-dir"><span class="nav-number">1.1.</span> <span class="nav-text">mount a dir</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mount一个网络共享文件夹"><span class="nav-number">1.2.</span> <span class="nav-text">mount一个网络共享文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#umount-a-busy-device"><span class="nav-number">1.3.</span> <span class="nav-text">umount a busy device</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#skip-an-existed-dir"><span class="nav-number">2.</span> <span class="nav-text">skip an existed dir</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-a-link"><span class="nav-number">3.</span> <span class="nav-text">Create a link</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#X-windows"><span class="nav-number">4.</span> <span class="nav-text">X windows</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#调整分辨率"><span class="nav-number">4.1.</span> <span class="nav-text">调整分辨率</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Console-Terminal"><span class="nav-number">5.</span> <span class="nav-text">Console/Terminal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#权限操作"><span class="nav-number">6.</span> <span class="nav-text">权限操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SElinux"><span class="nav-number">6.1.</span> <span class="nav-text">SElinux</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS-lookup"><span class="nav-number">7.</span> <span class="nav-text">DNS lookup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#man"><span class="nav-number">8.</span> <span class="nav-text">man</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Source"><span class="nav-number">9.</span> <span class="nav-text">Source</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看程序依赖关系"><span class="nav-number">10.</span> <span class="nav-text">查看程序依赖关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看库文件导出symbol"><span class="nav-number">11.</span> <span class="nav-text">查看库文件导出symbol</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RBE编译问题"><span class="nav-number">12.</span> <span class="nav-text">RBE编译问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序栈最大大小"><span class="nav-number">13.</span> <span class="nav-text">程序栈最大大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看每个目录硬盘占的空间"><span class="nav-number">14.</span> <span class="nav-text">查看每个目录硬盘占的空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作业控制"><span class="nav-number">15.</span> <span class="nav-text">作业控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ldconfig"><span class="nav-number">16.</span> <span class="nav-text">ldconfig</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chkconfig"><span class="nav-number">17.</span> <span class="nav-text">chkconfig</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式"><span class="nav-number">18.</span> <span class="nav-text">正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Grep"><span class="nav-number">18.1.</span> <span class="nav-text">Grep</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#awk"><span class="nav-number">18.2.</span> <span class="nav-text">awk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sed"><span class="nav-number">18.3.</span> <span class="nav-text">sed</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strace"><span class="nav-number">19.</span> <span class="nav-text">strace</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#各种重定向"><span class="nav-number">20.</span> <span class="nav-text">各种重定向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#update-alternatives"><span class="nav-number">21.</span> <span class="nav-text">update-alternatives</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Network-Tools"><span class="nav-number">22.</span> <span class="nav-text">Network Tools</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决windows下编辑文件结尾有-M问题"><span class="nav-number">23.</span> <span class="nav-text">解决windows下编辑文件结尾有^M问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Grub-rescue"><span class="nav-number">24.</span> <span class="nav-text">Grub rescue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重新创建xorg-conf"><span class="nav-number">25.</span> <span class="nav-text">重新创建xorg.conf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vnc4server"><span class="nav-number">26.</span> <span class="nav-text">vnc4server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看硬件状态"><span class="nav-number">27.</span> <span class="nav-text">查看硬件状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络配置"><span class="nav-number">28.</span> <span class="nav-text">网络配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#echo"><span class="nav-number">29.</span> <span class="nav-text">echo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pipe"><span class="nav-number">30.</span> <span class="nav-text">pipe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xmllint"><span class="nav-number">31.</span> <span class="nav-text">xmllint</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#共享库的兼容问题"><span class="nav-number">32.</span> <span class="nav-text">共享库的兼容问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PATH"><span class="nav-number">33.</span> <span class="nav-text">PATH</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#openssl生成证书"><span class="nav-number">34.</span> <span class="nav-text">openssl生成证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vino"><span class="nav-number">35.</span> <span class="nav-text">vino</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UNIX-socket上限"><span class="nav-number">36.</span> <span class="nav-text">UNIX socket上限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mv-tip"><span class="nav-number">37.</span> <span class="nav-text">mv tip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#僵尸进程"><span class="nav-number">38.</span> <span class="nav-text">僵尸进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#environment"><span class="nav-number">39.</span> <span class="nav-text">environment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#exec"><span class="nav-number">40.</span> <span class="nav-text">exec</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sys-proc-tmpfs"><span class="nav-number">41.</span> <span class="nav-text">sys, proc, tmpfs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Driver"><span class="nav-number">42.</span> <span class="nav-text">Driver</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#udev"><span class="nav-number">43.</span> <span class="nav-text">udev</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#交叉编译"><span class="nav-number">44.</span> <span class="nav-text">交叉编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chroot"><span class="nav-number">45.</span> <span class="nav-text">chroot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">46.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Process-PID-PPID-SID-PGID"><span class="nav-number">47.</span> <span class="nav-text">Process PID PPID SID PGID</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -680,11 +668,11 @@
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Theme -
+  Thème -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>
