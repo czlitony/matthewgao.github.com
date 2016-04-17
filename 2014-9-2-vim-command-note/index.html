@@ -24,7 +24,7 @@
 
 
 
-  <meta name="keywords" content="vim,command," />
+  <meta name="keywords" content="command,vim," />
 
 
 
@@ -204,12 +204,14 @@
       
 
       
-        <h2 id="生成tags">生成tags</h2><p>在所在目录运行</p>
+        <p>##生成tags<br>在所在目录运行</p>
 <figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctags -<span class="keyword">R</span></span><br></pre></td></tr></table></figure>
 <p>在vim中</p>
 <figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">set</span> tags <span class="comment">=</span> /your/<span class="comment">path</span>/tags</span><br></pre></td></tr></table></figure>
-<h2 id="生成cscope索引">生成cscope索引</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">cscope</span> -Rbq</span><br></pre></td></tr></table></figure>
-<h2 id="命令">命令</h2><ul>
+<p>##生成cscope索引</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">cscope</span> -Rbq</span><br></pre></td></tr></table></figure>
+<p>##命令    </p>
+<ul>
 <li><code>:A</code> 打开头文件</li>
 <li><code>:E</code> 浏览打开文件</li>
 <li><code>:wqa</code></li>
@@ -223,7 +225,8 @@
 <li><code>:Te</code> tag explore</li>
 <li><code>:colorscheme test3</code> 更改配色方案</li>
 </ul>
-<h2 id="快捷键">快捷键</h2><ul>
+<p>##快捷键</p>
+<ul>
 <li><code>{c-f12}</code>, <code>{c-n}</code> 自动补全</li>
 <li><code>,</code> <code>;</code> 结合<code>f{char}</code>查找, 上一个, 下一个</li>
 <li><code>g;</code> 上一个修改过的地方</li>
@@ -233,12 +236,13 @@
 <li><code>u</code> undo</li>
 <li><code>{c-r}</code> 重做</li>
 </ul>
-<h2 id="文件比较">文件比较</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim <span class="_">-d</span> file1 file2</span><br></pre></td></tr></table></figure>
+<p>##文件比较</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim <span class="_">-d</span> file1 file2</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>d = diff</p>
 </blockquote>
-<h2 id="在你忘记用_root_方式打开文件时的文件保存">在你忘记用 root 方式打开文件时的文件保存</h2><figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:w !sudo tee <span class="comment">%</span></span><br></pre></td></tr></table></figure>
-<h2 id="按时间回退文件">按时间回退文件</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:earlier</span> 1<span class="selector-tag">m</span> \\会把文件回退到 1 分钟以前的状态。</span><br><span class="line"></span><br><span class="line"><span class="selector-pseudo">:later</span> \\ 注意，你可以使用这个的命令进行相反的转换</span><br></pre></td></tr></table></figure>
+<h2 id="在你忘记用-root-方式打开文件时的文件保存"><a href="#在你忘记用-root-方式打开文件时的文件保存" class="headerlink" title="在你忘记用 root 方式打开文件时的文件保存"></a>在你忘记用 root 方式打开文件时的文件保存</h2><figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:w !sudo tee <span class="comment">%</span></span><br></pre></td></tr></table></figure>
+<h2 id="按时间回退文件"><a href="#按时间回退文件" class="headerlink" title="按时间回退文件"></a>按时间回退文件</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:earlier</span> 1<span class="selector-tag">m</span> \\会把文件回退到 1 分钟以前的状态。</span><br><span class="line"></span><br><span class="line"><span class="selector-pseudo">:later</span> \\ 注意，你可以使用这个的命令进行相反的转换</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -246,9 +250,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/vim/"> #vim </a>
-          
             <a href="/tags/command/"> #command </a>
+          
+            <a href="/tags/vim/"> #vim </a>
           
         </div>
       
@@ -430,7 +434,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#生成tags"><span class="nav-number">1.</span> <span class="nav-text">生成tags</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成cscope索引"><span class="nav-number">2.</span> <span class="nav-text">生成cscope索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令"><span class="nav-number">3.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快捷键"><span class="nav-number">4.</span> <span class="nav-text">快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件比较"><span class="nav-number">5.</span> <span class="nav-text">文件比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在你忘记用_root_方式打开文件时的文件保存"><span class="nav-number">6.</span> <span class="nav-text">在你忘记用 root 方式打开文件时的文件保存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按时间回退文件"><span class="nav-number">7.</span> <span class="nav-text">按时间回退文件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#在你忘记用-root-方式打开文件时的文件保存"><span class="nav-number">1.</span> <span class="nav-text">在你忘记用 root 方式打开文件时的文件保存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按时间回退文件"><span class="nav-number">2.</span> <span class="nav-text">按时间回退文件</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

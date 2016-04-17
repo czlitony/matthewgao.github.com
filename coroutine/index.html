@@ -204,7 +204,8 @@
       
 
       
-        <h2 id="基于就绪通知的协程框架">基于就绪通知的协程框架</h2><ol>
+        <p>##基于就绪通知的协程框架</p>
+<ol>
 <li>首先需要包装read/write，在发生read的时候检查返回。如果是EAGAIN，那么将当前协程标记为阻塞在对应fd上，然后执行调度函数。</li>
 <li>调度函数需要执行epoll(或者从上次的返回结果缓存中取数据，减少内核陷入次数)，从中读取一个就绪的fd。如果没有，上下文应当被阻塞到至少有一个fd就绪。</li>
 <li>查找这个fd对应的协程上下文对象，并调度过去。</li>
@@ -212,7 +213,8 @@
 <li>如果读取到数据了，直接返回。</li>
 </ol>
 <p>这样，异步的数据读写动作，在我们的想像中就可以变为同步的。而我们知道同步模型会极大降低我们的编程负担。</p>
-<h2 id="异步IO">异步IO</h2><h3 id="Linux_AIO">Linux AIO</h3><table>
+<p>##异步IO</p>
+<h3 id="Linux-AIO"><a href="#Linux-AIO" class="headerlink" title="Linux AIO"></a>Linux AIO</h3><table>
 <thead>
 <tr>
 <th style="text-align:center"></th>
@@ -237,7 +239,8 @@
 <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> aio_read( <span class="class"><span class="keyword">struct</span> <span class="title">aiocb</span></span> *aiocbp );</span><br><span class="line"><span class="keyword">int</span> aio_error( <span class="class"><span class="keyword">struct</span> <span class="title">aiocb</span></span> *aiocbp );</span><br><span class="line">ssize_t aio_return( <span class="class"><span class="keyword">struct</span> <span class="title">aiocb</span></span> *aiocbp );</span><br><span class="line"><span class="keyword">int</span> aio_write( <span class="class"><span class="keyword">struct</span> <span class="title">aiocb</span></span> *aiocbp );</span><br><span class="line"><span class="keyword">int</span> aio_suspend( <span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">aiocb</span></span> *<span class="keyword">const</span> cblist[], <span class="keyword">int</span> n, <span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">timespec</span></span> *timeout );</span><br><span class="line"><span class="keyword">int</span> aio_cancel( <span class="keyword">int</span> fd, <span class="class"><span class="keyword">struct</span> <span class="title">aiocb</span></span> *aiocbp );</span><br><span class="line"><span class="keyword">int</span> lio_listio( <span class="keyword">int</span> mode, <span class="class"><span class="keyword">struct</span> <span class="title">aiocb</span></span> *list[], <span class="keyword">int</span> nent, <span class="class"><span class="keyword">struct</span> <span class="title">sigevent</span></span> *sig );</span><br></pre></td></tr></table></figure>
 <p>保存上下文的块：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> aiocb &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> aio_fildes;               <span class="comment">// File Descriptor</span></span><br><span class="line">  <span class="keyword">int</span> aio_lio_opcode;           <span class="comment">// Valid only for lio_listio (r/w/nop)</span></span><br><span class="line">  <span class="keyword">volatile</span> <span class="keyword">void</span> *aio_buf;       <span class="comment">// Data Buffer</span></span><br><span class="line">  <span class="keyword">size_t</span> aio_nbytes;            <span class="comment">// Number of Bytes in Data Buffer</span></span><br><span class="line">  <span class="keyword">struct</span> sigevent aio_sigevent; <span class="comment">// Notification Structure</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* Internal fields */</span></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="Libeio">Libeio</h3><h2 id="Libevent">Libevent</h2>
+<h3 id="Libeio"><a href="#Libeio" class="headerlink" title="Libeio"></a>Libeio</h3><p>##Libevent</p>
+
       
     </div>
 
@@ -429,7 +432,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基于就绪通知的协程框架"><span class="nav-number">1.</span> <span class="nav-text">基于就绪通知的协程框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步IO"><span class="nav-number">2.</span> <span class="nav-text">异步IO</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux_AIO"><span class="nav-number">2.1.</span> <span class="nav-text">Linux AIO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Libeio"><span class="nav-number">2.2.</span> <span class="nav-text">Libeio</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Libevent"><span class="nav-number">3.</span> <span class="nav-text">Libevent</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-AIO"><span class="nav-number">1.</span> <span class="nav-text">Linux AIO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Libeio"><span class="nav-number">2.</span> <span class="nav-text">Libeio</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

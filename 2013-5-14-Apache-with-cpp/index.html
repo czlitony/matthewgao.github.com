@@ -204,9 +204,9 @@
       
 
       
-        <h2 id="为什么要用C++">为什么要用C++</h2><p>很多时候我们可以不必使用C++，很多时候linux开发只要用C就可以了，但是在对于一些大型应用程序，他本身就是由C++编写，而Apache Module又只能默认使用C，所以不能够用apxs来编译module，只能够通过g++，但是这里就需要一点要的技巧来搞定它。</p>
-<h2 id="Why">Why</h2><p>因为Apache是通过dlopen()/dlsym()来加载module的，但是这两个函数不能够很好的处理C++的命名方式，所以如果用g++来编译so文件，就会出现不能够找到module的情况。</p>
-<h2 id="Solution">Solution</h2><p>所以我们要强制它以C语言的方式来编译，在module的声明前加上extern 或者extern “C”</p>
+        <p>##为什么要用C++<br>很多时候我们可以不必使用C++，很多时候linux开发只要用C就可以了，但是在对于一些大型应用程序，他本身就是由C++编写，而Apache Module又只能默认使用C，所以不能够用apxs来编译module，只能够通过g++，但是这里就需要一点要的技巧来搞定它。</p>
+<p>##Why<br>因为Apache是通过dlopen()/dlsym()来加载module的，但是这两个函数不能够很好的处理C++的命名方式，所以如果用g++来编译so文件，就会出现不能够找到module的情况。</p>
+<p>##Solution<br>所以我们要强制它以C语言的方式来编译，在module的声明前加上extern 或者extern “C”</p>
 <figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extern  <span class="class"><span class="keyword">module</span> <span class="title">AP_MODULE_DECLARE_DATA</span> <span class="title">soap_module</span>;</span></span><br></pre></td></tr></table></figure>
 <p>或者</p>
 <figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extern “C” <span class="class"><span class="keyword">module</span> <span class="title">AP_MODULE_DECLARE_DATA</span> <span class="title">soap_module</span>;</span></span><br></pre></td></tr></table></figure>
@@ -232,7 +232,7 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2013-5-15-Use-APR-parse-XML/">用APR解析XML文件</a>
+              <a href="/2013-5-15-info-hiding/">主流数字图像信息隐藏软件的使用方法</a>
             
           </div>
 
@@ -405,7 +405,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要用C++"><span class="nav-number">1.</span> <span class="nav-text">为什么要用C++</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why"><span class="nav-number">2.</span> <span class="nav-text">Why</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">3.</span> <span class="nav-text">Solution</span></a></li></ol></div>
+              <p class="post-toc-empty">Dieser Artikel hat kein Inhaltsverzeichnis</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

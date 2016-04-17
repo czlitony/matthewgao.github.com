@@ -204,17 +204,18 @@
       
 
       
-        <h2 id="$">$</h2><ul>
+        <h2 id=""><a href="#" class="headerlink" title="$"></a>$</h2><ul>
 <li><code>$$</code> 返回PID， $是个内部变量</li>
 <li><code>$?</code> 表示上一个指令的返回值</li>
 <li><code>$0</code> 表示函数或者shell的第一个参数，后面类推</li>
 <li><code>$@</code> 返回所有参数</li>
 </ul>
-<h2 id="set_unset">set unset</h2><p>设置程序自定义变量（只对本shell）</p>
-<h2 id="export">export</h2><p>设置为全局环境变量</p>
-<h2 id="declare">declare</h2><p>将环境变量转成自定义变量</p>
-<h2 id="查找历史命令并执行">查找历史命令并执行</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="keyword">history</span> | <span class="keyword">grep</span> -E <span class="string">'^ +1148'</span> | awk -F<span class="string">' '</span> <span class="string">'&#123;$1="";print&#125;'</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="参数扩展">参数扩展</h2><ul>
+<h2 id="set-unset"><a href="#set-unset" class="headerlink" title="set unset"></a>set unset</h2><p>设置程序自定义变量（只对本shell）</p>
+<h2 id="export"><a href="#export" class="headerlink" title="export"></a>export</h2><p>设置为全局环境变量</p>
+<h2 id="declare"><a href="#declare" class="headerlink" title="declare"></a>declare</h2><p>将环境变量转成自定义变量</p>
+<h2 id="查找历史命令并执行"><a href="#查找历史命令并执行" class="headerlink" title="查找历史命令并执行"></a>查找历史命令并执行</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="keyword">history</span> | <span class="keyword">grep</span> -E <span class="string">'^ +1148'</span> | awk -F<span class="string">' '</span> <span class="string">'&#123;$1="";print&#125;'</span>)</span><br></pre></td></tr></table></figure>
+<p>##参数扩展</p>
+<ul>
 <li><code>${param:-default}</code> 如果param为空，就把他设置成default</li>
 <li><code>${ #param}</code> 给出param长度</li>
 <li><code>${var:-string}</code>: 若变量var为空，则用在命令行中用string来替换<code>${var:-string}</code>，否则变量var不为空时，则用变量var的值来替换<code>${var:-string}</code>；</li>
@@ -412,7 +413,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#$"><span class="nav-number">1.</span> <span class="nav-text">$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#set_unset"><span class="nav-number">2.</span> <span class="nav-text">set unset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#export"><span class="nav-number">3.</span> <span class="nav-text">export</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#declare"><span class="nav-number">4.</span> <span class="nav-text">declare</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找历史命令并执行"><span class="nav-number">5.</span> <span class="nav-text">查找历史命令并执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数扩展"><span class="nav-number">6.</span> <span class="nav-text">参数扩展</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#set-unset"><span class="nav-number">2.</span> <span class="nav-text">set unset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#export"><span class="nav-number">3.</span> <span class="nav-text">export</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#declare"><span class="nav-number">4.</span> <span class="nav-text">declare</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找历史命令并执行"><span class="nav-number">5.</span> <span class="nav-text">查找历史命令并执行</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
