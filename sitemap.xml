@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://matthewgao.github.io/thread-safe/</loc>
+    <loc>http://matthewgao.github.io/2014-9-2-git-note/</loc>
     
-    <lastmod>2016-04-18T15:06:32.000Z</lastmod>
+    <lastmod>2016-04-18T15:11:41.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://matthewgao.github.io/sublime-and-its-plugin/</loc>
     
-    <lastmod>2016-04-18T15:06:07.000Z</lastmod>
+    <lastmod>2016-04-18T15:10:33.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://matthewgao.github.io/thread-safe/</loc>
+    
+    <lastmod>2016-04-18T15:06:32.000Z</lastmod>
     
   </url>
   
@@ -194,13 +201,6 @@
     <loc>http://matthewgao.github.io/2013-5-20-UDP/</loc>
     
     <lastmod>2015-07-06T06:00:39.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://matthewgao.github.io/2014-9-2-git-note/</loc>
-    
-    <lastmod>2015-07-06T05:11:39.000Z</lastmod>
     
   </url>
   
