@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="shell," />
+  <meta name="keywords" content="Matthew Note" />
 
 
 
@@ -82,16 +82,15 @@
 
 
 
-<meta name="description" content="SHELL学习笔记">
-<meta property="og:type" content="article">
-<meta property="og:title" content="SHELL Command/Script Notes">
-<meta property="og:url" content="http://matthewgao.github.io/2014-9-2-shell-note/index.html">
+<meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Matthew Note">
+<meta property="og:url" content="http://matthewgao.github.io/archives/2015/11/index.html">
 <meta property="og:site_name" content="Matthew Note">
-<meta property="og:description" content="SHELL学习笔记">
-<meta property="og:updated_time" content="2015-10-14T08:17:13.000Z">
+<meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SHELL Command/Script Notes">
-<meta name="twitter:description" content="SHELL学习笔记">
+<meta name="twitter:title" content="Matthew Note">
+<meta name="twitter:description">
 
 
 
@@ -109,7 +108,7 @@
   };
 </script>
 
-  <title> SHELL Command/Script Notes | Matthew Note </title>
+  <title> 归档 | Matthew Note </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -140,7 +139,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  page-archive  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -248,191 +247,66 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-collapse">
+    <span class="archive-move-on"></span>
+
+    <span class="archive-page-counter">
+      
+      
+      
+        
+      
+      嗯..! 目前共计 30 篇日志。 继续努力。
+    </span>
+
     
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                SHELL Command/Script Notes
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-10-14T16:17:13+08:00" content="2015-10-14">
-              2015-10-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014-9-2-shell-note/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-9-2-shell-note/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
-      
-        <h2 id=""><a href="#" class="headerlink" title="$"></a>$</h2><ul>
-<li><code>$$</code> 返回PID， $是个内部变量</li>
-<li><code>$?</code> 表示上一个指令的返回值</li>
-<li><code>$0</code> 表示函数或者shell的第一个参数，后面类推</li>
-<li><code>$@</code> 返回所有参数</li>
-</ul>
-<h2 id="set-unset"><a href="#set-unset" class="headerlink" title="set unset"></a>set unset</h2><p>设置程序自定义变量（只对本shell）</p>
-<h2 id="export"><a href="#export" class="headerlink" title="export"></a>export</h2><p>设置为全局环境变量</p>
-<h2 id="declare"><a href="#declare" class="headerlink" title="declare"></a>declare</h2><p>将环境变量转成自定义变量</p>
-<h2 id="查找历史命令并执行"><a href="#查找历史命令并执行" class="headerlink" title="查找历史命令并执行"></a>查找历史命令并执行</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="keyword">history</span> | <span class="keyword">grep</span> -E <span class="string">'^ +1148'</span> | awk -F<span class="string">' '</span> <span class="string">'&#123;$1="";print&#125;'</span>)</span><br></pre></td></tr></table></figure>
-<p>##参数扩展</p>
-<ul>
-<li><code>${param:-default}</code> 如果param为空，就把他设置成default</li>
-<li><code>${ #param}</code> 给出param长度</li>
-<li><code>${var:-string}</code>: 若变量var为空，则用在命令行中用string来替换<code>${var:-string}</code>，否则变量var不为空时，则用变量var的值来替换<code>${var:-string}</code>；</li>
-<li><code>${var:=string}</code>: 替换规则和<code>${var:-string}</code>是一样的，所不同之处是<code>${var:=string}</code>若var为空时，用string替换<code>${var:=string}</code>的同时，把string赋给变量var：<code>${var:=string}</code>很常用的一种用法是，判断某个变量是否赋值，没有的话则给它赋上一个默认值。</li>
-<li><code>${var:+string}</code>的替换规则和上面的相反，即只有当var不是空的时候才替换成string，若var为空时则不替换或者说是替换成变量 var的值，即空值。(因为变量var此时为空，所以这两种说法是等价的) </li>
-<li><code>${var:?string}</code>替换规则为：若变量var不为空，则用变量var的值来替换<code>${var:?string}</code>；若变量var为空，则把string输出到标准错误中，并从脚本中退出。我们可利用此特性来检查是否设置了变量的值。</li>
-</ul>
-
-      
-    </div>
-    
-    <div>
       
         
-      
-    </div>
-
-    <div>
-      
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/shell/" rel="tag">#shell</a>
-          
+        <div class="collection-title">
+          <h2 class="archive-year motion-element" id="archive-year-2015">2015</h2>
         </div>
       
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/sublime-and-its-plugin/" rel="next" title="Sublime Text & Plugin">
-                <i class="fa fa-chevron-left"></i> Sublime Text & Plugin
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/mysql/" rel="prev" title="MySQL Note">
-                MySQL Note <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
 
       
-      
-    </footer>
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/mysql/" itemprop="url">
+              
+                <span itemprop="name">MySQL Note</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2015-11-20T17:50:08+08:00"
+              content="2015-11-20" >
+          11-20
+        </time>
+      </div>
+
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
-      
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-  <a class="jiathis_button_tsina"></a>
-  <a class="jiathis_button_tqq"></a>
-  <a class="jiathis_button_weixin"></a>
-  <a class="jiathis_button_cqq"></a>
-  <a class="jiathis_button_douban"></a>
-  <a class="jiathis_button_renren"></a>
-  <a class="jiathis_button_qzone"></a>
-  <a class="jiathis_button_kaixin001"></a>
-  <a class="jiathis_button_copy"></a>
-  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
-  <a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" >
-  var jiathis_config={
-    hideMore:false
-  }
-</script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<!-- JiaThis Button END -->
+    
 
-      
-    </div>
-  </div>
+  </section>
+
+  
+
 
 
           </div>
@@ -440,14 +314,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2014-9-2-shell-note/"
-           data-title="SHELL Command/Script Notes" data-url="http://matthewgao.github.io/2014-9-2-shell-note/">
-      </div>
-    
-  </div>
-
 
         </div>
         
@@ -467,17 +333,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/default_avatar.jpg"
@@ -534,17 +391,6 @@
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#set-unset"><span class="nav-number">2.</span> <span class="nav-text">set unset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#export"><span class="nav-number">3.</span> <span class="nav-text">export</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#declare"><span class="nav-number">4.</span> <span class="nav-text">declare</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找历史命令并执行"><span class="nav-number">5.</span> <span class="nav-text">查找历史命令并执行</span></a></li></ol></div>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -641,9 +487,11 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
+  
+    <script type="text/javascript" id="motion.page.archive">
+      $('.archive-year').velocity('transition.slideLeftIn');
+    </script>
+  
 
 
   
