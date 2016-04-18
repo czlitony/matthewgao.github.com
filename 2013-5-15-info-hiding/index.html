@@ -88,7 +88,7 @@
 <meta property="og:url" content="http://matthewgao.github.io/2013-5-15-info-hiding/index.html">
 <meta property="og:site_name" content="Matthew Note">
 <meta property="og:description" content="总结了信息隐藏的常用算法和下载链接">
-<meta property="og:updated_time" content="2015-07-06T04:55:14.000Z">
+<meta property="og:updated_time" content="2016-04-18T14:54:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="主流数字图像信息隐藏软件的使用方法">
 <meta name="twitter:description" content="总结了信息隐藏的常用算法和下载链接">
@@ -336,8 +336,7 @@
 
       
         <p>硕士期间做过隐写分析，在生成训练图片时候费了很大周折去找F5，Outguess，MB，Jsteg等软件的程序，网上又没有很明确的说明，所以只能自己逐渐摸索，为了给后人铺路，这里我做一总结。<br>空域的LSB方法就不说了，这个自己用Matlab编起来也不是很麻烦，这里就说说变换域的：</p>
-<p>##F5</p>
-<p>F5是Westfeld 2001年提出来的一个嵌入算法，本来在他个人的主页中是可以下载的，但是后来由于学校网页的变动，下载不到了，我前几天给westfeld发了邮件，他又重新把它放到网上了</p>
+<h2 id="F5"><a href="#F5" class="headerlink" title="F5"></a>F5</h2><p>F5是Westfeld 2001年提出来的一个嵌入算法，本来在他个人的主页中是可以下载的，但是后来由于学校网页的变动，下载不到了，我前几天给westfeld发了邮件，他又重新把它放到网上了</p>
 <ul>
 <li><a href="http://www2.htw-dresden.de/~westfeld/publikationen/f5r11.zip" target="_blank" rel="external">Download F5</a></li>
 <li><a href="https://github.com/matthewgao/F5-steganography" target="_blank" rel="external">Download F5 in github</a></li>
@@ -348,15 +347,12 @@
 </ul>
 <p>他们其实是一样的</p>
 <p>这个是一个Java写的程序，有兴趣的人可以去看一下他的源代码，其实并不是非常复杂，他没有提供更改嵌入率的参数，这个问题我也问过westfeld本人，他的确没写这块，可以改写下Java程序，根据其capacity来控制嵌入文本的长度以实现。</p>
-<p>##Outguess</p>
-<p>Outguess就非常恶心了，他是unix下的程序，所以你要到linux里去跑，还好有ubuntu，ubuntu的软件库里已经有了这个软件，可以ubuntu的新立得软件中心去搜索outguess，安装就可以了，他同样不能更改嵌入率，所以采用的方法和F5一样，根据其容量来控制嵌入文本的长度，在outguess.c的文件中，有一个mmap_file函数，这个函数便是打开文本的，在里面你可以把fs.st_size赋值为bitmap-&gt;bits/16，然后通过乘上一个ratio来实现</p>
-<p>##MB</p>
-<p>MB1和MB2就非常善良了，有他的Matlab程序，这个就不用多说了，你只要改就可以了 </p>
+<h2 id="Outguess"><a href="#Outguess" class="headerlink" title="Outguess"></a>Outguess</h2><p>Outguess就非常恶心了，他是unix下的程序，所以你要到linux里去跑，还好有ubuntu，ubuntu的软件库里已经有了这个软件，可以ubuntu的新立得软件中心去搜索outguess，安装就可以了，他同样不能更改嵌入率，所以采用的方法和F5一样，根据其容量来控制嵌入文本的长度，在outguess.c的文件中，有一个mmap_file函数，这个函数便是打开文本的，在里面你可以把fs.st_size赋值为bitmap-&gt;bits/16，然后通过乘上一个ratio来实现</p>
+<h2 id="MB"><a href="#MB" class="headerlink" title="MB"></a>MB</h2><p>MB1和MB2就非常善良了，有他的Matlab程序，这个就不用多说了，你只要改就可以了 </p>
 <ul>
 <li><a href="http://www.philsallee.com/mbsteg/index.html" target="_blank" rel="external">Download MB</a></li>
 </ul>
-<p>##RS分析</p>
-<p>自己写过一个RS分析的Matlab程序，可以方便的画出RS分析的特性曲线，我把他放在了github上，有兴趣的同学可以下载使用：</p>
+<h2 id="RS分析"><a href="#RS分析" class="headerlink" title="RS分析"></a>RS分析</h2><p>自己写过一个RS分析的Matlab程序，可以方便的画出RS分析的特性曲线，我把他放在了github上，有兴趣的同学可以下载使用：</p>
 <ul>
 <li><a href="https://github.com/matthewgao/RS-analysis" target="_blank" rel="external">Download RS</a></li>
 </ul>
@@ -555,7 +551,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#F5"><span class="nav-number">1.</span> <span class="nav-text">F5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Outguess"><span class="nav-number">2.</span> <span class="nav-text">Outguess</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MB"><span class="nav-number">3.</span> <span class="nav-text">MB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RS分析"><span class="nav-number">4.</span> <span class="nav-text">RS分析</span></a></li></ol></div>
             
           </div>
         </section>

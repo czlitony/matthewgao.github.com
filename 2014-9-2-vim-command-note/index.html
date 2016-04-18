@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="command,vim," />
+  <meta name="keywords" content="vim,command," />
 
 
 
@@ -88,7 +88,7 @@
 <meta property="og:url" content="http://matthewgao.github.io/2014-9-2-vim-command-note/index.html">
 <meta property="og:site_name" content="Matthew Note">
 <meta property="og:description" content="记录下VIM的命令，不断学习中">
-<meta property="og:updated_time" content="2015-07-06T06:19:39.000Z">
+<meta property="og:updated_time" content="2016-04-18T15:01:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VIM Command Notes">
 <meta name="twitter:description" content="记录下VIM的命令，不断学习中">
@@ -335,14 +335,12 @@
       
 
       
-        <p>##生成tags<br>在所在目录运行</p>
+        <h2 id="生成tags"><a href="#生成tags" class="headerlink" title="生成tags"></a>生成tags</h2><p>在所在目录运行</p>
 <figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctags -<span class="keyword">R</span></span><br></pre></td></tr></table></figure>
 <p>在vim中</p>
 <figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">set</span> tags <span class="comment">=</span> /your/<span class="comment">path</span>/tags</span><br></pre></td></tr></table></figure>
-<p>##生成cscope索引</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">cscope</span> -Rbq</span><br></pre></td></tr></table></figure>
-<p>##命令    </p>
-<ul>
+<h2 id="生成cscope索引"><a href="#生成cscope索引" class="headerlink" title="生成cscope索引"></a>生成cscope索引</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">cscope</span> -Rbq</span><br></pre></td></tr></table></figure>
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><ul>
 <li><code>:A</code> 打开头文件</li>
 <li><code>:E</code> 浏览打开文件</li>
 <li><code>:wqa</code></li>
@@ -356,8 +354,7 @@
 <li><code>:Te</code> tag explore</li>
 <li><code>:colorscheme test3</code> 更改配色方案</li>
 </ul>
-<p>##快捷键</p>
-<ul>
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><ul>
 <li><code>{c-f12}</code>, <code>{c-n}</code> 自动补全</li>
 <li><code>,</code> <code>;</code> 结合<code>f{char}</code>查找, 上一个, 下一个</li>
 <li><code>g;</code> 上一个修改过的地方</li>
@@ -367,8 +364,7 @@
 <li><code>u</code> undo</li>
 <li><code>{c-r}</code> 重做</li>
 </ul>
-<p>##文件比较</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim <span class="_">-d</span> file1 file2</span><br></pre></td></tr></table></figure>
+<h2 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim <span class="_">-d</span> file1 file2</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>d = diff</p>
 </blockquote>
@@ -393,9 +389,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/command/" rel="tag">#command</a>
-          
             <a href="/tags/vim/" rel="tag">#vim</a>
+          
+            <a href="/tags/command/" rel="tag">#command</a>
           
         </div>
       
@@ -562,7 +558,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#在你忘记用-root-方式打开文件时的文件保存"><span class="nav-number">1.</span> <span class="nav-text">在你忘记用 root 方式打开文件时的文件保存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按时间回退文件"><span class="nav-number">2.</span> <span class="nav-text">按时间回退文件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#生成tags"><span class="nav-number">1.</span> <span class="nav-text">生成tags</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成cscope索引"><span class="nav-number">2.</span> <span class="nav-text">生成cscope索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令"><span class="nav-number">3.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快捷键"><span class="nav-number">4.</span> <span class="nav-text">快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件比较"><span class="nav-number">5.</span> <span class="nav-text">文件比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在你忘记用-root-方式打开文件时的文件保存"><span class="nav-number">6.</span> <span class="nav-text">在你忘记用 root 方式打开文件时的文件保存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按时间回退文件"><span class="nav-number">7.</span> <span class="nav-text">按时间回退文件</span></a></li></ol></div>
             
           </div>
         </section>

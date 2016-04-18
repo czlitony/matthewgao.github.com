@@ -88,7 +88,7 @@
 <meta property="og:url" content="http://matthewgao.github.io/mysql/index.html">
 <meta property="og:site_name" content="Matthew Note">
 <meta property="og:description" content="MySQL 优化">
-<meta property="og:updated_time" content="2015-11-20T09:50:08.000Z">
+<meta property="og:updated_time" content="2016-04-18T15:03:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL Note">
 <meta name="twitter:description" content="MySQL 优化">
@@ -335,8 +335,7 @@
       
 
       
-        <p>##基本命名和约束规范</p>
-<ul>
+        <h2 id="基本命名和约束规范"><a href="#基本命名和约束规范" class="headerlink" title="基本命名和约束规范"></a>基本命名和约束规范</h2><ul>
 <li>表字符集选择UTF8 ，如果需要存储emoj表情，需要使用UTF8mb4(MySQL 5.5.3以后支持)</li>
 <li>存储引擎使用InnoDB</li>
 <li>变长字符串尽量使用varchar varbinary</li>
@@ -346,8 +345,7 @@
 <li>库名、表名、字段名、索引名使用小写字母，以下划线分割 ，需要见名知意</li>
 <li>库表名不要设计过长，尽可能用最少的字符表达出表的用途</li>
 </ul>
-<p>##字段规范</p>
-<ul>
+<h2 id="字段规范"><a href="#字段规范" class="headerlink" title="字段规范"></a>字段规范</h2><ul>
 <li>所有字段均定义为NOT NULL ，除非你真的想存Null</li>
 <li>字段类型在满足需求条件下越小越好，使用UNSIGNED存储非负整数 ，实际使用时候存储负数场景不多</li>
 <li>使用TIMESTAMP存储时间</li>
@@ -360,8 +358,7 @@
 <li>浪费存储空间，因为InnoDB需要有额外一个字节存储</li>
 <li>表内默认值Null过多会影响优化器选择执行计划</li>
 </ul>
-<p>##索引规范</p>
-<ul>
+<h2 id="索引规范"><a href="#索引规范" class="headerlink" title="索引规范"></a>索引规范</h2><ul>
 <li>单个索引字段数不超过5，单表索引数量不超过5，索引设计遵循B+ Tree索引最左前缀匹配原则</li>
 <li>选择区分度高的列作为索引</li>
 <li>建立的索引能覆盖80%主要的查询，不求全，解决问题的主要矛盾</li>
@@ -374,8 +371,7 @@
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">idx_abc</span><span class="params">(a,b,c)</span></span> </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">idx_a</span><span class="params">(a)</span></span> 冗余 </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">idx_ab</span><span class="params">(a,b)</span></span> 冗余</span><br></pre></td></tr></table></figure>
 <p>隐式转换例子</p>
 <figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">字段:remark varchar(<span class="number">50</span>) <span class="keyword">NOT</span> Null </span><br><span class="line"></span><br><span class="line">MySQL&gt;<span class="keyword">SELECT</span> id, gift_code <span class="keyword">FROM</span> gift <span class="keyword">WHERE</span> deal_id = <span class="number">640</span> <span class="keyword">AND</span> remark=<span class="number">115127</span>; <span class="number">1</span> row <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.14</span> sec) </span><br><span class="line"></span><br><span class="line">MySQL&gt;<span class="keyword">SELECT</span> id, gift_code <span class="keyword">FROM</span> pool_gift WHEREdeal_id = <span class="number">640</span> <span class="keyword">AND</span> remark=‘<span class="number">115127</span>’; <span class="number">1</span> row <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.005</span> sec)</span><br><span class="line"></span><br><span class="line">字段定义为varchar，但传入的值是个int，就会导致全表扫描，要求程序端要做好类型检查</span><br></pre></td></tr></table></figure>
-<p>##SQL类规范</p>
-<ul>
+<h2 id="SQL类规范"><a href="#SQL类规范" class="headerlink" title="SQL类规范"></a>SQL类规范</h2><ul>
 <li>尽量不使用存储过程、触发器、函数等</li>
 <li>避免使用大表的JOIN，MySQL优化器对join优化策略过于简单</li>
 <li>避免在数据库中进行数学运算和其他大量计算任务</li>
@@ -569,7 +565,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本命名和约束规范"><span class="nav-number">1.</span> <span class="nav-text">基本命名和约束规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字段规范"><span class="nav-number">2.</span> <span class="nav-text">字段规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引规范"><span class="nav-number">3.</span> <span class="nav-text">索引规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL类规范"><span class="nav-number">4.</span> <span class="nav-text">SQL类规范</span></a></li></ol></div>
             
           </div>
         </section>

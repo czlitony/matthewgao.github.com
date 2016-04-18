@@ -88,7 +88,7 @@
 <meta property="og:url" content="http://matthewgao.github.io/http-notes/index.html">
 <meta property="og:site_name" content="Matthew Note">
 <meta property="og:description" content="HTTP笔记，Transfer-Encoding...">
-<meta property="og:updated_time" content="2015-09-07T09:41:19.000Z">
+<meta property="og:updated_time" content="2016-04-18T15:02:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTP Notes">
 <meta name="twitter:description" content="HTTP笔记，Transfer-Encoding...">
@@ -354,7 +354,7 @@
 <h2 id="GET-with-body-message"><a href="#GET-with-body-message" class="headerlink" title="GET with body message"></a>GET with body message</h2><p>通常来讲，GET方法的body是空的，但是这并不是一个强制标准，只是一个习惯的用法，有些语义下，一个带有Body的GET方法是符合情理的，但是可能所用的web框架不支持，甚至curl也不支持，所以要手写内容检查方法，比如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_body</span><span class="params">(req)</span>:</span></span><br><span class="line">    msg_body = req.json</span><br><span class="line">    <span class="keyword">for</span> itr <span class="keyword">in</span> msg_body:</span><br><span class="line">        <span class="keyword">if</span> check(itr) == <span class="keyword">False</span>:</span><br><span class="line">            abort(<span class="number">404</span>)</span><br><span class="line">    <span class="keyword">return</span> msg_body</span><br></pre></td></tr></table></figure>
 <p>这里要注意，GET with body 不能够留下任何状态，必须是等幂的，不然违背GET的原则</p>
-<p>##web.py<br>FastCGI/WSGI各个参数在web.ctx中的解释，我遇到的问题是关于homepath，如果在nginx的<code>location</code>中配置了<code>/api/hello</code>，而在webpy中配置了<code>(&quot;/api/hello&quot;,&quot;hello&quot;)</code>， 那么webpy中homepath会是<code>/api/home</code> 而path是<code>\</code>，这显然会匹配失败，正确的做法是<code>(&quot;&quot;,&quot;hello&quot;)</code></p>
+<h2 id="web-py"><a href="#web-py" class="headerlink" title="web.py"></a>web.py</h2><p>FastCGI/WSGI各个参数在web.ctx中的解释，我遇到的问题是关于homepath，如果在nginx的<code>location</code>中配置了<code>/api/hello</code>，而在webpy中配置了<code>(&quot;/api/hello&quot;,&quot;hello&quot;)</code>， 那么webpy中homepath会是<code>/api/home</code> 而path是<code>\</code>，这显然会匹配失败，正确的做法是<code>(&quot;&quot;,&quot;hello&quot;)</code></p>
 <ul>
 <li>environ a.k.a. env – a dictionary containing the standard WSGI environment variables</li>
 <li>home – the base path for the application, including any parts “consumed” by outer applications <a href="http://example.org/admin" target="_blank" rel="external">http://example.org/admin</a></li>
@@ -555,7 +555,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Transfer-Encoding"><span class="nav-number">1.</span> <span class="nav-text">Transfer-Encoding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GET-with-body-message"><span class="nav-number">2.</span> <span class="nav-text">GET with body message</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Transfer-Encoding"><span class="nav-number">1.</span> <span class="nav-text">Transfer-Encoding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GET-with-body-message"><span class="nav-number">2.</span> <span class="nav-text">GET with body message</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web-py"><span class="nav-number">3.</span> <span class="nav-text">web.py</span></a></li></ol></div>
             
           </div>
         </section>
