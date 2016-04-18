@@ -1800,9 +1800,9 @@ c.front()/back(); //返回的是元素的引用
       <category term="Misc" scheme="http://matthewgao.github.io/categories/Misc/"/>
     
     
-      <category term="python" scheme="http://matthewgao.github.io/tags/python/"/>
-    
       <category term="splunk" scheme="http://matthewgao.github.io/tags/splunk/"/>
+    
+      <category term="python" scheme="http://matthewgao.github.io/tags/python/"/>
     
       <category term="add-on" scheme="http://matthewgao.github.io/tags/add-on/"/>
     
