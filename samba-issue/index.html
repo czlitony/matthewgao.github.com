@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="MySQL," />
+  <meta name="keywords" content="Linux,Samba," />
 
 
 
@@ -82,16 +82,16 @@
 
 
 
-<meta name="description" content="MySQL 优化">
+<meta name="description" content="最近抛弃ubuntu改用Mate版本的Mint，但是在配置Samba的时候遇到了一个很诡异的问题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL Note">
-<meta property="og:url" content="http://matthewgao.github.io/mysql/index.html">
+<meta property="og:title" content="A Samba Issue">
+<meta property="og:url" content="http://matthewgao.github.io/samba-issue/index.html">
 <meta property="og:site_name" content="Matthew Note">
-<meta property="og:description" content="MySQL 优化">
-<meta property="og:updated_time" content="2016-04-18T15:03:32.000Z">
+<meta property="og:description" content="最近抛弃ubuntu改用Mate版本的Mint，但是在配置Samba的时候遇到了一个很诡异的问题">
+<meta property="og:updated_time" content="2016-04-22T13:26:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MySQL Note">
-<meta name="twitter:description" content="MySQL 优化">
+<meta name="twitter:title" content="A Samba Issue">
+<meta name="twitter:description" content="最近抛弃ubuntu改用Mate版本的Mint，但是在配置Samba的时候遇到了一个很诡异的问题">
 
 
 
@@ -109,7 +109,7 @@
   };
 </script>
 
-  <title> MySQL Note | Matthew Note </title>
+  <title> A Samba Issue | Matthew Note </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -259,7 +259,7 @@
             
             
               
-                MySQL Note
+                A Samba Issue
               
             
           </h1>
@@ -271,38 +271,19 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-11-20T17:50:08+08:00" content="2015-11-20">
-              2015-11-20
+            <time itemprop="dateCreated" datetime="2016-04-22T21:14:38+08:00" content="2016-04-22">
+              2016-04-22
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Database/" itemprop="url" rel="index">
-                    <span itemprop="name">Database</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/mysql/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="mysql/" itemprop="commentsCount"></span>
+                <a href="/samba-issue/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="samba-issue/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -325,50 +306,13 @@
       
 
       
-        <h2 id="基本命名和约束规范"><a href="#基本命名和约束规范" class="headerlink" title="基本命名和约束规范"></a>基本命名和约束规范</h2><ul>
-<li>表字符集选择UTF8 ，如果需要存储emoj表情，需要使用UTF8mb4(MySQL 5.5.3以后支持)</li>
-<li>存储引擎使用InnoDB</li>
-<li>变长字符串尽量使用varchar varbinary</li>
-<li>不在数据库中存储图片、文件等</li>
-<li>单表数据量控制在1亿以下</li>
-<li>库名、表名、字段名不使用保留字</li>
-<li>库名、表名、字段名、索引名使用小写字母，以下划线分割 ，需要见名知意</li>
-<li>库表名不要设计过长，尽可能用最少的字符表达出表的用途</li>
-</ul>
-<h2 id="字段规范"><a href="#字段规范" class="headerlink" title="字段规范"></a>字段规范</h2><ul>
-<li>所有字段均定义为NOT NULL ，除非你真的想存Null</li>
-<li>字段类型在满足需求条件下越小越好，使用UNSIGNED存储非负整数 ，实际使用时候存储负数场景不多</li>
-<li>使用TIMESTAMP存储时间</li>
-<li>使用varchar存储变长字符串 ，当然要注意varchar(M)里的M指的是字符数不是字节数；使用UNSIGNED INT存储IPv4 地址而不是CHAR(15) ，这种方式只能存储IPv4，存储不了IPv6</li>
-<li>使用DECIMAL存储精确浮点数，用float有的时候会有问题</li>
-<li>少用blob text</li>
-</ul>
-<p>关于为什么定义不使用Null的原因</p>
-<ul>
-<li>浪费存储空间，因为InnoDB需要有额外一个字节存储</li>
-<li>表内默认值Null过多会影响优化器选择执行计划</li>
-</ul>
-<h2 id="索引规范"><a href="#索引规范" class="headerlink" title="索引规范"></a>索引规范</h2><ul>
-<li>单个索引字段数不超过5，单表索引数量不超过5，索引设计遵循B+ Tree索引最左前缀匹配原则</li>
-<li>选择区分度高的列作为索引</li>
-<li>建立的索引能覆盖80%主要的查询，不求全，解决问题的主要矛盾</li>
-<li>DML和order by和group by字段要建立合适的索引</li>
-<li>避免索引的隐式转换</li>
-<li>避免冗余索引</li>
-<li>关于索引规范，一定要记住索引这个东西是一把双刃剑，在加速读的同时也引入了很多额外的写入和锁，降低写入能力，这也是为什么要控制索引数原因。之前看到过不少人给表里每个字段都建了索引，其实对查询可能起不到什么作用。</li>
-</ul>
-<p>冗余索引例子</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">idx_abc</span><span class="params">(a,b,c)</span></span> </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">idx_a</span><span class="params">(a)</span></span> 冗余 </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">idx_ab</span><span class="params">(a,b)</span></span> 冗余</span><br></pre></td></tr></table></figure>
-<p>隐式转换例子</p>
-<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">字段:remark varchar(<span class="number">50</span>) <span class="keyword">NOT</span> Null </span><br><span class="line"></span><br><span class="line">MySQL&gt;<span class="keyword">SELECT</span> id, gift_code <span class="keyword">FROM</span> gift <span class="keyword">WHERE</span> deal_id = <span class="number">640</span> <span class="keyword">AND</span> remark=<span class="number">115127</span>; <span class="number">1</span> row <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.14</span> sec) </span><br><span class="line"></span><br><span class="line">MySQL&gt;<span class="keyword">SELECT</span> id, gift_code <span class="keyword">FROM</span> pool_gift WHEREdeal_id = <span class="number">640</span> <span class="keyword">AND</span> remark=‘<span class="number">115127</span>’; <span class="number">1</span> row <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.005</span> sec)</span><br><span class="line"></span><br><span class="line">字段定义为varchar，但传入的值是个int，就会导致全表扫描，要求程序端要做好类型检查</span><br></pre></td></tr></table></figure>
-<h2 id="SQL类规范"><a href="#SQL类规范" class="headerlink" title="SQL类规范"></a>SQL类规范</h2><ul>
-<li>尽量不使用存储过程、触发器、函数等</li>
-<li>避免使用大表的JOIN，MySQL优化器对join优化策略过于简单</li>
-<li>避免在数据库中进行数学运算和其他大量计算任务</li>
-<li>SQL合并，主要是指的DML时候多个value合并，减少和数据库交互</li>
-<li>合理的分页，尤其大分页<br>UPDATE、DELETE语句不使用LIMIT ，容易造成主从不一致</li>
-</ul>
-
+        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在安装好Samba之后按照如下配置配置好</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[Public]</span><br><span class="line">    <span class="attr">path</span> = /home/myname</span><br><span class="line">    guest <span class="attr">ok</span> = yes</span><br><span class="line">    <span class="attr">writable</span> = yes</span><br><span class="line">    <span class="attr">browsable</span> = yes</span><br><span class="line">    read <span class="attr">only</span> = no</span><br></pre></td></tr></table></figure>
+<p>但是发现windows并不能访问，始终说没有权限，用其他linux系统可以正常访问</p>
+<h2 id="问题定位"><a href="#问题定位" class="headerlink" title="问题定位"></a>问题定位</h2><p>检查Log，发现多处backtrace</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">[<span class="name">2016/04/20</span> <span class="number">21</span>:52:16.574827,  <span class="number">0</span>] ../source3/lib/util.c:900(<span class="name">log_stack_trace</span>)</span><br><span class="line">  BACKTRACE: <span class="number">29</span> stack frames:</span><br><span class="line">   #<span class="number">0</span> /usr/lib/x86_64-linux-gnu/samba/libsmbregistry.so.0(<span class="name">log_stack_trace+0x1a</span>) [<span class="name">0x7f470509616a</span>]</span><br><span class="line">   #<span class="number">1</span> /usr/lib/x86_64-linux-gnu/samba/libsmbregistry.so.0(<span class="name">smb_panic_s3+0x20</span>) [<span class="name">0x7f4705096240</span>]</span><br><span class="line">   #<span class="number">2</span> /usr/lib/x86_64-linux-gnu/libsamba-util.so.0(<span class="name">smb_panic+0x2f</span>) [<span class="name">0x7f4705e0c8ef</span>]</span><br><span class="line">   #<span class="number">3</span> /usr/lib/x86_64-linux-gnu/libtalloc.so.2(<span class="name">+0x1b5f</span>) [<span class="name">0x7f4702b94b5f</span>]</span><br><span class="line">   #<span class="number">4</span> /usr/lib/x86_64-linux-gnu/libtalloc.so.2(<span class="name">_talloc_steal_loc+0xab</span>) [<span class="name">0x7f4702b9b77b</span>]</span><br><span class="line">   #<span class="number">5</span> /usr/lib/x86_64-linux-gnu/libtalloc.so.2(<span class="name">_talloc_move+0x13</span>) [<span class="name">0x7f4702b9b7b3</span>]</span><br><span class="line">   #<span class="number">6</span> /usr/lib/x86_64-linux-gnu/samba/libsmbd-base.so.0(<span class="name">+0x19c868</span>) [<span class="name">0x7f4705a60868</span>]</span><br><span class="line">   #<span class="number">7</span> /usr/lib/x86_64-linux-gnu/samba/libsmbd-base.so.0(<span class="name">get_share_mode_lock+0x17e</span>) [<span class="name">0x7f4705a6149e</span>]</span><br><span class="line">   #<span class="number">8</span> /usr/lib/x86_64-linux-gnu/samba/libsmbd-base.so.0(<span class="name">+0x107b8b</span>) [<span class="name">0x7f47059cbb8b</span>]</span><br><span class="line">   #<span class="number">9</span> /usr/lib/x86_64-linux-gnu/samba/libsmbd-base.so.0(<span class="name">+0x10c1bc</span>) [<span class="name">0x7f47059d01bc</span>]</span><br><span class="line">   #<span class="number">10</span> /usr/lib/x86_64-linux-gnu/samba/libsmbd-base.so.0(<span class="name">create_file_default+0x1cf</span>) [<span class="name">0x7f47059d164f</span>]</span><br><span class="line">   #<span class="number">11</span> /usr/lib/x86_64-linux-gnu/samba/libsmbd-base.so.0(<span class="name">+0x1dab6e</span>) [<span class="name">0x7f4705a9eb6e</span>]</span><br><span class="line">   #<span class="number">12</span> /usr/lib/x86_64-linux-gnu/samba/libsmbd-base.so.0(<span class="name">smb_vfs_call_create_file+0xd8</span>) [<span class="name">0x7f47059d7e78</span>]</span><br><span class="line">   #<span class="number">13</span> /usr/lib/x86_64-linux-gnu/samba/libsmbd-base.so.0(<span class="name">smbd_smb2_request_process_create+0xaff</span>) [<span class="name">0x7f4705a059ff</span>]</span><br><span class="line">   #<span class="number">14</span> /usr/lib/x86_64-linux-gnu/samba/libsmbd-base.so.0(<span class="name">smbd_smb2_request_dispatch+0xc4d</span>) [<span class="name">0x7f47059fe3ed</span>]</span><br><span class="line">   #<span class="number">15</span> /usr/lib/x86_64-linux-gnu/samba/libsmbd-base.so.0(<span class="name">+0x13b072</span>) [<span class="name">0x7f47059ff072</span>]</span><br><span class="line">   #<span class="number">16</span> /usr/lib/x86_64-linux-gnu/libsmbconf.so.0(<span class="name">run_events_poll+0x16c</span>) [<span class="name">0x7f4703d2ea8c</span>]</span><br><span class="line">   #<span class="number">17</span> /usr/lib/x86_64-linux-gnu/libsmbconf.so.0(<span class="name">+0x25ce0</span>) [<span class="name">0x7f4703d2ece0</span>]</span><br><span class="line">   #<span class="number">18</span> /usr/lib/x86_64-linux-gnu/libtevent.so.0(<span class="name">_tevent_loop_once+0x8d</span>) [<span class="name">0x7f4702988cbd</span>]</span><br><span class="line">   #<span class="number">19</span> /usr/lib/x86_64-linux-gnu/libtevent.so.0(<span class="name">tevent_common_loop_wait+0x1b</span>) [<span class="name">0x7f4702988e5b</span>]</span><br><span class="line">   #<span class="number">20</span> /usr/lib/x86_64-linux-gnu/samba/libsmbd-base.so.0(<span class="name">smbd_process+0x6c9</span>) [<span class="name">0x7f47059ed569</span>]</span><br><span class="line">   #<span class="number">21</span> smbd(<span class="name">+0x96b6</span>) [<span class="name">0x7f47064a66b6</span>]</span><br><span class="line">   #<span class="number">22</span> /usr/lib/x86_64-linux-gnu/libsmbconf.so.0(<span class="name">run_events_poll+0x16c</span>) [<span class="name">0x7f4703d2ea8c</span>]</span><br><span class="line">   #<span class="number">23</span> /usr/lib/x86_64-linux-gnu/libsmbconf.so.0(<span class="name">+0x25ce0</span>) [<span class="name">0x7f4703d2ece0</span>]</span><br><span class="line">   #<span class="number">24</span> /usr/lib/x86_64-linux-gnu/libtevent.so.0(<span class="name">_tevent_loop_once+0x8d</span>) [<span class="name">0x7f4702988cbd</span>]</span><br><span class="line">   #<span class="number">25</span> /usr/lib/x86_64-linux-gnu/libtevent.so.0(<span class="name">tevent_common_loop_wait+0x1b</span>) [<span class="name">0x7f4702988e5b</span>]</span><br><span class="line">   #<span class="number">26</span> smbd(<span class="name">main+0x15b4</span>) [<span class="name">0x7f47064a46c4</span>]</span><br><span class="line">   #<span class="number">27</span> /lib/x86_64-linux-gnu/libc.so.6(<span class="name">__libc_start_main+0xf5</span>) [<span class="name">0x7f47025e1ec5</span>]</span><br><span class="line">   #<span class="number">28</span> smbd(<span class="name">+0x7a96</span>) [<span class="name">0x7f47064a4a96</span>]</span><br></pre></td></tr></table></figure>
+<p>原来是他所依赖的库有兼容性问题，所以更新相关的库</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="built_in">get</span> install -y libsmbclient libsmbclient-<span class="built_in">dev</span> libtevent0 libtalloc2</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -388,7 +332,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/MySQL/" rel="tag">#MySQL</a>
+            <a href="/tags/Linux/" rel="tag">#Linux</a>
+          
+            <a href="/tags/Samba/" rel="tag">#Samba</a>
           
         </div>
       
@@ -397,17 +343,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014-9-2-shell-note/" rel="next" title="SHELL Command/Script Notes">
-                <i class="fa fa-chevron-left"></i> SHELL Command/Script Notes
+              <a href="/2014-9-2-linux-command-note/" rel="next" title="Linux Command Notes">
+                <i class="fa fa-chevron-left"></i> Linux Command Notes
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/nodejs-promise-issue/" rel="prev" title="A NodeJS Issue">
-                A NodeJS Issue <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -456,8 +398,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="mysql/"
-           data-title="MySQL Note" data-url="http://matthewgao.github.io/mysql/">
+      <div class="ds-thread" data-thread-key="samba-issue/"
+           data-title="A Samba Issue" data-url="http://matthewgao.github.io/samba-issue/">
       </div>
     
   </div>
@@ -555,7 +497,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本命名和约束规范"><span class="nav-number">1.</span> <span class="nav-text">基本命名和约束规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字段规范"><span class="nav-number">2.</span> <span class="nav-text">字段规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引规范"><span class="nav-number">3.</span> <span class="nav-text">索引规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL类规范"><span class="nav-number">4.</span> <span class="nav-text">SQL类规范</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题定位"><span class="nav-number">2.</span> <span class="nav-text">问题定位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决"><span class="nav-number">3.</span> <span class="nav-text">解决</span></a></li></ol></div>
             
           </div>
         </section>
