@@ -644,9 +644,10 @@
     <link href="http://matthewgao.github.io/2014-9-2-linux-command-note/"/>
     <id>http://matthewgao.github.io/2014-9-2-linux-command-note/</id>
     <published>2015-12-16T07:09:55.476Z</published>
-    <updated>2016-04-17T15:36:52.000Z</updated>
+    <updated>2016-05-05T10:02:47.166Z</updated>
     
-    <content type="html">&lt;h2 id=&quot;mount&quot;&gt;&lt;a href=&quot;#mount&quot; class=&quot;headerlink&quot; title=&quot;mount&quot;&gt;&lt;/a&gt;mount&lt;/h2&gt;&lt;h3 id=&quot;mount-a-dir&quot;&gt;&lt;a href=&quot;#mount-a-dir&quot; class=&quot;headerlink&quot; title=&quot;mount a dir&quot;&gt;&lt;/a&gt;mount a dir&lt;/h3&gt;&lt;ul&gt;
+    <content type="html">&lt;h2 id=&quot;stat&quot;&gt;&lt;a href=&quot;#stat&quot; class=&quot;headerlink&quot; title=&quot;stat&quot;&gt;&lt;/a&gt;stat&lt;/h2&gt;&lt;p&gt;可以用stat命令，查看某个文件的inode信息&lt;/p&gt;
+&lt;h2 id=&quot;mount&quot;&gt;&lt;a href=&quot;#mount&quot; class=&quot;headerlink&quot; title=&quot;mount&quot;&gt;&lt;/a&gt;mount&lt;/h2&gt;&lt;h3 id=&quot;mount-a-dir&quot;&gt;&lt;a href=&quot;#mount-a-dir&quot; class=&quot;headerlink&quot; title=&quot;mount a dir&quot;&gt;&lt;/a&gt;mount a dir&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;-t 指定文件系统类型，通常可以不指定，除了一些特殊的比如, smbfs, tmpfs, proc, sysfs等等&lt;/li&gt;
 &lt;li&gt;-bind 通常来讲mount是mount一个设备到文件目录，但是同样可以使用bind来mount一个目录到另一个目录&lt;/li&gt;
 &lt;li&gt;-o 代表 option，&lt;figure class=&quot;highlight fortran&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;mount -o &lt;span class=&quot;keyword&quot;&gt;bind&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;mount -&lt;span class=&quot;keyword&quot;&gt;bind&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -905,9 +906,9 @@
     
       <category term="shell" scheme="http://matthewgao.github.io/tags/shell/"/>
     
-      <category term="command" scheme="http://matthewgao.github.io/tags/command/"/>
-    
       <category term="linux" scheme="http://matthewgao.github.io/tags/linux/"/>
+    
+      <category term="command" scheme="http://matthewgao.github.io/tags/command/"/>
     
   </entry>
   
@@ -916,7 +917,7 @@
     <link href="http://matthewgao.github.io/2014-9-12-cpp-note/"/>
     <id>http://matthewgao.github.io/2014-9-12-cpp-note/</id>
     <published>2015-12-16T07:09:55.456Z</published>
-    <updated>2016-05-05T08:46:11.037Z</updated>
+    <updated>2016-05-05T10:02:36.885Z</updated>
     
     <content type="html">&lt;h2 id=&quot;双重指针&quot;&gt;&lt;a href=&quot;#双重指针&quot; class=&quot;headerlink&quot; title=&quot;双重指针&quot;&gt;&lt;/a&gt;双重指针&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;#include &amp;lt;stdio.h&amp;gt;
 
@@ -1485,9 +1486,9 @@ c.front()/back(); //返回的是元素的引用
     
       <category term="shell" scheme="http://matthewgao.github.io/tags/shell/"/>
     
-      <category term="vim" scheme="http://matthewgao.github.io/tags/vim/"/>
-    
       <category term="linux" scheme="http://matthewgao.github.io/tags/linux/"/>
+    
+      <category term="vim" scheme="http://matthewgao.github.io/tags/vim/"/>
     
   </entry>
   
@@ -1655,9 +1656,9 @@ c.front()/back(); //返回的是元素的引用
       <category term="Linux" scheme="http://matthewgao.github.io/categories/Linux/"/>
     
     
-      <category term="vim" scheme="http://matthewgao.github.io/tags/vim/"/>
-    
       <category term="command" scheme="http://matthewgao.github.io/tags/command/"/>
+    
+      <category term="vim" scheme="http://matthewgao.github.io/tags/vim/"/>
     
   </entry>
   
