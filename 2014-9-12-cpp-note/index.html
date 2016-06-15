@@ -88,7 +88,7 @@
 <meta property="og:url" content="http://matthewgao.github.io/2014-9-12-cpp-note/index.html">
 <meta property="og:site_name" content="Matthew Note">
 <meta property="og:description" content="记录下C\C++开发过程中不断学到的新东西:C++11, STL, Boost, 多线程">
-<meta property="og:updated_time" content="2016-06-06T09:09:24.038Z">
+<meta property="og:updated_time" content="2016-06-06T09:09:56.020Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C\C++ Notes">
 <meta name="twitter:description" content="记录下C\C++开发过程中不断学到的新东西:C++11, STL, Boost, 多线程">
@@ -690,8 +690,8 @@ c.front()/back(); //返回的是元素的引用
 </ul>
 <h2 id="extern-“C”"><a href="#extern-“C”" class="headerlink" title="extern “C”"></a>extern “C”</h2><p>理论上我们在写C++程序的时候调用C标准库都需要告诉编译器这些C标准库的函数需要<code>extern C</code>，但是实际上标准库都为我们做好了</p>
 <figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span>&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//declare.</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<h2 id="ranged-for"><a href="#ranged-for" class="headerlink" title="ranged-for"></a>ranged-for</h2><p>下面两者等同<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RecordMap&lt;T&gt; replica_map;</span><br><span class="line"><span class="keyword">for</span>(auto&amp; itr : replica_map)&#123;&#125;</span><br><span class="line"><span class="keyword">for</span>(typename RecordMap&lt;T&gt;<span class="symbol">:</span><span class="symbol">:iterator</span><span class="symbol">:</span><span class="symbol">:value_type&amp;</span> itr : replica_map)&#123;&#125;</span><br></pre></td></tr></table></figure></p>
-
+<h2 id="ranged-for"><a href="#ranged-for" class="headerlink" title="ranged-for"></a>ranged-for</h2><p>下面两者等同</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RecordMap&lt;T&gt; replica_map;</span><br><span class="line"><span class="keyword">for</span>(auto&amp; itr : replica_map)&#123;&#125;</span><br><span class="line"><span class="keyword">for</span>(typename RecordMap&lt;T&gt;<span class="symbol">:</span><span class="symbol">:iterator</span><span class="symbol">:</span><span class="symbol">:value_type&amp;</span> itr : replica_map)&#123;&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     

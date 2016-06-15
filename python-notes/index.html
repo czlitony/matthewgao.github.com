@@ -88,7 +88,7 @@
 <meta property="og:url" content="http://matthewgao.github.io/python-notes/index.html">
 <meta property="og:site_name" content="Matthew Note">
 <meta property="og:description" content="Python 相关笔记">
-<meta property="og:updated_time" content="2016-05-20T09:10:22.484Z">
+<meta property="og:updated_time" content="2016-06-07T08:21:48.392Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python Notes">
 <meta name="twitter:description" content="Python 相关笔记">
@@ -496,7 +496,8 @@
 <li>Python 2 will automatically decode the byte string to produce a second unicode string, then will complete the operation with the two unicode strings.</li>
 <li>So “str” in Python 2 is now called “bytes,” and “unicode” in Python 2 is now called “str”. This makes more sense than the Python 2 names, since Unicode is how you want all text stored, and byte strings are only for when you are dealing with bytes.<br>[Pragmatic Unicode][<a href="http://nedbatchelder.com/text/unipain.html" target="_blank" rel="external">http://nedbatchelder.com/text/unipain.html</a>]</li>
 </ul>
-<h2 id="元类"><a href="#元类" class="headerlink" title="元类"></a>元类</h2><h2 id="TIP"><a href="#TIP" class="headerlink" title="TIP"></a>TIP</h2><h3 id="in"><a href="#in" class="headerlink" title="in"></a>in</h3><p><code>if elem in alist</code> 用来检查元素是否在列表里，但是注意这里的elem必须是一个元素，不能是alist列表中的一个子集，他是不能够检查子集的。</p>
+<h2 id="元类"><a href="#元类" class="headerlink" title="元类"></a>元类</h2><p>type是所有类的元类(<strong>metaclass</strong>)</p>
+<h2 id="TIP"><a href="#TIP" class="headerlink" title="TIP"></a>TIP</h2><h3 id="in"><a href="#in" class="headerlink" title="in"></a>in</h3><p><code>if elem in alist</code> 用来检查元素是否在列表里，但是注意这里的elem必须是一个元素，不能是alist列表中的一个子集，他是不能够检查子集的。</p>
 <h3 id="yeild"><a href="#yeild" class="headerlink" title="yeild"></a>yeild</h3><p>generator可以包含一个return语句，但是他会导致generator不再能返回任何结果，而且return不能有返回值，<code>return 5</code>会报一个syntax error</p>
 <h3 id="占位符"><a href="#占位符" class="headerlink" title="_ 占位符"></a>_ 占位符</h3><p>可以像Haskell一样有个占位符<code>_</code> 来表示不关心的内容</p>
 <h2 id="Flask"><a href="#Flask" class="headerlink" title="Flask"></a>Flask</h2><h3 id="获得message-body"><a href="#获得message-body" class="headerlink" title="获得message body"></a>获得message body</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">request<span class="selector-class">.form</span></span><br><span class="line">request<span class="selector-class">.json</span></span><br><span class="line">request.headers</span><br></pre></td></tr></table></figure>

@@ -160,7 +160,7 @@
     <link href="http://matthewgao.github.io/python-notes/"/>
     <id>http://matthewgao.github.io/python-notes/</id>
     <published>2015-12-16T07:09:55.586Z</published>
-    <updated>2016-05-20T09:10:22.484Z</updated>
+    <updated>2016-06-07T08:21:48.392Z</updated>
     
     <content type="html">&lt;h2 id=&quot;Pypi镜像&quot;&gt;&lt;a href=&quot;#Pypi镜像&quot; class=&quot;headerlink&quot; title=&quot;Pypi镜像&quot;&gt;&lt;/a&gt;Pypi镜像&lt;/h2&gt;&lt;p&gt;解决国内访问pypi速度慢的问题，注意要加上&lt;code&gt;--trusted-host pypi.mirrors.ustc.edu.cn&lt;/code&gt; 因为有些不提供安全连接，或者证书不可信&lt;/p&gt;
 &lt;figure class=&quot;highlight dts&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;http:&lt;/span&gt;&lt;span class=&quot;comment&quot;&gt;//pypi.douban.com/simple  豆瓣&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;http:&lt;/span&gt;&lt;span class=&quot;comment&quot;&gt;//pypi.hustunique.com/simple  华中理工大学&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;http:&lt;/span&gt;&lt;span class=&quot;comment&quot;&gt;//pypi.sdutlinux.org/simple 山东理工大学&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;http:&lt;/span&gt;&lt;span class=&quot;comment&quot;&gt;//pypi.mirrors.ustc.edu.cn/simple 中国科学技术大学&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -333,7 +333,8 @@
 &lt;li&gt;Python 2 will automatically decode the byte string to produce a second unicode string, then will complete the operation with the two unicode strings.&lt;/li&gt;
 &lt;li&gt;So “str” in Python 2 is now called “bytes,” and “unicode” in Python 2 is now called “str”. This makes more sense than the Python 2 names, since Unicode is how you want all text stored, and byte strings are only for when you are dealing with bytes.&lt;br&gt;[Pragmatic Unicode][&lt;a href=&quot;http://nedbatchelder.com/text/unipain.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://nedbatchelder.com/text/unipain.html&lt;/a&gt;]&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;元类&quot;&gt;&lt;a href=&quot;#元类&quot; class=&quot;headerlink&quot; title=&quot;元类&quot;&gt;&lt;/a&gt;元类&lt;/h2&gt;&lt;h2 id=&quot;TIP&quot;&gt;&lt;a href=&quot;#TIP&quot; class=&quot;headerlink&quot; title=&quot;TIP&quot;&gt;&lt;/a&gt;TIP&lt;/h2&gt;&lt;h3 id=&quot;in&quot;&gt;&lt;a href=&quot;#in&quot; class=&quot;headerlink&quot; title=&quot;in&quot;&gt;&lt;/a&gt;in&lt;/h3&gt;&lt;p&gt;&lt;code&gt;if elem in alist&lt;/code&gt; 用来检查元素是否在列表里，但是注意这里的elem必须是一个元素，不能是alist列表中的一个子集，他是不能够检查子集的。&lt;/p&gt;
+&lt;h2 id=&quot;元类&quot;&gt;&lt;a href=&quot;#元类&quot; class=&quot;headerlink&quot; title=&quot;元类&quot;&gt;&lt;/a&gt;元类&lt;/h2&gt;&lt;p&gt;type是所有类的元类(&lt;strong&gt;metaclass&lt;/strong&gt;)&lt;/p&gt;
+&lt;h2 id=&quot;TIP&quot;&gt;&lt;a href=&quot;#TIP&quot; class=&quot;headerlink&quot; title=&quot;TIP&quot;&gt;&lt;/a&gt;TIP&lt;/h2&gt;&lt;h3 id=&quot;in&quot;&gt;&lt;a href=&quot;#in&quot; class=&quot;headerlink&quot; title=&quot;in&quot;&gt;&lt;/a&gt;in&lt;/h3&gt;&lt;p&gt;&lt;code&gt;if elem in alist&lt;/code&gt; 用来检查元素是否在列表里，但是注意这里的elem必须是一个元素，不能是alist列表中的一个子集，他是不能够检查子集的。&lt;/p&gt;
 &lt;h3 id=&quot;yeild&quot;&gt;&lt;a href=&quot;#yeild&quot; class=&quot;headerlink&quot; title=&quot;yeild&quot;&gt;&lt;/a&gt;yeild&lt;/h3&gt;&lt;p&gt;generator可以包含一个return语句，但是他会导致generator不再能返回任何结果，而且return不能有返回值，&lt;code&gt;return 5&lt;/code&gt;会报一个syntax error&lt;/p&gt;
 &lt;h3 id=&quot;占位符&quot;&gt;&lt;a href=&quot;#占位符&quot; class=&quot;headerlink&quot; title=&quot;_ 占位符&quot;&gt;&lt;/a&gt;_ 占位符&lt;/h3&gt;&lt;p&gt;可以像Haskell一样有个占位符&lt;code&gt;_&lt;/code&gt; 来表示不关心的内容&lt;/p&gt;
 &lt;h2 id=&quot;Flask&quot;&gt;&lt;a href=&quot;#Flask&quot; class=&quot;headerlink&quot; title=&quot;Flask&quot;&gt;&lt;/a&gt;Flask&lt;/h2&gt;&lt;h3 id=&quot;获得message-body&quot;&gt;&lt;a href=&quot;#获得message-body&quot; class=&quot;headerlink&quot; title=&quot;获得message body&quot;&gt;&lt;/a&gt;获得message body&lt;/h3&gt;&lt;figure class=&quot;highlight stylus&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;request&lt;span class=&quot;selector-class&quot;&gt;.form&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;request&lt;span class=&quot;selector-class&quot;&gt;.json&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;request.headers&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -647,7 +648,7 @@
     <link href="http://matthewgao.github.io/2014-9-2-linux-command-note/"/>
     <id>http://matthewgao.github.io/2014-9-2-linux-command-note/</id>
     <published>2015-12-16T07:09:55.476Z</published>
-    <updated>2016-06-06T05:51:51.851Z</updated>
+    <updated>2016-06-15T02:17:53.874Z</updated>
     
     <content type="html">&lt;h2 id=&quot;stat&quot;&gt;&lt;a href=&quot;#stat&quot; class=&quot;headerlink&quot; title=&quot;stat&quot;&gt;&lt;/a&gt;stat&lt;/h2&gt;&lt;p&gt;可以用stat命令，查看某个文件的inode信息&lt;/p&gt;
 &lt;h2 id=&quot;mount&quot;&gt;&lt;a href=&quot;#mount&quot; class=&quot;headerlink&quot; title=&quot;mount&quot;&gt;&lt;/a&gt;mount&lt;/h2&gt;&lt;h3 id=&quot;mount-a-dir&quot;&gt;&lt;a href=&quot;#mount-a-dir&quot; class=&quot;headerlink&quot; title=&quot;mount a dir&quot;&gt;&lt;/a&gt;mount a dir&lt;/h3&gt;&lt;ul&gt;
@@ -897,7 +898,11 @@
 &lt;/ul&gt;
 &lt;h2 id=&quot;Process-PID-PPID-SID-PGID&quot;&gt;&lt;a href=&quot;#Process-PID-PPID-SID-PGID&quot; class=&quot;headerlink&quot; title=&quot;Process PID PPID SID PGID&quot;&gt;&lt;/a&gt;Process PID PPID SID PGID&lt;/h2&gt;&lt;p&gt;查看这些可以用&lt;code&gt;ps -ao pid,ppid,sid,pgid,comm&lt;/code&gt;, PGID是父进程的PID号，但是父进程的结束并不影响PGID, 组中的所有进程还是沿用同一个PGID，程序中可以对一个进程组来群发信号，SID会有些不同，同一个shell下运行的程序都同属于一个Session，这个Session Leader挂了会导致所有session中的程序退出，所以根据这个我们可以再程序中使用setsid来新建一个新的session，这样程序就不会因为session leader的退出而退出，这也是daemon的基本原理&lt;/p&gt;
 &lt;h2 id=&quot;gsettings&quot;&gt;&lt;a href=&quot;#gsettings&quot; class=&quot;headerlink&quot; title=&quot;gsettings&quot;&gt;&lt;/a&gt;gsettings&lt;/h2&gt;&lt;p&gt;GSettings configuration tool&lt;/p&gt;
-&lt;figure class=&quot;highlight stylus&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;gsettings list-schema&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;gsettings set org&lt;span class=&quot;selector-class&quot;&gt;.mate&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.session&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.required-components&lt;/span&gt; windowmanager marco&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+&lt;figure class=&quot;highlight stylus&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;gsettings list-schema&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;gsettings set org&lt;span class=&quot;selector-class&quot;&gt;.mate&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.session&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.required-components&lt;/span&gt; windowmanager marco&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;readlink&quot;&gt;&lt;a href=&quot;#readlink&quot; class=&quot;headerlink&quot; title=&quot;readlink&quot;&gt;&lt;/a&gt;readlink&lt;/h2&gt;&lt;p&gt;获取符号链接&lt;/p&gt;
+&lt;figure class=&quot;highlight tcl&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;readlink /&lt;span class=&quot;keyword&quot;&gt;proc&lt;/span&gt;/$&amp;#123;&lt;span class=&quot;keyword&quot;&gt;pid&lt;/span&gt;&amp;#125;/exe&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;su-and-su&quot;&gt;&lt;a href=&quot;#su-and-su&quot; class=&quot;headerlink&quot; title=&quot;su and su -&quot;&gt;&lt;/a&gt;&lt;code&gt;su&lt;/code&gt; and &lt;code&gt;su -&lt;/code&gt;&lt;/h2&gt;&lt;p&gt;进入超级用户模式。也就是输入&lt;code&gt;su -&lt;/code&gt;,系统会让你输入超级用户密码，输入密码后就进入了超级用户模式。（当然，你也可以直接用root用）&lt;br&gt;(注意有- ，这和&lt;code&gt;su&lt;/code&gt;是不同的，在用命令&lt;code&gt;su&lt;/code&gt;的时候只是切换到root，但没有把root的环境变量传过去，还是当前用户的环境变量，用&lt;code&gt;su -&lt;/code&gt;命令将环境变量也一起带过去，就象和root登录一样)&lt;/p&gt;
+</content>
     
     <summary type="html">
     
@@ -908,11 +913,11 @@
       <category term="Linux" scheme="http://matthewgao.github.io/categories/Linux/"/>
     
     
-      <category term="linux" scheme="http://matthewgao.github.io/tags/linux/"/>
-    
       <category term="command" scheme="http://matthewgao.github.io/tags/command/"/>
     
       <category term="shell" scheme="http://matthewgao.github.io/tags/shell/"/>
+    
+      <category term="linux" scheme="http://matthewgao.github.io/tags/linux/"/>
     
   </entry>
   
@@ -921,7 +926,7 @@
     <link href="http://matthewgao.github.io/2014-9-12-cpp-note/"/>
     <id>http://matthewgao.github.io/2014-9-12-cpp-note/</id>
     <published>2015-12-16T07:09:55.456Z</published>
-    <updated>2016-06-06T09:09:24.038Z</updated>
+    <updated>2016-06-06T09:09:56.020Z</updated>
     
     <content type="html">&lt;h2 id=&quot;双重指针&quot;&gt;&lt;a href=&quot;#双重指针&quot; class=&quot;headerlink&quot; title=&quot;双重指针&quot;&gt;&lt;/a&gt;双重指针&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;#include &amp;lt;stdio.h&amp;gt;
 
@@ -1288,8 +1293,8 @@ c.front()/back(); //返回的是元素的引用
 &lt;/ul&gt;
 &lt;h2 id=&quot;extern-“C”&quot;&gt;&lt;a href=&quot;#extern-“C”&quot; class=&quot;headerlink&quot; title=&quot;extern “C”&quot;&gt;&lt;/a&gt;extern “C”&lt;/h2&gt;&lt;p&gt;理论上我们在写C++程序的时候调用C标准库都需要告诉编译器这些C标准库的函数需要&lt;code&gt;extern C&lt;/code&gt;，但是实际上标准库都为我们做好了&lt;/p&gt;
 &lt;figure class=&quot;highlight arduino&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;ifdef&lt;/span&gt; __cplusplus&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;extern&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;C&quot;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;endif&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//declare.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;ifdef&lt;/span&gt; __cplusplus&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;endif&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;ranged-for&quot;&gt;&lt;a href=&quot;#ranged-for&quot; class=&quot;headerlink&quot; title=&quot;ranged-for&quot;&gt;&lt;/a&gt;ranged-for&lt;/h2&gt;&lt;p&gt;下面两者等同&lt;br&gt;&lt;figure class=&quot;highlight elixir&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;RecordMap&amp;lt;T&amp;gt; replica_map;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(auto&amp;amp; itr : replica_map)&amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(typename RecordMap&amp;lt;T&amp;gt;&lt;span class=&quot;symbol&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;symbol&quot;&gt;:iterator&lt;/span&gt;&lt;span class=&quot;symbol&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;symbol&quot;&gt;:value_type&amp;amp;&lt;/span&gt; itr : replica_map)&amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-</content>
+&lt;h2 id=&quot;ranged-for&quot;&gt;&lt;a href=&quot;#ranged-for&quot; class=&quot;headerlink&quot; title=&quot;ranged-for&quot;&gt;&lt;/a&gt;ranged-for&lt;/h2&gt;&lt;p&gt;下面两者等同&lt;/p&gt;
+&lt;figure class=&quot;highlight elixir&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;RecordMap&amp;lt;T&amp;gt; replica_map;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(auto&amp;amp; itr : replica_map)&amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(typename RecordMap&amp;lt;T&amp;gt;&lt;span class=&quot;symbol&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;symbol&quot;&gt;:iterator&lt;/span&gt;&lt;span class=&quot;symbol&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;symbol&quot;&gt;:value_type&amp;amp;&lt;/span&gt; itr : replica_map)&amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
     
     <summary type="html">
     
@@ -1496,11 +1501,11 @@ c.front()/back(); //返回的是元素的引用
       <category term="OSX" scheme="http://matthewgao.github.io/categories/OSX/"/>
     
     
-      <category term="linux" scheme="http://matthewgao.github.io/tags/linux/"/>
+      <category term="vim" scheme="http://matthewgao.github.io/tags/vim/"/>
     
       <category term="shell" scheme="http://matthewgao.github.io/tags/shell/"/>
     
-      <category term="vim" scheme="http://matthewgao.github.io/tags/vim/"/>
+      <category term="linux" scheme="http://matthewgao.github.io/tags/linux/"/>
     
   </entry>
   
@@ -1668,9 +1673,9 @@ c.front()/back(); //返回的是元素的引用
       <category term="Linux" scheme="http://matthewgao.github.io/categories/Linux/"/>
     
     
-      <category term="command" scheme="http://matthewgao.github.io/tags/command/"/>
-    
       <category term="vim" scheme="http://matthewgao.github.io/tags/vim/"/>
+    
+      <category term="command" scheme="http://matthewgao.github.io/tags/command/"/>
     
   </entry>
   
