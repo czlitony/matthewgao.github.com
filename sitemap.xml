@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://matthewgao.github.io/gdb/</loc>
+    
+    <lastmod>2016-06-15T10:47:57.453Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://matthewgao.github.io/2014-9-2-linux-command-note/</loc>
     
     <lastmod>2016-06-15T02:17:53.874Z</lastmod>

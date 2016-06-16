@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://matthewgao.github.io/"/>
-  <updated>2016-04-22T13:26:05.000Z</updated>
+  <updated>2016-06-15T10:47:57.453Z</updated>
   <id>http://matthewgao.github.io/</id>
   
   <author>
@@ -14,6 +14,55 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>GDB Notes</title>
+    <link href="http://matthewgao.github.io/gdb/"/>
+    <id>http://matthewgao.github.io/gdb/</id>
+    <published>2016-06-15T09:08:14.023Z</published>
+    <updated>2016-06-15T10:47:57.453Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;print-f-expr&quot;&gt;&lt;a href=&quot;#print-f-expr&quot; class=&quot;headerlink&quot; title=&quot;print /f expr&quot;&gt;&lt;/a&gt;&lt;code&gt;print /f expr&lt;/code&gt;&lt;/h3&gt;&lt;p&gt;expr is an expression (in the source language). By default the value of expr is printed in a format appropriate to its data type; you can choose a different format by specifying ‘/f’, where f is a letter specifying the format.&lt;/p&gt;
+&lt;h3 id=&quot;explore-arg&quot;&gt;&lt;a href=&quot;#explore-arg&quot; class=&quot;headerlink&quot; title=&quot;explore arg&quot;&gt;&lt;/a&gt;&lt;code&gt;explore arg&lt;/code&gt;&lt;/h3&gt;&lt;p&gt;Another way of examining values of expressions and type information is through the Python extension command explore (available only if the gdb build is configured with –with-python). It offers an interactive way to start at the highest level (or, the most abstract level) of the data type of an expression (or, the data type itself) and explore all the way down to leaf scalar values/fields embedded in the higher level data types.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;arg is either an expression (in the source language), or a type visible in the current context of the program being debugged.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In general, at any stage of exploration, you can go deeper towards the leaf values by responding to the prompts appropriately, or hit the return key to return to the enclosing data structure (the higher level data structure).&lt;/p&gt;
+&lt;p&gt;Similar to exploring values, you can use the explore command to explore types. Instead of specifying a value (which is typically a variable name or an expression valid in the current context of the program being debugged), you specify a type name. If you consider the same example as above, your can explore the type struct ComplexStruct by passing the argument struct ComplexStruct to the explore command.&lt;/p&gt;
+&lt;figure class=&quot;highlight crystal&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;(gdb) explore &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;ComplexStruct&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;By responding to the prompts appropriately in the subsequent interactive session, you can explore the type struct ComplexStruct in a manner similar to how the value cs was explored in the above example.&lt;/p&gt;
+&lt;p&gt;The explore command also has two sub-commands, explore value and explore type. The former sub-command is a way to explicitly specify that value exploration of the argument is being invoked, while the latter is a way to explicitly specify that type exploration of the argument is being invoked.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;explore value expr&lt;/code&gt;&lt;br&gt;This sub-command of explore explores the value of the expression expr (if expr is an expression valid in the current context of the program being debugged). The behavior of this command is identical to that of the behavior of the explore command being passed the argument expr.&lt;br&gt;&lt;code&gt;explore type arg&lt;/code&gt;&lt;br&gt;This sub-command of explore explores the type of arg (if arg is a type visible in the current context of program being debugged), or the type of the value/expression arg (if arg is an expression valid in the current context of the program being debugged). If arg is a type, then the behavior of this command is identical to that of the explore command being passed the argument arg. If arg is an expression, then the behavior of this command will be identical to that of the explore command being passed the type of arg as the argument.&lt;/p&gt;
+&lt;h3 id=&quot;Examining-Memory&quot;&gt;&lt;a href=&quot;#Examining-Memory&quot; class=&quot;headerlink&quot; title=&quot;Examining Memory&quot;&gt;&lt;/a&gt;Examining Memory&lt;/h3&gt;&lt;p&gt;You can use the command x (for “examine”) to examine memory in any of several formats, independently of your program’s data types.&lt;br&gt;&lt;code&gt;x/nfu addr&lt;/code&gt;&lt;br&gt;&lt;code&gt;x addr&lt;/code&gt;&lt;br&gt;&lt;code&gt;x&lt;/code&gt;&lt;br&gt;Use the x command to examine memory.&lt;br&gt;n, f, and u are all optional parameters that specify how much memory to display and how to format it; addr is an expression giving the address where you want to start displaying memory. If you use defaults for nfu, you need not type the slash ‘/’. Several commands set convenient defaults for addr.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;n, the repeat count&lt;br&gt;The repeat count is a decimal integer; the default is 1. It specifies how much memory (counting by units u) to display. If a negative number is specified, memory is examined backward from addr. &lt;/li&gt;
+&lt;li&gt;f, the display format&lt;br&gt;The display format is one of the formats used by print (‘x’, ‘d’, ‘u’, ‘o’, ‘t’, ‘a’, ‘c’, ‘f’, ‘s’), and in addition ‘i’ (for machine instructions). The default is ‘x’ (hexadecimal) initially. The default changes each time you use either x or print. &lt;/li&gt;
+&lt;li&gt;u: the unit size The unit size is any of&lt;ul&gt;
+&lt;li&gt;b Bytes. &lt;/li&gt;
+&lt;li&gt;h Halfwords (two bytes). &lt;/li&gt;
+&lt;li&gt;w Words (four bytes). This is the initial default. &lt;/li&gt;
+&lt;li&gt;g Giant words (eight bytes).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The default for addr is usually just after the last address examined—but several other commands also set the default address: info breakpoints (to the address of the last breakpoint listed), info line (to the starting address of a line), and print (if you use it to display a value from memory).&lt;/p&gt;
+&lt;h2 id=&quot;Tip&quot;&gt;&lt;a href=&quot;#Tip&quot; class=&quot;headerlink&quot; title=&quot;Tip&quot;&gt;&lt;/a&gt;Tip&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Support pretty-print(python)&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      GDB 相关笔记
+    
+    </summary>
+    
+      <category term="GDB" scheme="http://matthewgao.github.io/categories/GDB/"/>
+    
+    
+      <category term="gdb" scheme="http://matthewgao.github.io/tags/gdb/"/>
+    
+  </entry>
   
   <entry>
     <title>A Samba Issue</title>
@@ -913,11 +962,11 @@
       <category term="Linux" scheme="http://matthewgao.github.io/categories/Linux/"/>
     
     
+      <category term="linux" scheme="http://matthewgao.github.io/tags/linux/"/>
+    
       <category term="command" scheme="http://matthewgao.github.io/tags/command/"/>
     
       <category term="shell" scheme="http://matthewgao.github.io/tags/shell/"/>
-    
-      <category term="linux" scheme="http://matthewgao.github.io/tags/linux/"/>
     
   </entry>
   
@@ -1501,11 +1550,11 @@ c.front()/back(); //返回的是元素的引用
       <category term="OSX" scheme="http://matthewgao.github.io/categories/OSX/"/>
     
     
-      <category term="vim" scheme="http://matthewgao.github.io/tags/vim/"/>
+      <category term="linux" scheme="http://matthewgao.github.io/tags/linux/"/>
     
       <category term="shell" scheme="http://matthewgao.github.io/tags/shell/"/>
     
-      <category term="linux" scheme="http://matthewgao.github.io/tags/linux/"/>
+      <category term="vim" scheme="http://matthewgao.github.io/tags/vim/"/>
     
   </entry>
   
@@ -1673,9 +1722,9 @@ c.front()/back(); //返回的是元素的引用
       <category term="Linux" scheme="http://matthewgao.github.io/categories/Linux/"/>
     
     
-      <category term="vim" scheme="http://matthewgao.github.io/tags/vim/"/>
-    
       <category term="command" scheme="http://matthewgao.github.io/tags/command/"/>
+    
+      <category term="vim" scheme="http://matthewgao.github.io/tags/vim/"/>
     
   </entry>
   
@@ -1712,70 +1761,6 @@ c.front()/back(); //返回的是元素的引用
     
     
       <category term="软件工程" scheme="http://matthewgao.github.io/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git Command Notes</title>
-    <link href="http://matthewgao.github.io/2014-9-2-git-note/"/>
-    <id>http://matthewgao.github.io/2014-9-2-git-note/</id>
-    <published>2014-09-02T04:52:36.000Z</published>
-    <updated>2016-04-18T15:11:41.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h2&gt;&lt;p&gt;Git 是一个分布式的版本管理工具，不同于perforce的是，他每个人都有一个完整的版本库，这种结构及其像bitcoin的原理。&lt;/p&gt;
-&lt;h3 id=&quot;工作区-Workplace&quot;&gt;&lt;a href=&quot;#工作区-Workplace&quot; class=&quot;headerlink&quot; title=&quot;工作区 Workplace&quot;&gt;&lt;/a&gt;工作区 Workplace&lt;/h3&gt;&lt;p&gt;即文件夹所在的位置&lt;/p&gt;
-&lt;h3 id=&quot;索引区-Index（stage）&quot;&gt;&lt;a href=&quot;#索引区-Index（stage）&quot; class=&quot;headerlink&quot; title=&quot;索引区 Index（stage）&quot;&gt;&lt;/a&gt;索引区 Index（stage）&lt;/h3&gt;&lt;p&gt;git add 提交到的区域，可以理解为缓存区&lt;/p&gt;
-&lt;h3 id=&quot;版本库-Repository&quot;&gt;&lt;a href=&quot;#版本库-Repository&quot; class=&quot;headerlink&quot; title=&quot;版本库 Repository&quot;&gt;&lt;/a&gt;版本库 Repository&lt;/h3&gt;&lt;p&gt;git commit 提交到的区域，即为本地Repository。即.git文件夹&lt;/p&gt;
-&lt;h3 id=&quot;stash&quot;&gt;&lt;a href=&quot;#stash&quot; class=&quot;headerlink&quot; title=&quot;stash&quot;&gt;&lt;/a&gt;stash&lt;/h3&gt;&lt;p&gt;与perforce中shelve的概念非常相似&lt;/p&gt;
-&lt;h2 id=&quot;基本应用&quot;&gt;&lt;a href=&quot;#基本应用&quot; class=&quot;headerlink&quot; title=&quot;基本应用&quot;&gt;&lt;/a&gt;基本应用&lt;/h2&gt;&lt;h3 id=&quot;创建一个Repository&quot;&gt;&lt;a href=&quot;#创建一个Repository&quot; class=&quot;headerlink&quot; title=&quot;创建一个Repository&quot;&gt;&lt;/a&gt;创建一个Repository&lt;/h3&gt;&lt;figure class=&quot;highlight nginx&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;git&lt;/span&gt; init&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;添加文件到stage区&quot;&gt;&lt;a href=&quot;#添加文件到stage区&quot; class=&quot;headerlink&quot; title=&quot;添加文件到stage区&quot;&gt;&lt;/a&gt;添加文件到stage区&lt;/h3&gt;&lt;figure class=&quot;highlight armasm&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;add &lt;/span&gt;readme.md&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;提交到版本库&quot;&gt;&lt;a href=&quot;#提交到版本库&quot; class=&quot;headerlink&quot; title=&quot;提交到版本库&quot;&gt;&lt;/a&gt;提交到版本库&lt;/h3&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git &lt;span class=&quot;keyword&quot;&gt;commit&lt;/span&gt; -m “&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;file&lt;/span&gt;”&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;查看现有branch的状态&quot;&gt;&lt;a href=&quot;#查看现有branch的状态&quot; class=&quot;headerlink&quot; title=&quot;查看现有branch的状态&quot;&gt;&lt;/a&gt;查看现有branch的状态&lt;/h3&gt;&lt;figure class=&quot;highlight fortran&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git &lt;span class=&quot;keyword&quot;&gt;status&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;查看工作区中文件和版本库中区别&quot;&gt;&lt;a href=&quot;#查看工作区中文件和版本库中区别&quot; class=&quot;headerlink&quot; title=&quot;查看工作区中文件和版本库中区别&quot;&gt;&lt;/a&gt;查看工作区中文件和版本库中区别&lt;/h3&gt;&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;selector-tag&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;selector-tag&quot;&gt;diff&lt;/span&gt; &lt;span class=&quot;selector-tag&quot;&gt;readme&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.md&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;查看commit历史记录&quot;&gt;&lt;a href=&quot;#查看commit历史记录&quot; class=&quot;headerlink&quot; title=&quot;查看commit历史记录&quot;&gt;&lt;/a&gt;查看commit历史记录&lt;/h3&gt;&lt;figure class=&quot;highlight applescript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git &lt;span class=&quot;built_in&quot;&gt;log&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git &lt;span class=&quot;built_in&quot;&gt;log&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;--pretty=oneline&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git &lt;span class=&quot;built_in&quot;&gt;log&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;--graph --pretty=oneline --abbrev-commit \\显示分支图&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;退回上一个版本&quot;&gt;&lt;a href=&quot;#退回上一个版本&quot; class=&quot;headerlink&quot; title=&quot;退回上一个版本&quot;&gt;&lt;/a&gt;退回上一个版本&lt;/h3&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git &lt;span class=&quot;keyword&quot;&gt;reset&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;--hard HEAD^&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git &lt;span class=&quot;keyword&quot;&gt;reset&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;--hard 3628164&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;ul&gt;
-&lt;li&gt;上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100。&lt;/li&gt;
-&lt;li&gt;当你用$ git reset –hard HEAD^回退到“add distributed”版本时，再想恢复到“append GPL”，就必须找到“append GPL”的commit id。Git提供了一个命令git reflog用来记录你的每一次命令：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class=&quot;highlight vim&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git reflog&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ea34578 HEAD@&amp;#123;&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;&amp;#125;: rese&lt;span class=&quot;variable&quot;&gt;t:&lt;/span&gt; moving &lt;span class=&quot;keyword&quot;&gt;to&lt;/span&gt; HEAD^&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;3628164&lt;/span&gt; HEAD@&amp;#123;&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&amp;#125;: commi&lt;span class=&quot;variable&quot;&gt;t:&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;append&lt;/span&gt; GPL&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ea34578 HEAD@&amp;#123;&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;&amp;#125;: commi&lt;span class=&quot;variable&quot;&gt;t:&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;add&lt;/span&gt; distributed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cb926e7 HEAD@&amp;#123;&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;&amp;#125;: commit (initial): wrote &lt;span class=&quot;keyword&quot;&gt;a&lt;/span&gt; readme &lt;span class=&quot;keyword&quot;&gt;file&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;丢弃工作区的修改&quot;&gt;&lt;a href=&quot;#丢弃工作区的修改&quot; class=&quot;headerlink&quot; title=&quot;丢弃工作区的修改&quot;&gt;&lt;/a&gt;丢弃工作区的修改&lt;/h3&gt;&lt;figure class=&quot;highlight applescript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git checkout &lt;span class=&quot;comment&quot;&gt;-- readme.md&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;blockquote&gt;
-&lt;p&gt;注意：有无 “–” 是有区别的，没有表示切换branch&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;删除文件&quot;&gt;&lt;a href=&quot;#删除文件&quot; class=&quot;headerlink&quot; title=&quot;删除文件&quot;&gt;&lt;/a&gt;删除文件&lt;/h3&gt;&lt;figure class=&quot;highlight stata&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git &lt;span class=&quot;keyword&quot;&gt;rm&lt;/span&gt; readme.md&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git commit -&lt;span class=&quot;keyword&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;remove file&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;分支管理&quot;&gt;&lt;a href=&quot;#分支管理&quot; class=&quot;headerlink&quot; title=&quot;分支管理&quot;&gt;&lt;/a&gt;分支管理&lt;/h2&gt;&lt;p&gt;git的分支与perforce的分支大不同，git的分支是基于类似于指针的方式来实现的，它是在创建不同的指针指向不同的commit版本&lt;/p&gt;
-&lt;h3 id=&quot;创建分支&quot;&gt;&lt;a href=&quot;#创建分支&quot; class=&quot;headerlink&quot; title=&quot;创建分支&quot;&gt;&lt;/a&gt;创建分支&lt;/h3&gt;&lt;figure class=&quot;highlight stylus&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git checkout -&lt;span class=&quot;selector-tag&quot;&gt;b&lt;/span&gt; dev&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;上面的命令建立了dev分支并切换到dev，等同于如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight q&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git branch &lt;span class=&quot;built_in&quot;&gt;dev&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git checkout &lt;span class=&quot;built_in&quot;&gt;dev&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;切换分支&quot;&gt;&lt;a href=&quot;#切换分支&quot; class=&quot;headerlink&quot; title=&quot;切换分支&quot;&gt;&lt;/a&gt;切换分支&lt;/h3&gt;&lt;figure class=&quot;highlight nginx&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;git&lt;/span&gt; checkout dev&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;查看分支&quot;&gt;&lt;a href=&quot;#查看分支&quot; class=&quot;headerlink&quot; title=&quot;查看分支&quot;&gt;&lt;/a&gt;查看分支&lt;/h3&gt;&lt;figure class=&quot;highlight nginx&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;git&lt;/span&gt; branch&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;删除分支&quot;&gt;&lt;a href=&quot;#删除分支&quot; class=&quot;headerlink&quot; title=&quot;删除分支&quot;&gt;&lt;/a&gt;删除分支&lt;/h3&gt;&lt;figure class=&quot;highlight armasm&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;branch &lt;/span&gt;-d dev&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;合并分支&quot;&gt;&lt;a href=&quot;#合并分支&quot; class=&quot;headerlink&quot; title=&quot;合并分支&quot;&gt;&lt;/a&gt;合并分支&lt;/h3&gt;&lt;figure class=&quot;highlight crmsh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git checkou &lt;span class=&quot;keyword&quot;&gt;master&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;title&quot;&gt;git&lt;/span&gt; merge dev&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;如果有冲突，git会标示在有冲突的文件中，按照如下格式&lt;/p&gt;
-&lt;figure class=&quot;highlight asciidoc&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Git tracks changes of files.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt; HEAD&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;section&quot;&gt;Creating a new branch is quick &amp;amp; simple.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;=======&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Creating a new branch is quick AND simple.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; feature1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;另外一种合并分支的方法是&lt;/p&gt;
-&lt;figure class=&quot;highlight stata&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git &lt;span class=&quot;keyword&quot;&gt;merge&lt;/span&gt; --&lt;span class=&quot;keyword&quot;&gt;no&lt;/span&gt;-ff -&lt;span class=&quot;keyword&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;merge with no-ff&quot;&lt;/span&gt; dev&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;这种方法的不同是 合并会是一个新的commit， 而之前的只是简单的把master指向dev&lt;/p&gt;
-&lt;h2 id=&quot;远程管理&quot;&gt;&lt;a href=&quot;#远程管理&quot; class=&quot;headerlink&quot; title=&quot;远程管理&quot;&gt;&lt;/a&gt;远程管理&lt;/h2&gt;&lt;h3 id=&quot;查看远程库信息&quot;&gt;&lt;a href=&quot;#查看远程库信息&quot; class=&quot;headerlink&quot; title=&quot;查看远程库信息&quot;&gt;&lt;/a&gt;查看远程库信息&lt;/h3&gt;&lt;figure class=&quot;highlight nginx&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;git&lt;/span&gt; remote -v&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;推送分支&quot;&gt;&lt;a href=&quot;#推送分支&quot; class=&quot;headerlink&quot; title=&quot;推送分支&quot;&gt;&lt;/a&gt;推送分支&lt;/h3&gt;&lt;figure class=&quot;highlight maxima&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git &lt;span class=&quot;built_in&quot;&gt;push&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;origin&lt;/span&gt; master&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git &lt;span class=&quot;built_in&quot;&gt;push&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;origin&lt;/span&gt; dev&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;获得分支&quot;&gt;&lt;a href=&quot;#获得分支&quot; class=&quot;headerlink&quot; title=&quot;获得分支&quot;&gt;&lt;/a&gt;获得分支&lt;/h3&gt;&lt;figure class=&quot;highlight q&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git branch --&lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt;-upstream &lt;span class=&quot;built_in&quot;&gt;dev&lt;/span&gt; origin/&lt;span class=&quot;built_in&quot;&gt;dev&lt;/span&gt; \\第一次的时候需要关联本地和远程的分支&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git pull&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;在本地创建和远程分支对应的分支&quot;&gt;&lt;a href=&quot;#在本地创建和远程分支对应的分支&quot; class=&quot;headerlink&quot; title=&quot;在本地创建和远程分支对应的分支&quot;&gt;&lt;/a&gt;在本地创建和远程分支对应的分支&lt;/h3&gt;&lt;figure class=&quot;highlight applescript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git checkout -b branch-&lt;span class=&quot;built_in&quot;&gt;name&lt;/span&gt; origin/branch-&lt;span class=&quot;built_in&quot;&gt;name&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;标签&quot;&gt;&lt;a href=&quot;#标签&quot; class=&quot;headerlink&quot; title=&quot;标签&quot;&gt;&lt;/a&gt;标签&lt;/h2&gt;&lt;h3 id=&quot;添加标签&quot;&gt;&lt;a href=&quot;#添加标签&quot; class=&quot;headerlink&quot; title=&quot;添加标签&quot;&gt;&lt;/a&gt;添加标签&lt;/h3&gt;&lt;p&gt;在某个分支上执行&lt;/p&gt;
-&lt;figure class=&quot;highlight crmsh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git &lt;span class=&quot;keyword&quot;&gt;tag&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;v1&lt;/span&gt;.&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git &lt;span class=&quot;keyword&quot;&gt;tag&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;v1&lt;/span&gt;.&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;6224799&lt;/span&gt; \\commit id&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;查看标签&quot;&gt;&lt;a href=&quot;#查看标签&quot; class=&quot;headerlink&quot; title=&quot;查看标签&quot;&gt;&lt;/a&gt;查看标签&lt;/h3&gt;&lt;figure class=&quot;highlight mipsasm&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git &lt;span class=&quot;keyword&quot;&gt;show &lt;/span&gt;&lt;span class=&quot;built_in&quot;&gt;v1&lt;/span&gt;.&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;删除标签&quot;&gt;&lt;a href=&quot;#删除标签&quot; class=&quot;headerlink&quot; title=&quot;删除标签&quot;&gt;&lt;/a&gt;删除标签&lt;/h3&gt;&lt;figure class=&quot;highlight crmsh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git &lt;span class=&quot;keyword&quot;&gt;tag&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;-d&lt;/span&gt; v0.&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
-    
-    <summary type="html">
-    
-      记录我与git和github的点点滴滴
-    
-    </summary>
-    
-      <category term="Dev Tool" scheme="http://matthewgao.github.io/categories/Dev-Tool/"/>
-    
-    
-      <category term="git" scheme="http://matthewgao.github.io/tags/git/"/>
     
   </entry>
   
