@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://matthewgao.github.io/"/>
-  <updated>2016-06-15T10:47:57.453Z</updated>
+  <updated>2016-06-22T08:55:24.109Z</updated>
   <id>http://matthewgao.github.io/</id>
   
   <author>
@@ -14,6 +14,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>xslt and xpath</title>
+    <link href="http://matthewgao.github.io/xslt/"/>
+    <id>http://matthewgao.github.io/xslt/</id>
+    <published>2016-06-22T08:46:10.878Z</published>
+    <updated>2016-06-22T08:55:24.109Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;xslt&quot;&gt;&lt;a href=&quot;#xslt&quot; class=&quot;headerlink&quot; title=&quot;xslt&quot;&gt;&lt;/a&gt;xslt&lt;/h2&gt;&lt;p&gt;这次是为了用xslt来转换一个xml所以临时学习了下xslt&lt;/p&gt;
+&lt;h3 id=&quot;call-template和apply-templates&quot;&gt;&lt;a href=&quot;#call-template和apply-templates&quot; class=&quot;headerlink&quot; title=&quot;call-template和apply-templates&quot;&gt;&lt;/a&gt;call-template和apply-templates&lt;/h3&gt;&lt;p&gt;对xml模板 来说，name属性是很关键的 call-template /apply-template 的name必须要和模板的name相对应。模板相当于一个函数，可以暂时这么看。而name相当于函数名称.&lt;/p&gt;
+&lt;p&gt;简单说apply是应用，call是调用。&lt;br&gt;用apply时，引擎自动搜索与当前select指定xpath的匹配节点相匹配的template（该template必须有属性match）并使用该template进行处理，此时需要指定的是select的path。&lt;br&gt;用call时就跟其它语言调用函数一样，必须指定name属性，相应的，该template必须有name属性，当然，也可以在这时with-param(当然相应的模板中有对应的param才行，不过这个不强制要求)。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;从名字区分：call-template，一次只对一个node名字有效；而apply-templates，注意是是复数，所以这个是对所有符合条件的node有效。&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;从手法上：call-template，手段是通过name；apply-templates手段是通过match。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用apply调用的模板,   其中的上下文节点是与之匹配的节点。使用call调用的模板,   它没有上下文节点，参数通过param进行传递&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;xpath&quot;&gt;&lt;a href=&quot;#xpath&quot; class=&quot;headerlink&quot; title=&quot;xpath&quot;&gt;&lt;/a&gt;xpath&lt;/h2&gt;&lt;p&gt;&lt;code&gt;xsl:if&lt;/code&gt;的&lt;code&gt;test&lt;/code&gt;，一般对象的&lt;code&gt;select&lt;/code&gt;都是一个xpath的表达式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;name()&lt;/code&gt;函数可以用来取当前element的名字&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;text()&lt;/code&gt;可以取当前element的内容&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;count()&lt;/code&gt;统计element个数&lt;/li&gt;
+&lt;li&gt;一个xpath可以包含一些条件例如&lt;code&gt;$resource_type[@external = &amp;#39;true&amp;#39;]&lt;/code&gt;，表示attribute有externel且为true的节点&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight dust&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;xsl:element&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;template-variable&quot;&gt;&amp;#123;name($resource_type)&amp;#125;&lt;/span&gt;&lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;span class=&quot;string&quot;&gt;&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;xsl:attribute&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;count&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;xsl:value-of&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;select&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;count($resource_type)&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;xsl:attribute&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;xsl:if&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;test&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;count($resource_type[@external = &#39;true&#39;]) != 0&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;xsl:element&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;externalServer&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;xsl:attribute&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;count&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;xsl:value-of&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;select&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;count($resource_type[@external= &#39;true&#39;])&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;xsl:attribute&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;xsl:element&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;xsl:if&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;xsl:element&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;parser&quot;&gt;&lt;a href=&quot;#parser&quot; class=&quot;headerlink&quot; title=&quot;parser&quot;&gt;&lt;/a&gt;parser&lt;/h2&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#!/usr/bin/env python3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# coding=utf-8&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# Created Time: 2016-06-20&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;__author__ = &lt;span class=&quot;string&quot;&gt;&#39;Matthew Gao&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; lxml.etree &lt;span class=&quot;keyword&quot;&gt;as&lt;/span&gt; ET&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; pprint&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    pp = pprint.PrettyPrinter(indent=&lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    xml_filename = &lt;span class=&quot;string&quot;&gt;&#39;amc_one_of_everything.xml&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    xsl_filename = &lt;span class=&quot;string&quot;&gt;&#39;phonehometranslator.xsl&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    dom = ET.parse(xml_filename)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    xslt = ET.parse(xsl_filename)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    transform = ET.XSLT(xslt)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    newdom = transform(dom)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# print(ET.tostring(newdom, pretty_print=True))&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    pp.pprint(ET.tostring(newdom, pretty_print=&lt;span class=&quot;keyword&quot;&gt;True&lt;/span&gt;).decode())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    print(transform.error_log)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; entry &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; transform.error_log:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        print(&lt;span class=&quot;string&quot;&gt;&#39;message from line %s, col %s: %s&#39;&lt;/span&gt; % (entry.line, entry.column, entry.message))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        print(&lt;span class=&quot;string&quot;&gt;&#39;domain: %s (%d)&#39;&lt;/span&gt; % (entry.domain_name, entry.domain))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        print(&lt;span class=&quot;string&quot;&gt;&#39;type: %s (%d)&#39;&lt;/span&gt; % (entry.type_name, entry.type))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        print(&lt;span class=&quot;string&quot;&gt;&#39;level: %s (%d)&#39;&lt;/span&gt; % (entry.level_name, entry.level))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        print(&lt;span class=&quot;string&quot;&gt;&#39;filename: %s&#39;&lt;/span&gt; % entry.filename)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; __name__ == &lt;span class=&quot;string&quot;&gt;&quot;__main__&quot;&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    parse()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;调试&quot;&gt;&lt;a href=&quot;#调试&quot; class=&quot;headerlink&quot; title=&quot;调试&quot;&gt;&lt;/a&gt;调试&lt;/h2&gt;&lt;p&gt;有人会说用&lt;xsl:message&gt;来调试，但是这个在解析出错的时候似乎帮助不大，有些xslt的编辑器可以调试，但是都是付费的，所以没有具体尝试&lt;/xsl:message&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      W3C上关于xslt和xpath的教程极其含糊，看了跟没看一样
+    
+    </summary>
+    
+    
+      <category term="xml" scheme="http://matthewgao.github.io/tags/xml/"/>
+    
+  </entry>
   
   <entry>
     <title>GDB Notes</title>
@@ -962,11 +1002,11 @@
       <category term="Linux" scheme="http://matthewgao.github.io/categories/Linux/"/>
     
     
-      <category term="linux" scheme="http://matthewgao.github.io/tags/linux/"/>
+      <category term="shell" scheme="http://matthewgao.github.io/tags/shell/"/>
     
       <category term="command" scheme="http://matthewgao.github.io/tags/command/"/>
     
-      <category term="shell" scheme="http://matthewgao.github.io/tags/shell/"/>
+      <category term="linux" scheme="http://matthewgao.github.io/tags/linux/"/>
     
   </entry>
   
@@ -1550,11 +1590,11 @@ c.front()/back(); //返回的是元素的引用
       <category term="OSX" scheme="http://matthewgao.github.io/categories/OSX/"/>
     
     
-      <category term="linux" scheme="http://matthewgao.github.io/tags/linux/"/>
-    
       <category term="shell" scheme="http://matthewgao.github.io/tags/shell/"/>
     
       <category term="vim" scheme="http://matthewgao.github.io/tags/vim/"/>
+    
+      <category term="linux" scheme="http://matthewgao.github.io/tags/linux/"/>
     
   </entry>
   
@@ -1722,45 +1762,9 @@ c.front()/back(); //返回的是元素的引用
       <category term="Linux" scheme="http://matthewgao.github.io/categories/Linux/"/>
     
     
-      <category term="command" scheme="http://matthewgao.github.io/tags/command/"/>
-    
       <category term="vim" scheme="http://matthewgao.github.io/tags/vim/"/>
     
-  </entry>
-  
-  <entry>
-    <title>Software Engineering</title>
-    <link href="http://matthewgao.github.io/2014-12-18-softwareengineering/"/>
-    <id>http://matthewgao.github.io/2014-12-18-softwareengineering/</id>
-    <published>2014-10-01T04:52:36.000Z</published>
-    <updated>2016-04-18T14:55:29.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;原则&quot;&gt;&lt;a href=&quot;#原则&quot; class=&quot;headerlink&quot; title=&quot;原则&quot;&gt;&lt;/a&gt;原则&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;DRY原则- Don’t repeat yourself&lt;/li&gt;
-&lt;li&gt;总是使用get/set方法来读写对象的属性， 这将使未来增加功能更方便。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;构建正交系统&quot;&gt;&lt;a href=&quot;#构建正交系统&quot; class=&quot;headerlink&quot; title=&quot;构建正交系统&quot;&gt;&lt;/a&gt;构建正交系统&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;编写shame代码，不会没有必要的向其他模块暴露任何事情，也不依赖于其他模块的实现。如果需要改变这个对象的状态，让这个对象替你去做。&lt;/li&gt;
-&lt;li&gt;避免使用全局变量，单例经常被用作全局变量&lt;/li&gt;
-&lt;li&gt;避免写相似的函数&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;原型&quot;&gt;&lt;a href=&quot;#原型&quot; class=&quot;headerlink&quot; title=&quot;原型&quot;&gt;&lt;/a&gt;原型&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;prototype与 曳光弹&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;类设计&quot;&gt;&lt;a href=&quot;#类设计&quot; class=&quot;headerlink&quot; title=&quot;类设计&quot;&gt;&lt;/a&gt;类设计&lt;/h2&gt;&lt;h3 id=&quot;高扇入&quot;&gt;&lt;a href=&quot;#高扇入&quot; class=&quot;headerlink&quot; title=&quot;高扇入&quot;&gt;&lt;/a&gt;高扇入&lt;/h3&gt;&lt;p&gt;让大量的类使用某个给定的类&lt;/p&gt;
-&lt;h3 id=&quot;低扇出&quot;&gt;&lt;a href=&quot;#低扇出&quot; class=&quot;headerlink&quot; title=&quot;低扇出&quot;&gt;&lt;/a&gt;低扇出&lt;/h3&gt;&lt;p&gt;让一个类里少量的或者适中的使用其他的类，一般不要超过七个&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;The pragmatic Programmer&gt; 读书笔记
-    
-    </summary>
-    
-      <category term="Arch" scheme="http://matthewgao.github.io/categories/Arch/"/>
-    
-    
-      <category term="软件工程" scheme="http://matthewgao.github.io/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+      <category term="command" scheme="http://matthewgao.github.io/tags/command/"/>
     
   </entry>
   

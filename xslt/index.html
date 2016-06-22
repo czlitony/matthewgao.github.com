@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="shell," />
+  <meta name="keywords" content="xml," />
 
 
 
@@ -82,16 +82,16 @@
 
 
 
-<meta name="description" content="SHELL学习笔记">
+<meta name="description" content="W3C上关于xslt和xpath的教程极其含糊，看了跟没看一样">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SHELL Command/Script Notes">
-<meta property="og:url" content="http://matthewgao.github.io/2014-9-2-shell-note/index.html">
+<meta property="og:title" content="xslt and xpath">
+<meta property="og:url" content="http://matthewgao.github.io/xslt/index.html">
 <meta property="og:site_name" content="Matthew Note">
-<meta property="og:description" content="SHELL学习笔记">
-<meta property="og:updated_time" content="2016-04-18T15:01:04.000Z">
+<meta property="og:description" content="W3C上关于xslt和xpath的教程极其含糊，看了跟没看一样">
+<meta property="og:updated_time" content="2016-06-22T08:55:24.109Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SHELL Command/Script Notes">
-<meta name="twitter:description" content="SHELL学习笔记">
+<meta name="twitter:title" content="xslt and xpath">
+<meta name="twitter:description" content="W3C上关于xslt和xpath的教程极其含糊，看了跟没看一样">
 
 
 
@@ -109,7 +109,7 @@
   };
 </script>
 
-  <title> SHELL Command/Script Notes | Matthew Note </title>
+  <title> xslt and xpath | Matthew Note </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -259,7 +259,7 @@
             
             
               
-                SHELL Command/Script Notes
+                xslt and xpath
               
             
           </h1>
@@ -271,38 +271,19 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-12-16T15:09:55+08:00" content="2015-12-16">
-              2015-12-16
+            <time itemprop="dateCreated" datetime="2016-06-22T16:46:10+08:00" content="2016-06-22">
+              2016-06-22
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2014-9-2-shell-note/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-9-2-shell-note/" itemprop="commentsCount"></span>
+                <a href="/xslt/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="xslt/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -325,24 +306,26 @@
       
 
       
-        <h2 id=""><a href="#" class="headerlink" title="$"></a>$</h2><ul>
-<li><code>$$</code> 返回PID， $是个内部变量</li>
-<li><code>$?</code> 表示上一个指令的返回值</li>
-<li><code>$0</code> 表示函数或者shell的第一个参数，后面类推</li>
-<li><code>$@</code> 返回所有参数</li>
+        <h2 id="xslt"><a href="#xslt" class="headerlink" title="xslt"></a>xslt</h2><p>这次是为了用xslt来转换一个xml所以临时学习了下xslt</p>
+<h3 id="call-template和apply-templates"><a href="#call-template和apply-templates" class="headerlink" title="call-template和apply-templates"></a>call-template和apply-templates</h3><p>对xml模板 来说，name属性是很关键的 call-template /apply-template 的name必须要和模板的name相对应。模板相当于一个函数，可以暂时这么看。而name相当于函数名称.</p>
+<p>简单说apply是应用，call是调用。<br>用apply时，引擎自动搜索与当前select指定xpath的匹配节点相匹配的template（该template必须有属性match）并使用该template进行处理，此时需要指定的是select的path。<br>用call时就跟其它语言调用函数一样，必须指定name属性，相应的，该template必须有name属性，当然，也可以在这时with-param(当然相应的模板中有对应的param才行，不过这个不强制要求)。</p>
+<ol>
+<li>从名字区分：call-template，一次只对一个node名字有效；而apply-templates，注意是是复数，所以这个是对所有符合条件的node有效。</li>
+<li><p>从手法上：call-template，手段是通过name；apply-templates手段是通过match。</p>
+</li>
+<li><p>使用apply调用的模板,   其中的上下文节点是与之匹配的节点。使用call调用的模板,   它没有上下文节点，参数通过param进行传递</p>
+</li>
+</ol>
+<h2 id="xpath"><a href="#xpath" class="headerlink" title="xpath"></a>xpath</h2><p><code>xsl:if</code>的<code>test</code>，一般对象的<code>select</code>都是一个xpath的表达式</p>
+<ul>
+<li><code>name()</code>函数可以用来取当前element的名字</li>
+<li><code>text()</code>可以取当前element的内容</li>
+<li><code>count()</code>统计element个数</li>
+<li>一个xpath可以包含一些条件例如<code>$resource_type[@external = &#39;true&#39;]</code>，表示attribute有externel且为true的节点</li>
 </ul>
-<h2 id="set-unset"><a href="#set-unset" class="headerlink" title="set unset"></a>set unset</h2><p>设置程序自定义变量（只对本shell）</p>
-<h2 id="export"><a href="#export" class="headerlink" title="export"></a>export</h2><p>设置为全局环境变量</p>
-<h2 id="declare"><a href="#declare" class="headerlink" title="declare"></a>declare</h2><p>将环境变量转成自定义变量</p>
-<h2 id="查找历史命令并执行"><a href="#查找历史命令并执行" class="headerlink" title="查找历史命令并执行"></a>查找历史命令并执行</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="keyword">history</span> | <span class="keyword">grep</span> -E <span class="string">'^ +1148'</span> | awk -F<span class="string">' '</span> <span class="string">'&#123;$1="";print&#125;'</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="参数扩展"><a href="#参数扩展" class="headerlink" title="参数扩展"></a>参数扩展</h2><ul>
-<li><code>${param:-default}</code> 如果param为空，就把他设置成default</li>
-<li><code>${ #param}</code> 给出param长度</li>
-<li><code>${var:-string}</code>: 若变量var为空，则用在命令行中用string来替换<code>${var:-string}</code>，否则变量var不为空时，则用变量var的值来替换<code>${var:-string}</code>；</li>
-<li><code>${var:=string}</code>: 替换规则和<code>${var:-string}</code>是一样的，所不同之处是<code>${var:=string}</code>若var为空时，用string替换<code>${var:=string}</code>的同时，把string赋给变量var：<code>${var:=string}</code>很常用的一种用法是，判断某个变量是否赋值，没有的话则给它赋上一个默认值。</li>
-<li><code>${var:+string}</code>的替换规则和上面的相反，即只有当var不是空的时候才替换成string，若var为空时则不替换或者说是替换成变量 var的值，即空值。(因为变量var此时为空，所以这两种说法是等价的) </li>
-<li><code>${var:?string}</code>替换规则为：若变量var不为空，则用变量var的值来替换<code>${var:?string}</code>；若变量var为空，则把string输出到标准错误中，并从脚本中退出。我们可利用此特性来检查是否设置了变量的值。</li>
-</ul>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">xsl:element</span> <span class="attr">name</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;name($resource_type)&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">xsl:attribute</span> <span class="attr">name</span>=<span class="string">"count"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">xsl:value-of</span> <span class="attr">select</span>=<span class="string">"count($resource_type)"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">xsl:attribute</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">xsl:if</span> <span class="attr">test</span>=<span class="string">"count($resource_type[@external = 'true']) != 0"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">xsl:element</span> <span class="attr">name</span>=<span class="string">"externalServer"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">xsl:attribute</span> <span class="attr">name</span>=<span class="string">"count"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">xsl:value-of</span> <span class="attr">select</span>=<span class="string">"count($resource_type[@external= 'true'])"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">xsl:attribute</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">xsl:element</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">xsl:if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xsl:element</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="parser"><a href="#parser" class="headerlink" title="parser"></a>parser</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="comment"># Created Time: 2016-06-20</span></span><br><span class="line"></span><br><span class="line">__author__ = <span class="string">'Matthew Gao'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lxml.etree <span class="keyword">as</span> ET</span><br><span class="line"><span class="keyword">import</span> pprint</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">()</span>:</span></span><br><span class="line">    pp = pprint.PrettyPrinter(indent=<span class="number">4</span>)</span><br><span class="line">    xml_filename = <span class="string">'amc_one_of_everything.xml'</span></span><br><span class="line">    xsl_filename = <span class="string">'phonehometranslator.xsl'</span></span><br><span class="line"></span><br><span class="line">    dom = ET.parse(xml_filename)</span><br><span class="line">    xslt = ET.parse(xsl_filename)</span><br><span class="line">    transform = ET.XSLT(xslt)</span><br><span class="line">    newdom = transform(dom)</span><br><span class="line">    <span class="comment"># print(ET.tostring(newdom, pretty_print=True))</span></span><br><span class="line">    pp.pprint(ET.tostring(newdom, pretty_print=<span class="keyword">True</span>).decode())</span><br><span class="line"></span><br><span class="line">    print(transform.error_log)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> entry <span class="keyword">in</span> transform.error_log:</span><br><span class="line">        print(<span class="string">'message from line %s, col %s: %s'</span> % (entry.line, entry.column, entry.message))</span><br><span class="line">        print(<span class="string">'domain: %s (%d)'</span> % (entry.domain_name, entry.domain))</span><br><span class="line">        print(<span class="string">'type: %s (%d)'</span> % (entry.type_name, entry.type))</span><br><span class="line">        print(<span class="string">'level: %s (%d)'</span> % (entry.level_name, entry.level))</span><br><span class="line">        print(<span class="string">'filename: %s'</span> % entry.filename)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    parse()</span><br></pre></td></tr></table></figure>
+<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><p>有人会说用<xsl:message>来调试，但是这个在解析出错的时候似乎帮助不大，有些xslt的编辑器可以调试，但是都是付费的，所以没有具体尝试</xsl:message></p>
 
       
     </div>
@@ -363,7 +346,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/shell/" rel="tag">#shell</a>
+            <a href="/tags/xml/" rel="tag">#xml</a>
           
         </div>
       
@@ -372,17 +355,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014-9-2-linux-command-note/" rel="next" title="Linux Command Notes">
-                <i class="fa fa-chevron-left"></i> Linux Command Notes
+              <a href="/gdb/" rel="next" title="GDB Notes">
+                <i class="fa fa-chevron-left"></i> GDB Notes
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2014-9-26-makefile/" rel="prev" title="Makefile Notes">
-                Makefile Notes <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -431,8 +410,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2014-9-2-shell-note/"
-           data-title="SHELL Command/Script Notes" data-url="http://matthewgao.github.io/2014-9-2-shell-note/">
+      <div class="ds-thread" data-thread-key="xslt/"
+           data-title="xslt and xpath" data-url="http://matthewgao.github.io/xslt/">
       </div>
     
   </div>
@@ -530,7 +509,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#set-unset"><span class="nav-number">2.</span> <span class="nav-text">set unset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#export"><span class="nav-number">3.</span> <span class="nav-text">export</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#declare"><span class="nav-number">4.</span> <span class="nav-text">declare</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找历史命令并执行"><span class="nav-number">5.</span> <span class="nav-text">查找历史命令并执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数扩展"><span class="nav-number">6.</span> <span class="nav-text">参数扩展</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#xslt"><span class="nav-number">1.</span> <span class="nav-text">xslt</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#call-template和apply-templates"><span class="nav-number">1.1.</span> <span class="nav-text">call-template和apply-templates</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xpath"><span class="nav-number">2.</span> <span class="nav-text">xpath</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#parser"><span class="nav-number">3.</span> <span class="nav-text">parser</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调试"><span class="nav-number">4.</span> <span class="nav-text">调试</span></a></li></ol></div>
             
           </div>
         </section>
